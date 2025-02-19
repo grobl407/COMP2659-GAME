@@ -5,6 +5,7 @@ typedef struct ball {
   int brick_collide = 0;  /* Boolean for ball collision with brick */
   int wall_collide = 0;  /* Boolean for ball collision with wall */
   int platform_collide = 0;  /* Boolean for ball collision with platform */
+  int isActive = 0; /* Boolean for if ball is in play */
 }
 
 typedef struct brick {
@@ -32,6 +33,9 @@ typedef struct platform {
   int move_dist = 0; /* Adjustable move distance of platform per button press, can change in settings */
 }
 
-typedef struct score {
-  int total = 0; /* total score */
-  const int letter_spacing;
+typedef struct game {
+  int score;  /* Total score */
+  int lives;  /* Lives remaining */
+  int level;  /* Keep track of current level */
+  int game_over;
+  int paused;
