@@ -1,0 +1,35 @@
+# Compiler and flags
+CC = cc68x
+AS = gen
+CFLAGS = -g -c
+LDFLAGS = -g
+
+# Source files and objects
+SRCS = tst_rast.c raster.c rast_asm.s
+OBJS = tst_rast.o raster.o rast_asm.o
+EXEC = tst_rast
+
+# Default target
+all: $(EXEC)
+
+# Linking
+$(EXEC): $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
+
+# Compiling C files
+tst_rast.o: tst_rast.c raster.h
+	$(CC) $(CFLAGS) tst_rast.c
+
+raster.o: raster.c raster.h
+	$(CC) $(CFLAGS) raster.c
+
+# Assembling assembly file
+rast_asm.o: rast_asm.s
+	$(AS) -D -L2 rast_asm.s
+
+# Clean rule
+clean:
+	sh -c "rm *.o $(OBJS) $(EXEC)"
+
+
+
