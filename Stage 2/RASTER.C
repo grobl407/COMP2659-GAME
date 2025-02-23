@@ -65,15 +65,15 @@ void clear_screen(){
 	printf("\033E\033f\n");
 }
 
-void plot_bitmap(UINT8 *base, int x, int y, UINT16 bitmap[16]) {
+void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]) {
 	int row;  
-    for (row = 0; row < 16; row++) {  /*iterate through rows*/
+    for (row = 0; row < 8; row++) {  /*iterate through rows*/
         unsigned short current_row = bitmap[row];   /*save current row data*/
         UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8); /*calculate location*/
 
 		int bit;
         for (bit = 0; bit < 16; bit++) {
-            if (current_row & (1 << (15 - bit))) {
+            if (current_row & (1 << (7 - bit))) {
                 pixel_ptr[bit/8] |= (1 << (7 - (bit % 8)));
             } else {
                 pixel_ptr[(bit / 8)] &= ~(1 << (7 - (bit % 8)));  /*Clear the bit if not set*/
@@ -82,13 +82,27 @@ void plot_bitmap(UINT8 *base, int x, int y, UINT16 bitmap[16]) {
     }
 }
 
-void plot_rectangle (UINT8 *base, int x, int y, int width, int height) {
+void plot_brick (UINT8 *base, int x, int y, int width, UINT8 bitmap[8][3]) {
 	int row;
-	int column;
-    for (row = 0; row < height; row++) {  /*iterate through rows*/
-        for (column = 0; column < width; column++) { /*iterate through columns*/
-            UINT8 *pixel_ptr = base + (y + row) * 50 + (x + column) / 8;  /*calculate location*/
-        	 *pixel_ptr |= (1 << (7 - ((x + column) % 8)));
+	for (row = 0; row < 8; row++) {  /* iterate through rows */
+        	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
+
+		int byte;
+		for (byte = 0; byte < 3; byte++) {
+			pixel_ptr[byte] = bitmap[row][byte];
         }
     }
 }
+
+void plot_paddle (UINT8 *base, int x, int y, UINT8 bitmap[5][5]) {
+	int row;
+	for (row = 0; row < 5; row++) {
+		UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
+
+		int byte;
+		for (byte = 0; byte < 5; byte ++) {
+			pixel_ptr[byte] = bitmap[row][byte];
+		}
+	}
+}
+		
