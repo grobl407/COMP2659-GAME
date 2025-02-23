@@ -58,6 +58,58 @@ void bitmap_test_function() {
 		0x0000,	
 		0x0000,
 	};
+	UINT16 full_brick_map[8] = {
+		0x7FFFFE,
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF,
+		0xFFFFFF,
+		0x7FFFFE,
+	};
+
+	UINT16 semi_cracked_map[8] = {
+		0x7FFFFE,
+		0xFFFFFF,
+		0xF83FFF,
+		0xFF9FFF,
+		0xFFC3FF,
+		0xFFF87F,
+		0xFFFF3F,
+		0x7FFFFE,
+	};
+	UINT16 cracked_brick_map[8] = {
+		0x7FFFFE,
+		0xFFFFCF,
+		0xF83F8F,
+		0xFF9F3F,
+		0xFF807F,
+		0xFCB87F,
+		0xFE3F3F,
+		0x7FFFFE,
+	};
+	UINT16 almost_broken_map[8] = {
+		0x1FFFC0,
+		0x5FFFC0,
+		0x983F85,
+		0x3F9F31,
+		0xFF807D,
+		0xFCB87F,
+		0xFE3F3E,
+		0x7FFFFC,
+	};
+	UINT16 broken_brick_map[8] = {
+		0x18FF80,
+		0x567F83,
+		0x803F09,
+		0x0F1E62,
+		0xDF00F8,
+		0xD90000,
+		0xD8600C,
+		0x600328,
+	};
+	
 	plot_bitmap(base, 400, 200, test_bitmap);
 	Cnecin();
 }

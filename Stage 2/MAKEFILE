@@ -5,8 +5,8 @@ CFLAGS = -g -c
 LDFLAGS = -g
 
 # Source files and objects
-SRCS = tst_rast.c raster.c rast_asm.s
-OBJS = tst_rast.o raster.o rast_asm.o
+SRCS = tst_rast.c raster.c 
+OBJS = tst_rast.o raster.o 
 EXEC = tst_rast
 
 # Default target
@@ -18,18 +18,15 @@ $(EXEC): $(OBJS)
 
 # Compiling C files
 tst_rast.o: tst_rast.c raster.h
-	$(CC) $(CFLAGS) tst_rast.c
+	$(CC) $(CFLAGS) -o tst_rast.o tst_rast.c
 
 raster.o: raster.c raster.h
-	$(CC) $(CFLAGS) raster.c
+	$(CC) $(CFLAGS) -o raster.o raster.c
 
-# Assembling assembly file
-rast_asm.o: rast_asm.s
-	$(AS) -D -L2 rast_asm.s
 
 # Clean rule
 clean:
-	sh -c "rm *.o tst_rast.o raster.o"
+	ls raster.o
 
 
 
