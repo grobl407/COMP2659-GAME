@@ -71,7 +71,7 @@ void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]) {
         unsigned short current_row = bitmap[row];   /*save current row data*/
         UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8); /*calculate location*/
 
-		int bit;
+	int bit;
         for (bit = 0; bit < 16; bit++) {
             if (current_row & (1 << (7 - bit))) {
                 pixel_ptr[bit/8] |= (1 << (7 - (bit % 8)));
