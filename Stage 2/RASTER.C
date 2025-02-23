@@ -82,26 +82,37 @@ void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]) {
     }
 }
 
-void plot_brick (UINT8 *base, int x, int y, int width, UINT8 bitmap[8][3]) {
+void plot_brick (UINT8 *base, int x, int y, int width, UINT8 bitmap[8]) {
 	int row;
 	for (row = 0; row < 8; row++) {  /* iterate through rows */
+		UINT16 current_row = bitmap[row];
         	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
 
-		int byte;
-		for (byte = 0; byte < 3; byte++) {
-			pixel_ptr[byte] = bitmap[row][byte];
-        }
-    }
+		int bit;
+		for (bit = 0; bit < 3; bit++) {
+			if (current_row & (1 << (23 - bit))) {
+				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8 )));
+			}
+			else {
+				pixel_ptr[bit / 8] &= ~(1 << (7 - (bit % 8)));
+			}
+        	}
+    	}
 }
 
-void plot_paddle (UINT8 *base, int x, int y, UINT8 bitmap[5][5]) {
+void plot_paddle (UINT8 *base, int x, int y, UINT8 bitmap[5]) {
 	int row;
 	for (row = 0; row < 5; row++) {
+		UINT16 current_row = bitmap[row];
 		UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
 
-		int byte;
-		for (byte = 0; byte < 5; byte ++) {
-			pixel_ptr[byte] = bitmap[row][byte];
+		int bit;
+		for (bit = 0; bit < 40; bit ++) {
+			if (current_row & (1 << (39 - bit))) {
+				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8)));
+			} else {
+				pixel_ptr[bit / 8] &= ~(1 << (7 - (bit % 8)));
+			}
 		}
 	}
 }
