@@ -7,7 +7,7 @@ int main() {
 
 	test_clear_screen();
 	test_plot_pixel();
-	test_vertline();
+	render_walls();
 	test_horizline();
 	bitmap_test_function();
 
@@ -21,9 +21,10 @@ void test_plot_pixel () {
 	Cnecin();
 }
 
-void test_vertline () {
+void render_walls () {
 	UINT8 *base = Physbase();
-	plot_vertline(base, 320, 100, 300); /* Plot vertical line in the middle*/
+	plot_vertline(base, 160, 0, 400); /* Plot left wall */
+	plot_vertline(base, 480, 0, 400);
 	Cnecin();
 }
 
