@@ -10,8 +10,7 @@ int main() {
 	test_vertline();
 	test_horizline();
 	bitmap_test_function();
-	test_plot_rectangle();
-	
+
 
 	return 0;
 }
@@ -40,7 +39,6 @@ void test_clear_screen() {
 
 void bitmap_test_function() {
 	UINT8 *base = Physbase(); /*frame buffer start*/
-
 	UINT16 full_brick_map[8] = {
 		0x7FFFFE,
 		0xFFFFFF,
@@ -92,7 +90,17 @@ void bitmap_test_function() {
 		0xD8600C,
 		0x600328,
 	};
-	
+	UINT16 ball_bitmap[8] = {
+		0x3C,
+		0x6E,
+		0xDF,
+		0xBF,
+		0xFF,
+		0xFF,
+		0x7E,
+		0x3C,
+	};
+	plot_ball(base, 150, 300, ball_bitmap);
 	plot_brick(base, 20, 200, full_brick_map);
 	plot_brick(base, 50, 200, semi_cracked_map);
 	plot_brick(base, 80, 200, cracked_brick_map);
@@ -101,8 +109,3 @@ void bitmap_test_function() {
 	Cnecin();
 }
 
-void test_plot_rectangle () {
-	UINT8 *base = Physbase(); /*frame buffer start */
-	plot_rectangle(base, 100, 200, 64, 64);
-	Cnecin(); /*waits for user input */
-}
