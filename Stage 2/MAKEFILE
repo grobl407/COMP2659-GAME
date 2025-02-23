@@ -29,7 +29,7 @@ rast_asm.o: rast_asm.s
 
 # Clean rule
 clean:
-	sh -c "rm *.o $(OBJS) $(EXEC)"
+	sh -c "rm *.o tst_rast.o raster.o"
 
 
 
