@@ -89,7 +89,7 @@ void plot_brick (UINT8 *base, int x, int y, UINT8 bitmap[8]) {
         	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
 
 		int bit;
-		for (bit = 0; bit < 3; bit++) {
+		for (bit = 0; bit < 24; bit++) {
 			if (current_row & (1 << (23 - bit))) {
 				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8 )));
 			}
