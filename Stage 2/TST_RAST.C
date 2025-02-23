@@ -101,10 +101,10 @@ void bitmap_test_function() {
 		0x3C,
 	};
 	plot_ball(base, 150, 300, ball_bitmap);
-	plot_brick(base, 20, 200, full_brick_map);
-	plot_brick(base, 50, 200, semi_cracked_map);
-	plot_brick(base, 80, 200, cracked_brick_map);
-	plot_brick(base, 110, 200, almost_broken_map);
+	plot_brick(base, 20, 50, full_brick_map);
+	plot_brick(base, 50, 250, semi_cracked_map);
+	plot_brick(base, 80, 350, cracked_brick_map);
+	plot_brick(base, 110, 130, almost_broken_map);
 	plot_brick(base, 140, 200, broken_brick_map);
 	Cnecin();
 }
