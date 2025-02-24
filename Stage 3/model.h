@@ -14,7 +14,7 @@ typedef struct brick {
   int base_points; /* Base number of points to award for breaking, can be multiplied by a number on higher levels */
   int size_x = 32;
   int size_y = 8;
-  int brick_health = 5;
+  int health = 5;
 }
 
 typedef struct wall {
