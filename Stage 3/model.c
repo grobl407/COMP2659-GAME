@@ -1,5 +1,6 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
+#include "model.h"
 
 void move_ball (Ball *ball) {
   ball->x += ball->delta_x;
@@ -30,14 +31,18 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
     ball->delta_y = -ball->delta_y;
   }
 
-  /* Ball collides with ceiling */
+  /* Ball collides with paddle */
   if (ball->y + ball->size_y >= paddle->y && ball->x + ball->size_x >= paddle->x && 
       ball->x <= paddle->x + paddle->size_x) {
     ball->delta_y = -ball->delta_y;
   }
 
   /* Ball collides with brick */
+  if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
+      ball->x <= brick->x + brick->size_x) {
+        brick->n_hits += 1;
 
+      }
   /* Ball falls to floor */
   if (ball->y >= floor->y) {
     game->lives -= 1;
