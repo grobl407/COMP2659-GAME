@@ -1,48 +1,64 @@
-typedef struct ball {
-  unsigned int x, y; /* Position */
-  int delta_x;  /* horizontal displacement per clock tick */
-  int delta_y;  /* vertical displacement per clock tick */
-  int brick_collide = 0;  /* Boolean for ball collision with brick */
-  int wall_collide = 0;  /* Boolean for ball collision with wall */
-  int platform_collide = 0;  /* Boolean for ball collision with platform */
-  int isActive = 0; /* Boolean for if ball is in play */
-  int size_x = 8;
-  int size_y = 7;
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 400
+
+void move_ball (Ball *ball) {
+  ball->x += ball->delta_x;
+  ball->y += ball->delta_y;
 }
 
-typedef struct brick {
-  unsigned int x, y; /* Position */
-  int n_hits; /* Number of times the ball has hit brick */
-  int isBroken; /* 1, or 0 boolean for broken or not broken */
-  int base_points; /* Base number of points to award for breaking, can be multiplied by a number on higher levels */
-  int size_x = 22;
-  int size_y = 8;
+void move_paddle (Paddle *paddle, int direction) {
+  if (direction == 0) { /* moving left */
+    if (paddle->x > 0)
+      paddle->x -= paddle->move_dist;
+  }
+  else {
+    if (paddle->x + paddle->x < SCREEN_WIDTH)
+      paddle->x += paddle->move_dist;
+  }
 }
 
-typedef struct wall {
-  unsigned int x; /* Horizontal position */
+void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks, wall *left_wall, 
+                      wall *right_wall, ceiling *ceiling, floor *floor, game *game) {
+  
+  /* Ball collides with wall, flip delta_x */
+  if (ball->x <= left_wall->x || ball->x + ball->size_x >= right_wall->x) {
+    ball->delta_x = -ball->delta_x;
+  }
+
+  /* Ball collides with ceiling */
+  if (ball->y <= ceiling->y) {
+    ball->delta_y = -ball->delta_y;
+  }
+
+  /* Ball collides with ceiling */
+  if (ball->y + ball->size_y >= paddle->y && ball->x + ball->size_x >= paddle->x && 
+      ball->x <= paddle->x + paddle->size_x) {
+    ball->delta_y = -ball->delta_y;
+  }
+
+  /* Ball collides with brick */
+
+  /* Ball falls to floor */
+  if (ball->y >= floor->y) {
+    game->lives -= 1;
+    if (game->lives == 0) {
+      game->game_over = 1; // Game over is true
+    }
+    else {
+      reset_ball(ball, paddle);
+    }
+  }
 }
 
-typedef struct ceiling {
-  unsigned int y; /* Vertical position */
+void reset_ball (ball *ball, paddle *paddle) {
 }
 
-typedef struct floor {
-  unsigned int y; /* Vertical position */
+void reset_bricks (brick brick[], int num_bricks, int level) {
+  for (int i = 0; i < num_bricks; i++) {
+    bricks[i].isBroken = 0;
+    bricks[i].n_hits = 0;
+    bricks[i].base_points = ; // TBD how many more points will we award
+  }
 }
 
-typedef struct paddle {
-  unsigned int x, y; /* Position */
-  int size_x = 40; /* Size of paddle */
-  int size_y = 5;
-  int p_input = 0; /* 0 for left, 1 for right */
-  int move_dist = 0; /* Adjustable move distance of platform per button press, can change in settings */
-}
-
-typedef struct game {
-  int score;  /* Total score */
-  int lives;  /* Lives remaining */
-  int level;  /* Keep track of current level */
-  int game_over; /* Bool 0 for false, 1 for true */
-  int paused; /* Bool 0 for false, 1 for true */
-}
+void increase_ball_speed (ball *bakk
