@@ -69,4 +69,11 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
   }
 }
 
-void increase_ball_speed (ball *ball
+void check_broken (brick *brick, game *game) { /* Clear brick and award points */
+  brick->health -= 1; // decrement brick
+
+  if (brick->health == 0) {
+    brick->isBroken = 1;
+    game->score += brick->base_points;
+  }
+}
