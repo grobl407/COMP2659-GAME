@@ -42,20 +42,17 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
   /* Ball collides with brick */
   if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
       ball->x <= brick->x + brick->size_x) {
-        brick->n_hits += 1;
         ball->delta_y = -ball->delta_y;
       }
 
   /*Ball collides with left of brick*/
   if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x >= brick->x){
     /*add velocity stuff*/
-    ball->n_hits += 1;
     ball->delta_x = -ball->delta_x;
   }
   /*Ball collides with right of brick*/
   if(ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x){
     /*add velocity stuff*/
-    ball->n_hits += 1;
     ball->delta_x = -ball->delta_x;
   }
 
