@@ -39,7 +39,7 @@ void test_clear_screen() {
 
 void bitmap_test_function() {
 	UINT8 *base = Physbase(); /*frame buffer start*/
-	UINT16 full_brick_map[8] = {
+	UINT32 full_brick_map[8] = {
 		0x7FFFFE,
 		0xFFFFFF,
 		0xFFFFFF,
@@ -50,7 +50,7 @@ void bitmap_test_function() {
 		0x7FFFFE,
 	};
 
-	UINT16 semi_cracked_map[8] = {
+	UINT32 semi_cracked_map[8] = {
 		0x7FFFFE,
 		0xFFFFFF,
 		0xF83FFF,
@@ -60,7 +60,7 @@ void bitmap_test_function() {
 		0xFFFF3F,
 		0x7FFFFE,
 	};
-	UINT16 cracked_brick_map[8] = {
+	UINT32 cracked_brick_map[8] = {
 		0x7FFFFE,
 		0xFFFFCF,
 		0xF83F8F,
@@ -70,7 +70,7 @@ void bitmap_test_function() {
 		0xFE3F3F,
 		0x7FFFFE,
 	};
-	UINT16 almost_broken_map[8] = {
+	UINT32 almost_broken_map[8] = {
 		0x1FFFC0,
 		0x5FFFC0,
 		0x983F85,
@@ -80,7 +80,7 @@ void bitmap_test_function() {
 		0xFE3F3E,
 		0x7FFFFC,
 	};
-	UINT16 broken_brick_map[8] = {
+	UINT32 broken_brick_map[8] = {
 		0x18FF80,
 		0x567F83,
 		0x803F09,
@@ -100,6 +100,7 @@ void bitmap_test_function() {
 		0x7E,
 		0x3C,
 	};
+	
 	plot_ball(base, 150, 300, ball_bitmap);
 	plot_brick(base, 20, 50, full_brick_map);
 	plot_brick(base, 50, 250, semi_cracked_map);

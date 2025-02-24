@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "RASTER.C": "cpp"
+        "RASTER.C": "cpp",
+        "TST_RAST.C": "cpp"
     }
 }
