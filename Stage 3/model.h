@@ -12,8 +12,9 @@ typedef struct brick {
   int n_hits; /* Number of times the ball has hit brick */
   int isBroken; /* 1, or 0 boolean for broken or not broken */
   int base_points; /* Base number of points to award for breaking, can be multiplied by a number on higher levels */
-  int size_x = 22;
+  int size_x = 32;
   int size_y = 8;
+  int brick_health = 5;
 }
 
 typedef struct wall {
