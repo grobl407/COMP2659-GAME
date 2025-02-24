@@ -1,7 +1,7 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 
-void ball_falls () { /* Minus one life, ball restarts at rest */
+void ball_falls (ball *ball) { /* Minus one life, ball restarts at rest */
     if (ball->y >= floor->y) {
     game->lives -= 1;
     if (game->lives == 0) {
