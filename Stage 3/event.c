@@ -1,5 +1,6 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
+#include model.h
 
 void ball_falls (ball *ball) { /* Minus one life, ball restarts at rest */
     if (ball->y >= floor->y) {
