@@ -100,10 +100,10 @@ void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[8]) {
     	}
 }
 
-void plot_paddle (UINT8 *base, int x, int y, UINT8 bitmap[5]) {
+void plot_paddle (UINT8 *base, int x, int y, UINT64 bitmap[5]) {
 	int row;
 	for (row = 0; row < 5; row++) {
-		UINT16 current_row = bitmap[row];
+		UINT64 current_row = bitmap[row];
 		UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
 
 		int bit;
