@@ -3,8 +3,10 @@
 #include "model.h"
 
 void move_ball (Ball *ball) {
-  ball->x += ball->delta_x;
-  ball->y += ball->delta_y;
+  if (ball->isActive = 1) {
+    ball->x += ball->delta_x;
+    ball->y += ball->delta_y;
+  }
 }
 
 void move_paddle (Paddle *paddle, int direction) {
@@ -69,11 +71,23 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
   }
 }
 
+void reset_ball (ball *ball, paddle *paddle) {
+  ball->x = paddle->x + paddle->size/2;  // Place ball in middle of paddle
+  ball->y = paddle->y - ball->size_y;  // Place ball on top of paddle
+  ball->isActive = 0;
+}
+
+/* wait for ball input to enable ball start again */
+void start_ball (ball *ball) {
+  Cnenin();
+  ball->isActive = 1;
+}
+
 void check_broken (brick *brick, game *game) { /* Clear brick and award points */
   brick->health -= 1; // decrement brick
 
-  if (brick->health == 0) {
-    brick->isBroken = 1;
-    game->score += brick->base_points;
+  if (brick->health == 0) {  // Check if brick is broken
+    brick->isBroken = 1;  // If so, brick isBroken = true;
+    game->score += brick->base_points;  // Add to game score
   }
 }
