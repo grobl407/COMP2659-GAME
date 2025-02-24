@@ -50,15 +50,4 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
   }
 }
 
-void reset_ball (ball *ball, paddle *paddle) {
-}
-
-void reset_bricks (brick brick[], int num_bricks, int level) {
-  for (int i = 0; i < num_bricks; i++) {
-    bricks[i].isBroken = 0;
-    bricks[i].n_hits = 0;
-    bricks[i].base_points = ; // TBD how many more points will we award
-  }
-}
-
-void increase_ball_speed (ball *bakk
+void increase_ball_speed (ball *ball
