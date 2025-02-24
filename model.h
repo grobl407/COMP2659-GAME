@@ -2,9 +2,6 @@ typedef struct ball {
   unsigned int x, y; /* Position */
   int delta_x;  /* horizontal displacement per clock tick */
   int delta_y;  /* vertical displacement per clock tick */
-  int brick_collide = 0;  /* Boolean for ball collision with brick */
-  int wall_collide = 0;  /* Boolean for ball collision with wall */
-  int platform_collide = 0;  /* Boolean for ball collision with platform */
   int isActive = 0; /* Boolean for if ball is in play */
   int size_x = 8;
   int size_y = 7;
