@@ -9,7 +9,6 @@ typedef struct ball {
 
 typedef struct brick {
   unsigned int x, y; /* Position */
-  int n_hits; /* Number of times the ball has hit brick */
   int isBroken; /* 1, or 0 boolean for broken or not broken */
   int base_points; /* Base number of points to award for breaking, can be multiplied by a number on higher levels */
   int size_x = 32;
@@ -31,8 +30,8 @@ typedef struct floor {
 
 typedef struct paddle {
   unsigned int x, y; /* Position */
-  int size_x = 40; /* Size of paddle */
-  int size_y = 5;
+  int size_x = 64; /* Size of paddle */
+  int size_y = 8;
   int p_input = 0; /* 0 for left, 1 for right */
   int move_dist = 0; /* Adjustable move distance of platform per button press, can change in settings */
 }

@@ -2,12 +2,14 @@
 #define SCREEN_HEIGHT 400
 #include "model.h"
 
-void move_ball (Ball *ball) {
-  ball->x += ball->delta_x;
-  ball->y += ball->delta_y;
+void move_ball (ball *ball) {
+  if (ball->isActive = 1) {
+    ball->x += ball->delta_x;
+    ball->y += ball->delta_y;
+  }
 }
 
-void move_paddle (Paddle *paddle, int direction) {
+void move_paddle (paddle *paddle, int direction) {
   if (direction == 0) { /* moving left */
     if (paddle->x > 0)
       paddle->x -= paddle->move_dist;
@@ -40,20 +42,17 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
   /* Ball collides with brick */
   if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
       ball->x <= brick->x + brick->size_x) {
-        brick->n_hits += 1;
         ball->delta_y = -ball->delta_y;
       }
 
   /*Ball collides with left of brick*/
   if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x >= brick->x){
     /*add velocity stuff*/
-    ball->n_hits += 1;
     ball->delta_x = -ball->delta_x;
   }
   /*Ball collides with right of brick*/
   if(ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x){
     /*add velocity stuff*/
-    ball->n_hits += 1;
     ball->delta_x = -ball->delta_x;
   }
 
@@ -69,11 +68,23 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
   }
 }
 
+void reset_ball (ball *ball, paddle *paddle) {
+  ball->x = paddle->x + paddle->size/2;  // Place ball in middle of paddle
+  ball->y = paddle->y - ball->size_y;  // Place ball on top of paddle
+  ball->isActive = 0;
+}
+
+/* wait for ball input to enable ball start again */
+void start_ball (ball *ball) {
+  Cnenin();
+  ball->isActive = 1;
+}
+
 void check_broken (brick *brick, game *game) { /* Clear brick and award points */
   brick->health -= 1; // decrement brick
 
-  if (brick->health == 0) {
-    brick->isBroken = 1;
-    game->score += brick->base_points;
+  if (brick->health == 0) {  // Check if brick is broken
+    brick->isBroken = 1;  // If so, brick isBroken = true;
+    game->score += brick->base_points;  // Add to game score
   }
 }
