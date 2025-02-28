@@ -65,7 +65,7 @@ void clear_screen(){
 	printf("\033E\033f\n");
 }
 
-void plot_ball(UINT8 *base, int x, int y, UINT8 bitmap[8]) {
+void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]) {
 	int row;  
     for (row = 0; row < 8; row++) {  /*iterate through rows*/
         unsigned short current_row = bitmap[row];   /*save current row data*/
@@ -89,7 +89,7 @@ void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[7]) {
         	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
 
 		int bit;
-		for (bit = 0; bit < 32; bit++) {
+		for (bit = 0; bit <= 32; bit++) {
 			if (current_row & (1 << (31 - bit))) {
 				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8 )));
 			}
