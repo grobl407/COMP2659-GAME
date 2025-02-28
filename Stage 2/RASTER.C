@@ -87,14 +87,18 @@ void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[7]) {
 	for (row = 0; row < 7; row++) {  /* iterate through rows */
 		UINT32 current_row = bitmap[row];
         	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
+		int bit_offset = x % 8;
 
 		int bit;
 		for (bit = 0; bit < 32; bit++) {
+			int bit_position = 7 - ((bit + bit_offset) % 8);
+			int byte_index = (bit + bit_offset) / 8;
+
 			if (current_row & (1 << (31 - bit))) {
-				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8 )));
+				pixel_ptr[byte_index] |= (1 << bit_position);
 			}
 			else {
-				pixel_ptr[bit / 8] &= ~(1 << (7 - (bit % 8)));
+				pixel_ptr[byte_index] &= ~(1 << bit_position);
 			}
         	}
     	}
