@@ -6,7 +6,7 @@
 #define SCREEN_HEIGHT 400	
 
 void plot_pixel(UINT8 *base, int x, int y){
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT){
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT){ /*making sure x and y is within the limits*/
 		*(base + y * 80 + (x >> 3)) |= 1 << (7 - (x & 7));   /*x >> 3 = x / 8, x & 7 = x % 8*/ 
 	}
 }
@@ -65,16 +65,16 @@ void clear_screen(){
 	printf("\033E\033f\n");
 }
 
-void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]) {
+void plot_ball(UINT8 *base, int x, int y, UINT8 bitmap[8]) {
 	int row;  
     for (row = 0; row < 8; row++) {  /*iterate through rows*/
         unsigned short current_row = bitmap[row];   /*save current row data*/
         UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8); /*calculate location*/
 
 	int bit;
-        for (bit = 0; bit < 16; bit++) {
-            if (current_row & (1 << (7 - bit))) {
-                pixel_ptr[bit/8] |= (1 << (7 - (bit % 8)));
+        for (bit = 0; bit < 8; bit++) {
+            if (current_row & (1 << (7 - bit))) {  /*Checks if bit is supposed to be set*/
+                pixel_ptr[bit/8] |= (1 << (7 - (bit % 8)));   /*if the bit is supposed to be set, set bit*/
             } else {
                 pixel_ptr[(bit / 8)] &= ~(1 << (7 - (bit % 8)));  /*Clear the bit if not set*/
             }
@@ -82,15 +82,15 @@ void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]) {
     }
 }
 
-void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[8]) {
+void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[7]) {
 	int row;
 	for (row = 0; row < 8; row++) {  /* iterate through rows */
 		UINT32 current_row = bitmap[row];
         	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
 
 		int bit;
-		for (bit = 0; bit < 24; bit++) {
-			if (current_row & (1 << (23 - bit))) {
+		for (bit = 0; bit < 32; bit++) {
+			if (current_row & (1 << (31 - bit))) {
 				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8 )));
 			}
 			else {

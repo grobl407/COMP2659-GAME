@@ -40,56 +40,56 @@ void test_clear_screen() {
 
 void bitmap_test_function() {
 	UINT8 *base = Physbase(); /*frame buffer start*/
-	UINT32 full_brick_map[8] = {
-		0x7FFFFE,
-		0xFFFFFF,
-		0xFFFFFF,
-		0xFFFFFF,
-		0xFFFFFF,
-		0xFFFFFF,
-		0xFFFFFF,
-		0x7FFFFE,
+	UINT32 full_brick_map[7] = {
+		0x7FFFFFFE,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0x7FFFFFFE,
+
 	};
 
-	UINT32 semi_cracked_map[8] = {
-		0x7FFFFE,
-		0xFFFFFF,
-		0xF83FFF,
-		0xFF9FFF,
-		0xFFC3FF,
-		0xFFF87F,
-		0xFFFF3F,
-		0x7FFFFE,
+	UINT32 semi_cracked_map[7] = {
+		0x7FFFFFFE,
+		0xFC7FFDFF,
+		0xFF0FE1FF,
+		0xFFF00FFF,
+		0xFFFC41FF,
+		0xFF83FFFF,
+		0x7FFFFFFE,
+	
 	};
-	UINT32 cracked_brick_map[8] = {
-		0x7FFFFE,
-		0xFFFFCF,
-		0xF83F8F,
-		0xFF9F3F,
-		0xFF807F,
-		0xFCB87F,
-		0xFE3F3F,
-		0x7FFFFE,
+	UINT32 cracked_brick_map[7] = {
+		0x7FFFFFFE,
+		0xFC7EFDFF,
+		0xFF0DE03F,
+		0xE0F00FCF,
+		0xCFFC41F3,
+		0xDF83FEFF,
+		0x7FFFFFFE,
+
 	};
-	UINT32 almost_broken_map[8] = {
-		0x1FFFC0,
-		0x5FFFC0,
-		0x983F85,
-		0x3F9F31,
-		0xFF807D,
-		0xFCB87F,
-		0xFE3F3E,
-		0x7FFFFC,
+	UINT32 almost_broken_map[7] = {
+		0x07FF7FFE,
+		0x007EF1F7,
+		0x0F008011,
+		0x60F00F84,
+		0xCFF801D3,
+		0xDF830ECF,
+		0x7FFF9F76,
+
 	};
-	UINT32 broken_brick_map[8] = {
-		0x18FF80,
-		0x567F83,
-		0x803F09,
-		0x0F1E62,
-		0xDF00F8,
-		0xD90000,
-		0xD8600C,
-		0x600328,
+	UINT32 broken_brick_map[7] = {
+		0x07FF7CFE,
+		0x0076F1F7,
+		0x0F008001,
+		0x20C00C84,
+		0x43F001D3,
+		0x6981088F,
+		0x00FF9436,
+
 	};
 	UINT16 ball_bitmap[8] = {
 		0x3C,
