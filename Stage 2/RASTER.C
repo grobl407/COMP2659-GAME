@@ -84,7 +84,7 @@ void plot_ball(UINT8 *base, int x, int y, UINT8 bitmap[8]) {
 
 void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[7]) {
 	int row;
-	for (row = 0; row < 8; row++) {  /* iterate through rows */
+	for (row = 0; row < 7; row++) {  /* iterate through rows */
 		UINT32 current_row = bitmap[row];
         	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
 
