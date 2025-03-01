@@ -32,7 +32,5 @@ model.o: model.c model.h
 clean:
 	$(RM) -f *.o $(OBJS) $(EXEC)
 
-all: clean $()
-
 
 
