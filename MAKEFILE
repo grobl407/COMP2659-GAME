@@ -1,36 +1,32 @@
-# Compiler and flags
+#Compiler and flags
 CC = cc68x
 AS = gen
 CFLAGS = -g -c
 LDFLAGS = -g
 RM = rm
 
-# Folders
-STAGE2 = stage2
-STAGE3 = stage3
+#Source files and objects
+SRCS = model.c event.c tst_s3.c
+OBJS = model.o event.o tst_s3.o
+EXEC = tst_s3
 
-# Source files and objects
-SRCS = $(STAGE2)/tst_rast.c $(STAGE2)/raster.c $(STAGE3)/model.c
-OBJS = tst_rast.o raster.o model.o
-EXEC = tst_rast
-
-# Default target
+#Default target
 all: $(EXEC)
 
-# Linking
+#Linking
 $(EXEC): $(OBJS)
-	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
+    $(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
 
-# Compiling C files
-tst_rast.o: $(STAGE2)/tst_rast.c $(STAGE2)/raster.h $(STAGE3)/model.h
-	$(CC) $(CFLAGS) -o tst_rast.o $(STAGE2)/tst_rast.c
+#Compiling C files
+model.o: model.c model.h
+    $(CC) $(CFLAGS) -o model.o model.c
 
-raster.o: $(STAGE2)/raster.c $(STAGE2)/raster.h
-	$(CC) $(CFLAGS) -o raster.o $(STAGE2)/raster.c
+event.o: event.c model.h
+    $(CC) $(CFLAGS) -o event.o event.c
 
-model.o: $(STAGE3)/model.c $(STAGE3)/model.h
-	$(CC) $(CFLAGS) -o model.o $(STAGE3)/model.c
+tst_s3.o: tst_s3.c model.h
+    $(CC) $(CFLAGS) -o tst_s3.o tst_s3.c
 
-# Clean rule
+#Clean rule
 clean:
-	$(RM) -f *.o $(OBJS) $(EXEC)
+    $(RM) -f *.o $(OBJS) $(EXEC)
