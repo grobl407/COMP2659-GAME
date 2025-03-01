@@ -188,8 +188,8 @@ int main() {
 
   char key;
   while (1) {
-    if (_khbit()) {
-      key = _getch();
+	printf("Controls: a - left, d - right, space - tick, q - quit: ");
+    	scanf(" %c", &key);
 
       if (key == 'a') { // Move paddle left
         move_paddle(&paddle, 0);
