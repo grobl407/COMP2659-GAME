@@ -1,3 +1,6 @@
+#ifndef __MODEL_H__
+#define __MODEL_H__
+
 typedef struct ball {
   unsigned int x, y; /* Position */
   int delta_x;  /* horizontal displacement per clock tick */
