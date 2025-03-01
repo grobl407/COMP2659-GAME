@@ -67,7 +67,7 @@ void clear_screen(){
 
 void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]) {
 	int row;  
-    for (row = 0; row < 8; row++) {  /*iterate through rows*/
+	for (row = 0; row < 8; row++) {  /*iterate through rows*/
         unsigned short current_row = bitmap[row];   /*save current row data*/
         UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8); /*calculate location*/
 

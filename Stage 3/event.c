@@ -39,6 +39,3 @@ void level_complete (game *game, ball *ball, brick bricks[], int num_bricks) {
     reset_bricks(bricks, num_bricks, game->level);
   }
 }
-
-void game_over () { /* Ball falls and no lives remain */
-}
