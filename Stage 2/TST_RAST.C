@@ -110,11 +110,11 @@ void bitmap_test_function() {
 	};
 
 	plot_ball(base, 150, 300, ball_bitmap);
-	plot_brick(base, 20, 50, full_brick_map);
-	plot_brick(base, 50, 250, semi_cracked_map);
-	plot_brick(base, 80, 350, cracked_brick_map);
-	plot_brick(base, 110, 130, almost_broken_map);
-	plot_brick(base, 140, 200, broken_brick_map);
+	plot_brick(base, 171, 50, full_brick_map);
+	plot_brick(base, 210, 250, semi_cracked_map);
+	plot_brick(base, 249, 350, cracked_brick_map);
+	plot_brick(base, 288, 130, almost_broken_map);
+	plot_brick(base, 327, 200, broken_brick_map);
 	plot_paddle(base, 250, 350, platform_map);
 	Cnecin();
 }

@@ -3,10 +3,11 @@ CC = cc68x
 AS = gen
 CFLAGS = -g -c
 LDFLAGS = -g
+RM = rm
 
 # Source files and objects
-SRCS = tst_rast.c raster.c 
-OBJS = tst_rast.o raster.o 
+SRCS = tst_rast.c raster.c model.c
+OBJS = tst_rast.o raster.o model.o
 EXEC = tst_rast
 
 # Default target
@@ -23,10 +24,13 @@ tst_rast.o: tst_rast.c raster.h
 raster.o: raster.c raster.h
 	$(CC) $(CFLAGS) -o raster.o raster.c
 
+model.o: model.c model.h
+	$(CC) $(CFLAGS) -o model.o model.c
+
 
 # Clean rule
 clean:
-	ls raster.o
+	$(RM) -f *.o $(OBJS) $(EXEC)
 
 
 

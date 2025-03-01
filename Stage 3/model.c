@@ -51,9 +51,14 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
     ball->delta_x = -ball->delta_x;
   }
   /*Ball collides with right of brick*/
-  if(ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x){
+  if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x){
     /*add velocity stuff*/
     ball->delta_x = -ball->delta_x;
+  }
+  /*ball collides with top of brick*/
+  if(ball->y >= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
+     ball->x <= brick->y + brick->size_x){
+    ball->delta_y = -ball->delta_y;
   }
 
   /* Ball falls to floor */
@@ -69,8 +74,8 @@ void ball_collisions (ball *ball, paddle *paddle, brick bricks[], int num_bricks
 }
 
 void reset_ball (ball *ball, paddle *paddle) {
-  ball->x = paddle->x + paddle->size/2;  // Place ball in middle of paddle
-  ball->y = paddle->y - ball->size_y;  // Place ball on top of paddle
+  ball->x = paddle->x + paddle->size/2;  /* Place ball in middle of paddle */
+  ball->y = paddle->y - ball->size_y;  /* Place ball on top of paddle */
   ball->isActive = 0;
 }
 
