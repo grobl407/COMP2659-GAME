@@ -2,18 +2,18 @@ typedef struct ball {
   unsigned int x, y; /* Position */
   int delta_x;  /* horizontal displacement per clock tick */
   int delta_y;  /* vertical displacement per clock tick */
-  int isActive = 0; /* Boolean for if ball is in play */
-  int size_x = 8;
-  int size_y = 7;
+  int isActive; /* Boolean for if ball is in play */
+  int size_x;
+  int size_y;
 }
 
 typedef struct brick {
   unsigned int x, y; /* Position */
   int isBroken; /* 1, or 0 boolean for broken or not broken */
   int base_points; /* Base number of points to award for breaking, can be multiplied by a number on higher levels */
-  int size_x = 32;
-  int size_y = 7;
-  int health = 5;
+  int size_x;
+  int size_y;
+  int health;
 }
 
 typedef struct wall {
@@ -30,10 +30,10 @@ typedef struct floor {
 
 typedef struct paddle {
   unsigned int x, y; /* Position */
-  int size_x = 64; /* Size of paddle */
-  int size_y = 8;
-  int p_input = 0; /* 0 for left, 1 for right */
-  int move_dist = 0; /* Adjustable move distance of platform per button press, can change in settings */
+  int size_x; /* Size of paddle */
+  int size_y;
+  int p_input; /* 0 for left, 1 for right */
+  int move_dist; /* Adjustable move distance of platform per button press, can change in settings */
 }
 
 typedef struct game {
