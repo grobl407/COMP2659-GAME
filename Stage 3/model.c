@@ -85,24 +85,19 @@ void start_ball (ball *ball) {
   ball->isActive = 1;
 }
 
-void find_brick (ball *ball, brick bricks[], int num_bricks, game *game, first_brick_y) {
-  int brick_length = 32;
-  int brick_height = 7;
-  int spacing = 7;
-
-  // Find column
-  int column = (ball->x - 171) / (brick_width + spacing);
-
-  // Find row
-  int row = (ball->y - first_brick_y) / (brick_height + spacing);
-
-  // Find index in array
-  int i = row * 8 + column;
-
-  // Check proper indexing, and call check broken on bricksp[i]
-  if (i >= 0 && i < num_bricks) {
-    check_broken(&bricks[i], game);
-  }
+void find_brick(ball *ball, brick bricks[], int num_bricks, game *game) {
+    for (int i = 0; i < num_bricks; i++) {
+        if (!bricks[i].isBroken && 
+            ball->y <= bricks[i].y + bricks[i].size_y &&
+            ball->y + ball->size_y >= bricks[i].y &&
+            ball->x + ball->size_x >= bricks[i].x &&
+            ball->x <= bricks[i].x + bricks[i].size_x) {
+            
+            check_broken(&bricks[i], game);
+            print_brick_state(i, &bricks[i]);
+            return;
+        }
+    }
 }
 
 
