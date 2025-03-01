@@ -28,7 +28,7 @@ void print_life_lost (game *game) {
 
 void print_ball_state (ball *ball) {
   printf("Ball X: %d, Y: %d, delta_x: %d, delta_y: %d,
-    ball->x, ball->y, ball->delta_x, ball->delta_y);
+    ball->x, ball->y, ball->delta_x, ball->delta_y");
 }
 
 void print_paddle_state (paddle *paddle) {
@@ -54,7 +54,7 @@ int main() {
   ceiling celing = {0};
   floor floor = {400};
 
-  ball ball = {320, 307, 2, 2, 1);
+  ball ball = {320, 307, 2, 2, 1};
 
   paddle paddle = {280, 300, 64, 8, 0, 10};
 
