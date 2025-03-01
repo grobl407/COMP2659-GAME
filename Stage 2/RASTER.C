@@ -67,7 +67,7 @@ void clear_screen(){
 
 void plot_ball(UINT8 *base, int x, int y, UINT8 bitmap[8]) {
 	int row;  
-    for (row = 0; row < 8; row++) {  /*iterate through rows*/
+	for (row = 0; row < 8; row++) {  /*iterate through rows*/
         unsigned short current_row = bitmap[row];   /*save current row data*/
         UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8); /*calculate location*/
 
@@ -87,19 +87,15 @@ void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[7]) {
 	for (row = 0; row < 7; row++) {  /* iterate through rows */
 		UINT32 current_row = bitmap[row];
         	UINT8 *pixel_ptr = base + (y + row) * (SCREEN_WIDTH / 8) + (x / 8);
-		int bit_offset = x % 8;
 
 		int bit;
 		for (bit = 0; bit < 32; bit++) {
-			int bit_position = 7 - ((bit + bit_offset) % 8);
-			int byte_index = (bit + bit_offset) / 8;
-
 			if (current_row & (1 << (31 - bit))) {
-				pixel_ptr[byte_index] |= (1 << bit_position);
+				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8)));
 			}
 			else {
-				pixel_ptr[byte_index] &= ~(1 << bit_position);
-			}
+				pixel_ptr[bit / 8] &= ~(1 << (7 - (bit % 8)));
+			}	
         	}
     	}
 }
