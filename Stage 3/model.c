@@ -80,6 +80,10 @@ void start_ball (ball *ball) {
   ball->isActive = 1;
 }
 
+void find_brick (ball *ball) {
+}
+
+
 void check_broken (brick *brick, game *game) { /* Clear brick and award points */
   brick->health -= 1; // decrement brick
 
