@@ -5,8 +5,12 @@ CFLAGS = -g -c
 LDFLAGS = -g
 RM = rm
 
+# Folders
+STAGE2 = stage2
+STAGE3 = stage3
+
 # Source files and objects
-SRCS = tst_rast.c raster.c model.c
+SRCS = $(STAGE2)/tst_rast.c $(STAGE2)/raster.c $(STAGE3)/model.c
 OBJS = tst_rast.o raster.o model.o
 EXEC = tst_rast
 
@@ -18,19 +22,15 @@ $(EXEC): $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
 
 # Compiling C files
-tst_rast.o: tst_rast.c raster.h
-	$(CC) $(CFLAGS) -o tst_rast.o tst_rast.c
+tst_rast.o: $(STAGE2)/tst_rast.c $(STAGE2)/raster.h $(STAGE3)/model.h
+	$(CC) $(CFLAGS) -o tst_rast.o $(STAGE2)/tst_rast.c
 
-raster.o: raster.c raster.h
-	$(CC) $(CFLAGS) -o raster.o raster.c
+raster.o: $(STAGE2)/raster.c $(STAGE2)/raster.h
+	$(CC) $(CFLAGS) -o raster.o $(STAGE2)/raster.c
 
-model.o: model.c model.h
-	$(CC) $(CFLAGS) -o model.o model.c
-
+model.o: $(STAGE3)/model.c $(STAGE3)/model.h
+	$(CC) $(CFLAGS) -o model.o $(STAGE3)/model.c
 
 # Clean rule
 clean:
 	$(RM) -f *.o $(OBJS) $(EXEC)
-
-
-
