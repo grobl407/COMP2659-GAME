@@ -24,4 +24,37 @@ void print_life_lost (game *game) {
 }
 
 int main() {
-  ball ball =
+/* initialize game elements */
+
+  wall left_wall;
+  left_wall->x = 160;
+
+  wall right_wall;
+  right_wall->x = 480;
+
+  ball ball;
+  ball->ball_x = 320;
+  ball->ball_y = 307;
+  ball->delta_x = 2;
+  ball->delta_y = 2;
+  ball->isActive = 1;
+
+  paddle paddle;
+  paddle->x = 288;
+  paddle->y = 300;
+  paddle->move_dist = 10;
+
+  brick bricks[40];
+
+  game game;
+  game->score = 0;
+  game->lives = 3;
+  game->level = 1;
+  game->game_over = 0;
+
+  int bricks_per_row = 8;
+  int num_bricks = 40; // 5 rows 8 bricks
+
+  for (int i = 0; i < num_bricks; i++) {
+    brick *brick = &bricks[i];
+    brick->x = 171 + (i % bricks_per_row) * 
