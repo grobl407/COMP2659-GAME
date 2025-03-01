@@ -1,6 +1,8 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 #include "model.h"
+#include <stdio.h>
+
 
 void move_ball (ball *ball) {
   if (ball->isActive = 1) {
