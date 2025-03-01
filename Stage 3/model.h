@@ -1,5 +1,5 @@
-#ifndef __MODEL_H__
-#define __MODEL_H__
+#ifndef model_h_
+#define model_h_
 
 typedef struct ball {
   unsigned int x, y; /* Position */
