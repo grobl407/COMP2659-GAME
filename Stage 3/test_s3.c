@@ -54,7 +54,7 @@ int main() {
   ceiling celing = {0};
   floor floor = {400};
 
-  ball ball = {320, 307, 2, 2, 1};
+  ball ball = {320, 307, 2, 2, 1, 8, 7};
 
   paddle paddle = {280, 300, 64, 8, 0, 10};
 
