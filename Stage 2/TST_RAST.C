@@ -1,6 +1,7 @@
 #include "raster.h"
 #include <stdio.h>
 #include <osbind.h>
+#include <linea.h>
 #include "TYPES.H"
 
 int main() {
@@ -109,8 +110,9 @@ void bitmap_test_function() {
 		0xFFFFFFFFFF,
 	};
 
-	plot_ball(base, 150, 300, ball_bitmap);
-	plot_brick(base, 171, 50, full_brick_map);
+
+	plot_ball(base, 150, 150, ball_bitmap);
+	plot_brick(base, 205, 170, full_brick_map);
 	plot_brick(base, 210, 250, semi_cracked_map);
 	plot_brick(base, 249, 350, cracked_brick_map);
 	plot_brick(base, 288, 130, almost_broken_map);
