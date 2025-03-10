@@ -101,7 +101,7 @@ void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[7]) {
     	}
 }
 
-void plot_paddle (UINT8 *base, int x, int y, UINT64 bitmap[5]) {
+void plot_paddle (UINT8 *base, int x, int y, UINT32 bitmap[5]) {
 	int row;
 	for (row = 0; row < 5; row++) {
 		UINT64 current_row = bitmap[row];
@@ -109,7 +109,7 @@ void plot_paddle (UINT8 *base, int x, int y, UINT64 bitmap[5]) {
 
 		int bit;
 		for (bit = 0; bit < 40; bit ++) {
-			if (current_row & (1 << (39 - bit))) {
+			if (current_row & (0x80000000 >> bit)) {
 				pixel_ptr[bit / 8] |= (1 << (7 - (bit % 8)));
 			} else {
 				pixel_ptr[bit / 8] &= ~(1 << (7 - (bit % 8)));

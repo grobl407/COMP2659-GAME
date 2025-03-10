@@ -9,7 +9,7 @@ int main() {
 	test_clear_screen();
 	test_plot_pixel();
 	render_walls();
-	test_horizline();
+	/*test_horizline();*/
 	bitmap_test_function();
 
 
@@ -26,14 +26,15 @@ void render_walls () {
 	UINT8 *base = Physbase();
 	plot_vertline(base, 160, 30, 400); /* Plot left wall */
 	plot_vertline(base, 480, 30, 400);
+	plot_horizline(base, 160, 480, 30);
 	Cnecin();
 }
-
+/*
 void test_horizline () {
 	UINT8 *base = Physbase();
-	plot_horizline(base, 160, 480, 30); /* Plot horizontal line */
+	plot_horizline(base, 160, 480, 30); /* Plot horizontal line 
 	Cnecin();
-}
+}*/
 
 void test_clear_screen() {
 	clear_screen();
@@ -102,21 +103,27 @@ void bitmap_test_function() {
 		0x7E,
 		0x3C,
 	};
-	UINT64 platform_map[5] = {
-		0xFFFFFFFFFF,
-		0xBFFFFFFFFF,
-		0xDFFFFFFFFF,
-		0xEFFFFFFFFF,
-		0xFFFFFFFFFF,
+	UINT32 platform_map[5] = {
+		0x7FFFFFFE,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0xFFFFFFFF,
+		0x7FFFFFFE,
 	};
 
-
+	int x;
+	for(x = 160; x < 480; x += 32){
+		plot_brick(base, x, 35, full_brick_map);
+	}
 	plot_ball(base, 150, 150, ball_bitmap);
+
+	/*
 	plot_brick(base, 205, 170, full_brick_map);
 	plot_brick(base, 210, 250, semi_cracked_map);
 	plot_brick(base, 249, 350, cracked_brick_map);
 	plot_brick(base, 288, 130, almost_broken_map);
 	plot_brick(base, 327, 200, broken_brick_map);
+	*/
 	plot_paddle(base, 250, 350, platform_map);
 	Cnecin();
 }
