@@ -26,6 +26,7 @@ void render_walls () {
 	UINT8 *base = Physbase();
 	plot_vertline(base, 160, 30, 400); /* Plot left wall */
 	plot_vertline(base, 480, 30, 400);
+	plot_horizline(base, 160, 480, 85);
 	plot_horizline(base, 160, 480, 30);
 	Cnecin();
 }
@@ -111,11 +112,35 @@ void bitmap_test_function() {
 		0x7FFFFFFE,
 	};
 
+	UINT16 heart_map[16] = {
+		0x3E7C,
+		0x77FE,
+		0xEFFF,
+		0xDFFF,
+		0xBFFF,
+		0xFFFF,
+		0xFFFF,
+		0xFFFF,
+		0xFFFF,
+		0xFFFF,
+		0x7FFE,
+		0x3FFC,
+		0x1FF8,
+		0x0FF0,
+		0x07E0,
+		0x03C0,
+	};
+
 	int x;
 	for(x = 160; x < 480; x += 32){
-		plot_brick(base, x, 35, full_brick_map);
+		plot_brick(base, x, 100, full_brick_map);
 	}
+	for(x = 175; x < 175 + 3 * (16 + 2); x += 18){
+	plot_heart(base, x, 40, heart_map);
+	}
+
 	plot_ball(base, 150, 150, ball_bitmap);
+
 
 	/*
 	plot_brick(base, 205, 170, full_brick_map);
