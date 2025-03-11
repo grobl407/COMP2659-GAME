@@ -2,7 +2,7 @@
 #define SCREEN_HEIGHT 400
 #include "model.h"
 
-void ball_falls (ball *ball) { /* Minus one life, ball restarts at rest */
+void ball_falls (Ball *ball, Floor * floor) { /* Minus one life, ball restarts at rest */
     if (ball->y >= floor->y) {
     game->lives -= 1;
     if (game->lives == 0) {
@@ -14,7 +14,7 @@ void ball_falls (ball *ball) { /* Minus one life, ball restarts at rest */
   }
 }
 
-void reset_bricks (brick bricks[], int num_bricks, int level) {
+void reset_bricks (Brick bricks[], int num_bricks, int level) {
   for (int i = 0; i < num_bricks; i++) {
     bricks[i].isBroken = 0;
     bricks[i].n_hits = 0;
@@ -24,7 +24,7 @@ void reset_bricks (brick bricks[], int num_bricks, int level) {
 
 /* All bricks cleared, so replace bricks, award points,
 increase level and ball velocity, restart the ball */
-void level_complete (game *game, ball *ball, brick bricks[], int num_bricks) {
+void level_complete (Game *game, Ball *ball, Brick bricks[], int num_bricks) {
   /* First Check if all bricks are cleared */
   int levelClear = 0; // Level clear starts true
 
