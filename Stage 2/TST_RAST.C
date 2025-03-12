@@ -47,7 +47,7 @@ void test_horizline () {
 	plot_horizline(base, 160, 480, 30); /* Plot horizontal line 
 	Cnecin();
 }*/
-}*/
+
 
 void test_clear_screen() {
 	clear_screen();
@@ -148,11 +148,11 @@ void bitmap_test_function() {
 	for(x = 170; x < 458; x += 32){
 		plot_brick(base, x, 100, full_brick_map);
 	}
-	for(x = 170; x < 219; x += 24 ){
+	for(x = 170; x < 219; x += 24){
 		plot_heart(base, x, 45, heart_map);
 	}
 
-	plot_ball(base, 150, 150, ball_bitmap);
+	plot_ball(base, 260, 342, ball_bitmap);
 	/*
 	plot_heart(base, 175, 150, heart_map);
 	plot_heart(base, 195, 150, heart_map);
