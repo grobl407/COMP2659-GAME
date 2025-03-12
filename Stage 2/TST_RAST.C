@@ -3,6 +3,9 @@
 #include <osbind.h>
 #include <linea.h>
 #include "TYPES.H"
+#define HEART_COUNT 3
+#define HEART_WIDTH 16
+#define HEART_SPACING 4
 
 int main() {
 
@@ -131,15 +134,15 @@ void bitmap_test_function() {
 		0x03C0,
 	};
 
-	int x;
+	int x;	
 	for(x = 160; x < 480; x += 32){
 		plot_brick(base, x, 100, full_brick_map);
 	}
-	for(x = 175; x < 175 + 3 * (16 + 2); x += 18){
-	plot_heart(base, x, 40, heart_map);
-	}
 
 	plot_ball(base, 150, 150, ball_bitmap);
+	plot_heart(base, 175, 40, heart_map);
+	plot_heart(base, 195, 40, heart_map);
+	plot_heart(base, 210, 40, heart_map);
 
 
 	/*
