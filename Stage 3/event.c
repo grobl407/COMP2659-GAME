@@ -15,15 +15,17 @@ void ball_falls (Ball *ball, Floor * floor) { /* Minus one life, ball restarts a
 }
 
 void reset_bricks (Brick bricks[], int num_bricks, int level) {
+void reset_bricks (Brick bricks[], int num_bricks, int level) {
   for (int i = 0; i < num_bricks; i++) {
     bricks[i].isBroken = 0;
-    bricks[i].n_hits = 0;
-    bricks[i].base_points = bricks[i].basepoints*2; // double points awarded for each broken brick at new level
+    bricks[i].health = 6;
+    bricks[i].base_points = bricks[i].base_points*2; // double points awarded for each broken brick at new level
   }
 }
 
 /* All bricks cleared, so replace bricks, award points,
 increase level and ball velocity, restart the ball */
+void level_complete (Game *game, Ball *ball, Brick bricks[], int num_bricks) {
 void level_complete (Game *game, Ball *ball, Brick bricks[], int num_bricks) {
   /* First Check if all bricks are cleared */
   int levelClear = 0; // Level clear starts true

@@ -4,14 +4,14 @@
 #include <stdio.h>
 
 
-void move_ball (ball *ball) {
+void move_ball (Ball *ball) {
   if (ball->isActive = 1) {
     ball->x += ball->delta_x;
     ball->y += ball->delta_y;
   }
 }
 
-void move_paddle (paddle *paddle, int direction) {
+void move_paddle (Paddle *paddle, int direction) {
   if (direction == 0) { /* moving left */
     if (paddle->x > 0)
       paddle->x -= paddle->move_dist;
@@ -44,24 +44,24 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
   Brick brick = find_brick(&ball, &bricks, num_bricks, &game);
 
   /* Ball collides with brick */
-  if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
-      ball->x <= brick->x + brick->size_x) {
+  if (ball->y <= brick.y + brick.size_y && ball->x + ball->size_x >= brick.x &&
+      ball->x <= brick.x + brick.size_x) {
         ball->delta_y = -ball->delta_y;
       }
 
   /*Ball collides with left of brick*/
-  if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x >= brick->x){
+  if (ball->y < brick.y + brick.size_y && ball->y < brick.y && ball->x >= brick.x){
     /*add velocity stuff*/
     ball->delta_x = -ball->delta_x;
   }
   /*Ball collides with right of brick*/
-  if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x){
+  if (ball->y < brick.y + brick.size_y && ball->y < brick.y && ball->x <= brick.x + brick.size_x){
     /*add velocity stuff*/
     ball->delta_x = -ball->delta_x;
   }
   /*ball collides with top of brick*/
-  if(ball->y >= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
-     ball->x <= brick->y + brick->size_x){
+  if(ball->y >= brick.y + brick.size_y && ball->x + ball->size_x >= brick.x &&
+     ball->x <= brick.y + brick.size_x){
     ball->delta_y = -ball->delta_y;
   }
 
@@ -77,19 +77,19 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
   }
 }
 
-void reset_ball (ball *ball, paddle *paddle) {
-  ball->x = paddle->x + paddle->size/2;  /* Place ball in middle of paddle */
+void reset_ball (Ball *ball, Paddle *paddle) {
+  ball->x = paddle->x + paddle->size_x/2;  /* Place ball in middle of paddle */
   ball->y = paddle->y - ball->size_y;  /* Place ball on top of paddle */
   ball->isActive = 0;
 }
 
 /* wait for ball input to enable ball start again */
-void start_ball (ball *ball) {
+void start_ball (Ball *ball) {
   Cnenin();
   ball->isActive = 1;
 }
 
-Brick find_brick(ball *ball, brick bricks[], int num_bricks, game *game) {
+void find_brick(ball *ball, brick bricks[], int num_bricks, game *game) {
     for (int i = 0; i < num_bricks; i++) {
         if (!bricks[i].isBroken && 
             ball->y <= bricks[i].y + bricks[i].size_y &&
@@ -105,7 +105,7 @@ Brick find_brick(ball *ball, brick bricks[], int num_bricks, game *game) {
 }
 
 
-void check_broken (brick *brick, game *game) { /* Clear brick and award points */
+void check_broken (Brick *brick, Game *game) { /* Clear brick and award points */
   brick->health -= 1; // decrement brick
 
   if (brick->health == 0) {  // Check if brick is broken

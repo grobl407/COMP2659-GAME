@@ -6,12 +6,16 @@
 #define HEART_COUNT 3
 #define HEART_WIDTH 16
 #define HEART_SPACING 4
+#define HEART_COUNT 3
+#define HEART_WIDTH 16
+#define HEART_SPACING 4
 
 int main() {
 
 	test_clear_screen();
 	test_plot_pixel();
 	render_walls();
+	/*test_horizline();*/
 	/*test_horizline();*/
 	bitmap_test_function();
 
@@ -31,13 +35,18 @@ void render_walls () {
 	plot_vertline(base, 480, 30, 400);
 	plot_horizline(base, 160, 480, 85);
 	plot_horizline(base, 160, 480, 30);
+	plot_horizline(base, 160, 480, 85);
+	plot_horizline(base, 160, 480, 30);
 	Cnecin();
 }
+/*
 /*
 void test_horizline () {
 	UINT8 *base = Physbase();
 	plot_horizline(base, 160, 480, 30); /* Plot horizontal line 
+	plot_horizline(base, 160, 480, 30); /* Plot horizontal line 
 	Cnecin();
+}*/
 }*/
 
 void test_clear_screen() {
@@ -157,6 +166,7 @@ void bitmap_test_function() {
 	plot_brick(base, 249, 350, cracked_brick_map);
 	plot_brick(base, 288, 130, almost_broken_map);
 	plot_brick(base, 327, 200, broken_brick_map);
+	*/
 	*/
 	plot_paddle(base, 250, 350, platform_map);
 	Cnecin();
