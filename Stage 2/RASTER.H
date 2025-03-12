@@ -16,6 +16,7 @@ void plot_horizline(UINT8 *base, int x_start, int x_end, int y);
 void clear_screen();
 void plot_ball(UINT8 *base, int x, int y, UINT16 bitmap[8]);
 void plot_brick (UINT8 *base, int x, int y, UINT32 bitmap[7]);
-void plot_paddle (UINT8 *base, int x, int y, UINT64 bitmap[5]);
+void plot_paddle (UINT8 *base, int x, int y, UINT32 bitmap[5]);
+void plot_heart(UINT8 *base, int x, int y, UINT16 bitmap[16]);
 
 #endif
