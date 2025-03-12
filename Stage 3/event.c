@@ -2,7 +2,7 @@
 #define SCREEN_HEIGHT 400
 #include "model.h"
 
-void ball_falls (Ball *ball, Floor * floor) { /* Minus one life, ball restarts at rest */
+void ball_falls (Ball *ball, Floor *floor, Game *game, Paddle *paddle) { /* Minus one life, ball restarts at rest */
     if (ball->y >= floor->y) {
     game->lives -= 1;
     if (game->lives == 0) {
@@ -17,8 +17,8 @@ void ball_falls (Ball *ball, Floor * floor) { /* Minus one life, ball restarts a
 void reset_bricks (Brick bricks[], int num_bricks, int level) {
   for (int i = 0; i < num_bricks; i++) {
     bricks[i].isBroken = 0;
-    bricks[i].n_hits = 0;
-    bricks[i].base_points = bricks[i].basepoints*2; // double points awarded for each broken brick at new level
+    bricks[i].health = 6;
+    bricks[i].base_points = bricks[i].base_points*2; // double points awarded for each broken brick at new level
   }
 }
 
