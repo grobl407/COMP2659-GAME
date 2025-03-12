@@ -167,7 +167,7 @@ void bitmap_test_function() {
 	plot_brick(base, 288, 130, almost_broken_map);
 	plot_brick(base, 327, 200, broken_brick_map);
 	*/
-	*/
+	
 	plot_paddle(base, 250, 350, platform_map);
 	Cnecin();
 }
