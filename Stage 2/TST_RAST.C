@@ -3,12 +3,6 @@
 #include <osbind.h>
 #include <linea.h>
 #include "TYPES.H"
-#define HEART_COUNT 3
-#define HEART_WIDTH 16
-#define HEART_SPACING 4
-#define HEART_COUNT 3
-#define HEART_WIDTH 16
-#define HEART_SPACING 4
 
 int main() {
 
@@ -144,30 +138,17 @@ void bitmap_test_function() {
 	};
 
 	int x;	
-	
+	int y;
 	for(x = 170; x < 458; x += 32){
-		plot_brick(base, x, 100, full_brick_map);
+		for(y = 100; y < 260; y += 20){
+			plot_brick(base, x, y, full_brick_map);
+		}
 	}
+	
 	for(x = 170; x < 219; x += 24){
 		plot_heart(base, x, 45, heart_map);
 	}
-
 	plot_ball(base, 260, 342, ball_bitmap);
-	/*
-	plot_heart(base, 175, 150, heart_map);
-	plot_heart(base, 195, 150, heart_map);
-	plot_heart(base, 210, 150, heart_map);
-	*/
-
-
-	/*
-	plot_brick(base, 205, 170, full_brick_map);
-	plot_brick(base, 210, 250, semi_cracked_map);
-	plot_brick(base, 249, 350, cracked_brick_map);
-	plot_brick(base, 288, 130, almost_broken_map);
-	plot_brick(base, 327, 200, broken_brick_map);
-	*/
-	
 	plot_paddle(base, 250, 350, platform_map);
 	Cnecin();
 }
