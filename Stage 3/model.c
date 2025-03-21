@@ -41,7 +41,7 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
     ball->delta_y = -ball->delta_y;
   }
 
-  Brick brick = find_brick(&ball, &bricks, num_bricks, &game);
+  *Brick brick = find_brick(&ball, &bricks, num_bricks, &game);
 
   /* Ball collides with brick */
   if (ball->y <= brick.y + brick.size_y && ball->x + ball->size_x >= brick.x &&
@@ -60,8 +60,8 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
     ball->delta_x = -ball->delta_x;
   }
   /*ball collides with top of brick*/
-  if(ball->y >= brick.y + brick.size_y && ball->x + ball->size_x >= brick.x &&
-     ball->x <= brick.y + brick.size_x){
+  if(ball->y >= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
+     ball->x <= brick->y + brick->size_x){
     ball->delta_y = -ball->delta_y;
   }
 
