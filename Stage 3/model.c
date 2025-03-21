@@ -89,7 +89,7 @@ void start_ball (Ball *ball) {
   ball->isActive = 1;
 }
 
-void find_brick(ball *ball, brick bricks[], int num_bricks, game *game) {
+Brick find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
     for (int i = 0; i < num_bricks; i++) {
         if (!bricks[i].isBroken && 
             ball->y <= bricks[i].y + bricks[i].size_y &&
