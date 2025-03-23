@@ -1,6 +1,7 @@
 #include "raster.h"
 #include "types.h"
 #include <stdio.h>
+#include "font.h"
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400	
@@ -134,5 +135,29 @@ void plot_heart(UINT8 *base, int x, int y, UINT16 bitmap[16]){
 			}
 		}
 	}
+void draw_char(int x, int y, char c) {
+	int row;
+	int col;
+    if (!IS_PRINTABLE(c)) return;
+    
+    UINT8 *glyph = GLYPH_START(c);
+    for (row = 0; row < FONT_HEIGHT; row++) {
+        for (col = 0; col < 8; col++) {
+            if (glyph[row] & (1 << (7 - col))) {
+                plot_pixel(x + col, y + row);
+            }
+        }
+    }
+}
+
+void draw_score(int x, int y, int score) {
+    char buffer[12]; /*Enough for a 10-digit score + null terminator*/
+    snprintf(buffer, sizeof(buffer), "%d", score);
+    int i;
+    for (i = 0; buffer[i] != '\0'; i++) {
+        draw_char(x + i * 8, y, buffer[i]);
+    }
+}
+
 
 		

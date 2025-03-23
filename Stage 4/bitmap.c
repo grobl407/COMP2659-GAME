@@ -11,7 +11,7 @@ UINT32 full_brick_map[7] = {
     0xFFFFFFF0,
     0x7FFFFFE0,
 
-};
+}; /*32x7 brick bitmap*/
 
 UINT32 semi_cracked_map[7] = {
     0x7FFFFFFE,
@@ -22,7 +22,7 @@ UINT32 semi_cracked_map[7] = {
     0xFF83FFFF,
     0x7FFFFFFE,
 
-};
+}; /*32x7 brick bitmap*/
 UINT32 cracked_brick_map[7] = {
     0x7FFFFFFE,
     0xFC7EFDFF,
@@ -32,7 +32,7 @@ UINT32 cracked_brick_map[7] = {
     0xDF83FEFF,
     0x7FFFFFFE,
 
-};
+}; /*32x7 brick bitmap*/
 UINT32 almost_broken_map[7] = {
     0x07FF7FFE,
     0x007EF1F7,
@@ -42,7 +42,7 @@ UINT32 almost_broken_map[7] = {
     0xDF830ECF,
     0x7FFF9F76,
 
-};
+}; /*32x7 brick bitmap*/
 UINT32 broken_brick_map[7] = {
     0x07FF7CFE,
     0x0076F1F7,
@@ -52,7 +52,7 @@ UINT32 broken_brick_map[7] = {
     0x6981088F,
     0x00FF9436,
 
-};
+}; /*32x7 brick bitmap*/
 UINT16 ball_bitmap[8] = {
     0x3C,
     0x6E,
@@ -62,14 +62,14 @@ UINT16 ball_bitmap[8] = {
     0xFF,
     0x7E,
     0x3C,
-};
+}; /*8x8 ball bitmap*/
 UINT32 platform_map[5] = {
     0x7FFFFFFE,
     0xFFFFFFFF,
     0xFFFFFFFF,
     0xFFFFFFFF,
     0x7FFFFFFE,
-};
+}; /*32x5 platform bitmap*/
 
 UINT16 heart_map[16] = {
     0x3E7C,
@@ -88,4 +88,4 @@ UINT16 heart_map[16] = {
     0x0FF0,
     0x07E0,
     0x03C0,
-};
+};/*16x16 heart bitmap*/

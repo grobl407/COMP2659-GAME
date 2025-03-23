@@ -1,34 +1,13 @@
-#include "TYPES.H"
-#include "bitmap.h"
+#ifndef RENDER_H
+#define RENDER_H
 
+#include "game_objects.h"
 
-
-typedef struct {
-    int x, y;
-    UINT32 *full_brick_map;
-    UINT32 *semi_cracked_map;
-    UINT32 *cracked_brick_map;
-    UINT32 *almost_broken_map;
-    UINT32 *broken_brick_map;
-
-}Brick;
-
-typedef struct {
-    int x, y;
-    UINT16 *ball_bitmap;
-
-}Ball;
-
-typedef struct {
-    int x, y;
-    UINT32 *platform_map;
-
-}Platform;
-
-typedef struct {
-    int x, y;
-    UINT16 *heart_map;
-
-}Heart;
+/*const in the functions means it cannot modify the bitmaps (position, bitmap pointer) only draw it*/
+void render(const Model *model, UINT8 *base); 
+void render_ball(const Ball *ball, UINT8 *base);
+void render_brick(const Brick *brick, UINT8 *base);
+void render_heart(const Heart *heart, UINT8 *base);
+void render_platform(const Platform *platform, UINT8 *base);
 
 #endif

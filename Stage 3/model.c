@@ -112,7 +112,7 @@ void reset_ball(Ball *ball, Paddle *paddle) {
 }
 
 void start_ball(Ball *ball) {
-    // Placeholder function (Cnenin was undefined)
+    /*Placeholder function (Cnenin was undefined)*/
     printf("Press any key to start the ball...\n");
     getchar();
     ball->isActive = 1;
@@ -131,7 +131,7 @@ Brick find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
             return bricks[i];
         }
     }
-    Brick empty = {-1, -1, 0, 0, 0, 1};  // Return invalid brick
+    Brick empty = {-1, -1, 0, 0, 0, 1};  /*Return invalid brick*/
     return empty;
 }
 
