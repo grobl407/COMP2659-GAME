@@ -17,7 +17,7 @@ void move_paddle (Paddle *paddle, int direction) {
       paddle->x -= paddle->move_dist;
   }
   else {
-    if (paddle->x + paddle->x < SCREEN_WIDTH)
+    if (paddle->x + paddle->size_x < SCREEN_WIDTH)
       paddle->x += paddle->move_dist;
   }
 }
