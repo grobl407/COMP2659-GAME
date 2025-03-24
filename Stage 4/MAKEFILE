@@ -1,13 +1,12 @@
 # Compiler and flags
 CC = cc68x
-AS = gen
-CDFLAGS = -g -c
+CFLAGS = -g -c
 LDFLAGS = -g
 RM = rm
 
 # Source files and objects
-SRCS = bitmap.c render.c game.c 
-OBJS = bitmap.o render.o game.o 
+SRCS = game.c render.c bitmap.c
+OBJS = game.o render.o bitmap.o
 EXEC = game
 
 # Default target
@@ -18,4 +17,15 @@ $(EXEC): $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
 
 # Compiling C files
-game.o: 
+game.o: game.c render.h
+	$(CC) $(CFLAGS) -o game.o game.c
+
+render.o: render.c render.h
+	$(CC) $(CFLAGS) -o render.o render.c
+
+bitmap.o: bitmap.c bitmap.h
+	$(CC) $(CFLAGS) -o bitmap.o bitmap.c
+
+# Clean rule
+clean:
+	$(RM) -f *.o $(OBJS) $(EXEC)
