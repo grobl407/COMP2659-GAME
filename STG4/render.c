@@ -18,12 +18,15 @@ void render_ball(Ball *ball, UINT8 *base){
 }
 
 void render_brick(Brick *brick, UINT8 *base){
-    for(brick->x; brick->x < 458; brick->x += 32){
-        for(brick->y; brick->y < 260; brick->y += 20){
-            plot_brick(base, brick->x, brick->y, brick->full_brick_map);
+    int x, y; /* Local variables for iteration */
+
+    for (x = brick->x; x < 458; x += 32) {
+        for (y = brick->y; y < 260; y += 20) {
+            plot_brick(base, x, y, brick->full_brick_map);
         }
     }
 }
+
 
 void render_heart(Heart *heart, UINT8 *base){
     for(heart->x; heart->x < 219; heart->x += 24){
