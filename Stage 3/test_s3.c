@@ -5,102 +5,78 @@
 #include "raster.h"
 #include "TYPES.h"
 
-void print_ball_state (Ball *ball) {
-  printf("Ball X: %d, Y: %d, delta_x: %d, delta_y: %d\n",
-    ball->x, ball->y, ball->delta_x, ball->delta_y);
+void print_ball_state(Ball *ball) {
+    printf("Ball: x=%u, y=%u, delta_x=%d, delta_y=%d, isActive=%d\n",
+           ball->x, ball->y, ball->delta_x, ball->delta_y, ball->isActive);
 }
 
-void print_paddle_state (Paddle *paddle) {
-  printf("Paddle left: %d, right: %d, Y: %d\n",
-    paddle->x, paddle->x + paddle->size_x, paddle->y);
+void print_paddle_state(Paddle *paddle) {
+    printf("Paddle: x=%u, y=%u, size_x=%d, size_y=%d\n",
+           paddle->x, paddle->y, paddle->size_x, paddle->size_y);
 }
 
-void print_brick_state (int index, Brick *brick) {
-  printf("Brick collision index: %d, x: %d, y: %d, broken: %d\n",
-    index, brick->x, brick->y, brick->isBroken);
-}
-
-void print_life_lost (Game *game) {
-  printf("Life lost, %d lives remaining. \n",
-    game->lives);
+void print_game_state(Game *game) {
+    printf("Game: score=%d, lives=%d, level=%d, game_over=%d, paused=%d\n",
+           game->score, game->lives, game->level, game->game_over, game->paused);
 }
 
 int main() {
-/* initialize game elements */
+    // Initialize game objects
+    Ball ball = {320, 200, 2, -2, 1, 10, 10};
+    Paddle paddle = {300, 390, 100, 10, 0, 10};
+    Brick bricks[10];
+    Wall left_wall = {0};
+    Wall right_wall = {640};
+    Ceiling ceiling = {0};
+    Floor floor = {400};
+    Game game = {0, 3, 1, 0, 0};
 
-  Wall left_wall = {160};
-  Wall right_wall = {480};
-  Ceiling ceiling = {0};
-  Floor floor = {400};
-
-  Ball ball = {320, 307, 2, 2, 1, 8, 7};
-
-  Paddle paddle = {280, 300, 64, 8, 0, 10};
-
-  Brick bricks[40];
-
-  Game game = {0, 3, 1, 0, 0};
-
-  int bricks_per_row = 8;
-  int num_bricks = 40; // 5 rows 8 bricks
-  int brick_width = 32;
-  int brick_height = 7;
-  int spacing = 7;
-  int start_x = 170;
-  int start_y = 100;
-  
-  for (int i = 0; i < num_bricks; i++) {
-    int row = i / bricks_per_row;
-    int column = i % bricks_per_row;
-
-    bricks[i].x = start_x + column * (brick_width + spacing);
-    bricks[i].y = start_y + row * (brick_height + spacing);
-    bricks[i].isBroken = 0;
-    bricks[i].base_points = 10;
-    bricks[i].size_x = brick_width;
-    bricks[i].size_y = brick_height;
-    bricks[i].health = 5;
-  }
-
-  char key;
-  while (1) {
-	printf("Controls: a - left, d - right, space - tick, q - quit: ");
-    	scanf(" %c", &key);
-
-      if (key == 'a') { // Move paddle left
-        move_paddle(&paddle, 0);
-        print_paddle_state(&paddle);
-      }
-      else if (key == 'd') { // Move paddle right
-        move_paddle(&paddle, 1);
-        print_paddle_state(&paddle);
-      }
-      else if (key == ' ') { // Space simulates one tick
-        move_ball(&ball);
-
-        int initial_x = ball.x;
-        int initial_y = ball.y;
-        ball_collisions(&ball, &paddle, bricks, num_bricks, &left_wall, &right_wall, &ceiling, &floor, &game);
-
-        if (ball.x != initial_x || ball.y != initial_y) { // Print ball state if it has moved
-          print_ball_state(&ball);
-        }
-
-        // Check which brick was hit
-        Brick* hit_brick = find_brick(&ball, bricks, num_bricks, &game);
-	if (hit_brick != NULL) {
-  		print_brick_state(hit_brick - bricks, hit_brick); // Print the index and state of the hit brick
-	}
-
-        if (game.lives == 0) {
-          game.game_over = 1;
-        }
-      }
-      else if (key == 'q') {
-        return 0;
-      }
+    // Initialize some bricks
+    for (int i = 0; i < 10; i++) {
+        bricks[i] = (Brick){i * 60, 50, 0, 10, 60, 20, 1};
     }
-  }
-  return 0;
+
+    // Print initial state
+    printf("Initial State:\n");
+    print_ball_state(&ball);
+    print_paddle_state(&paddle);
+    print_game_state(&game);
+    printf("\n");
+
+    // Simulate a few clock ticks
+    for (int i = 0; i < 5; i++) {
+        move_ball(&ball);
+        ball_collisions(&ball, &paddle, bricks, 10, &left_wall, &right_wall, &ceiling, &floor, &game);
+        printf("After clock tick %d:\n", i + 1);
+        print_ball_state(&ball);
+        print_paddle_state(&paddle);
+        print_game_state(&game);
+        printf("\n");
+    }
+
+    // Simulate paddle movement
+    move_paddle(&paddle, 0); // Move left
+    printf("After moving paddle left:\n");
+    print_ball_state(&ball);
+    print_paddle_state(&paddle);
+    print_game_state(&game);
+    printf("\n");
+
+    move_paddle(&paddle, 1); // Move right
+    printf("After moving paddle right:\n");
+    print_ball_state(&ball);
+    print_paddle_state(&paddle);
+    print_game_state(&game);
+    printf("\n");
+
+    // Simulate ball reset
+    reset_ball(&ball, &paddle);
+    printf("After resetting ball:\n");
+    print_ball_state(&ball);
+    print_paddle_state(&paddle);
+    print_game_state(&game);
+    printf("\n");
+
+    return 0;
 }
 
