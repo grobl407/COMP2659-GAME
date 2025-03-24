@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-typedef struct Ball {
+typedef struct {
   unsigned int x, y; /* Position */
   int delta_x;  /* horizontal displacement per clock tick */
   int delta_y;  /* vertical displacement per clock tick */
@@ -10,7 +10,7 @@ typedef struct Ball {
   int size_y;
 } Ball;
 
-typedef struct Brick {
+typedef struct {
   unsigned int x, y; /* Position */
   int isBroken; /* 1, or 0 boolean for broken or not broken */
   int base_points; /* Base number of points to award for breaking, can be multiplied by a number on higher levels */
@@ -19,19 +19,19 @@ typedef struct Brick {
   int health;
 } Brick;
 
-typedef struct Wall {
+typedef struct {
   unsigned int x; /* Horizontal position */
 } Wall;
 
-typedef struct Ceiling {
+typedef struct {
   unsigned int y; /* Vertical position */
 } Ceiling;
 
-typedef struct Floor {
+typedef struct {
   unsigned int y; /* Vertical position */
 } Floor;
 
-typedef struct Paddle {
+typedef struct {
   unsigned int x, y; /* Position */
   int size_x; /* Size of paddle */
   int size_y;
@@ -39,7 +39,7 @@ typedef struct Paddle {
   int move_dist; /* Adjustable move distance of platform per button press, can change in settings */
 } Paddle;
 
-typedef struct Game {
+typedef struct {
   int score;  /* Total score */
   int lives;  /* Lives remaining */
   int level;  /* Keep track of current level */
