@@ -98,7 +98,6 @@ Brick* find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
             ball->x <= bricks[i].x + bricks[i].size_x) {
             
             check_broken(&bricks[i], game);
-            print_brick_state(i, &bricks[i]);
             return &bricks[i];
         }
     }
