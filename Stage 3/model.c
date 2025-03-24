@@ -44,24 +44,24 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
   Brick brick = find_brick(&ball, &bricks, num_bricks, &game);
 
   /* Ball collides with brick */
-  if (ball->y <= brick.y + brick.size_y && ball->x + ball->size_x >= brick.x &&
-      ball->x <= brick.x + brick.size_x) {
+  if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
+      ball->x <= brick->x + brick->size_x) {
         ball->delta_y = -ball->delta_y;
       }
 
   /*Ball collides with left of brick*/
-  if (ball->y < brick.y + brick.size_y && ball->y < brick.y && ball->x >= brick.x){
+  if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x >= brick->x){
     /*add velocity stuff*/
     ball->delta_x = -ball->delta_x;
   }
   /*Ball collides with right of brick*/
-  if (ball->y < brick.y + brick.size_y && ball->y < brick.y && ball->x <= brick.x + brick.size_x){
+  if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x){
     /*add velocity stuff*/
     ball->delta_x = -ball->delta_x;
   }
   /*ball collides with top of brick*/
-  if(ball->y >= brick.y + brick.size_y && ball->x + ball->size_x >= brick.x &&
-     ball->x <= brick.y + brick.size_x){
+  if(ball->y >= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
+     ball->x <= brick->y + brick->size_x){
     ball->delta_y = -ball->delta_y;
   }
 
