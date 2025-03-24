@@ -4,7 +4,6 @@
 #include "game_objects.h"
 
 /*const in the functions means it cannot modify the bitmaps (position, bitmap pointer) only draw it*/
-UINT8 *base = Physbase();
 
 void render(const Model *model, UINT8 *base); 
 void render_ball(const Ball *ball, UINT8 *base);

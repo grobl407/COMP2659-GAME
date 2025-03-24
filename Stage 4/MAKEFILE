@@ -1,0 +1,11 @@
+# Compiler and flags
+CC = cc68x
+AS = gen
+CDFLAGS = -g -c
+LDFLAGS = -g
+RM = rm
+
+# Source files and objects
+SRCS = bitmap.c render.c
+OBJS = bitmap.o render.o 
+EXEC = 
