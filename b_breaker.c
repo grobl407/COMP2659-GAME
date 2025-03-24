@@ -37,8 +37,19 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   ceiling->y = 0;
   floor->y = SCREEN_HEIGHT;
 
-  /* Initialize bricks */
-  Brick *brick
+  /* Initialize bricks[] */
+  Brick bricks[72];
+  int i = 0; /* bricks[] counter */
+  for (i, i < 72, i++) {
+    bricks[i]-> 
+
+  /*
+  clear_ball(Ball *ball, UINT8 *base);
+  move_ball (Ball *ball);
+  ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, 
+                     Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game);
+  render_ball(Ball *ball, UINT8 *base);
+  */
 }
 
 void process_input(Paddle *paddle, Ball *ball) {
