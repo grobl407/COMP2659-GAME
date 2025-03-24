@@ -32,7 +32,8 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
 
   if (ball->x + ball->size_x >= right_wall->x) {
     ball->delta_x = -ball->delta_x;
-
+  }
+  
   /* Ball collides with ceiling */
   if (ball->y <= ceiling->y) {
     ball->delta_y = -ball->delta_y;
