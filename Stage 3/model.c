@@ -80,6 +80,7 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
     }
   }
 }
+}
 
 void reset_ball (Ball *ball, Paddle *paddle) {
   ball->x = paddle->x + paddle->size_x/2;  /* Place ball in middle of paddle */

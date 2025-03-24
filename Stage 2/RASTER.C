@@ -135,6 +135,7 @@ void plot_heart(UINT8 *base, int x, int y, UINT16 bitmap[16]){
 			}
 		}
 	}
+	/*
 void draw_char(int x, int y, char c) {
 	int row;
 	int col;
@@ -151,7 +152,7 @@ void draw_char(int x, int y, char c) {
 }
 
 void draw_score(int x, int y, int score) {
-    char buffer[12]; /*Enough for a 10-digit score + null terminator*/
+    char buffer[12]; /*Enough for a 10-digit score + null terminator
     snprintf(buffer, sizeof(buffer), "%d", score);
     int i;
     for (i = 0; buffer[i] != '\0'; i++) {
@@ -159,5 +160,6 @@ void draw_score(int x, int y, int score) {
     }
 }
 
+*/
 
 		
