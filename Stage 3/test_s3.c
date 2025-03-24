@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#include "model.c"
 #include "model.h"
 #include "raster.h"
 #include "TYPES.h"
@@ -26,19 +25,12 @@ void print_life_lost (Game *game) {
     game->lives);
 }
 
-
-void print_ball_state (Ball *ball) {
-  printf("Ball X: %d, Y: %d, delta_x: %d, delta_y: %d,
-    ball->x, ball->y, ball->delta_x, ball->delta_y");
-}
-
-
 int main() {
 /* initialize game elements */
 
   Wall left_wall = {160};
   Wall right_wall = {480};
-  Ceiling celing = {0};
+  Ceiling ceiling = {0};
   Floor floor = {400};
 
   Ball ball = {320, 307, 2, 2, 1, 8, 7};
