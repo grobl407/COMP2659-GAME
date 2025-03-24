@@ -4,8 +4,6 @@
 #include "types.h"
 #include <stdlib.h>
 #include <stdio.h>
-/* [TO DO] the functions below are examples. Replace them! */
-
 #define WIDTH 640
 #define HEIGHT 400
 
