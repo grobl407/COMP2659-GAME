@@ -40,6 +40,20 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   /* Initialize bricks */
 }
 
+void process_input(Paddle *paddle, Ball *ball) {
+    if (Cconis()) {
+        char ch = (char)Cnecin();
+
+        if (ch == 'a') {
+            move_paddle(paddle, 0); // Move left
+        } else if (ch == 'd') {
+            move_paddle(paddle, 1); // Move right
+        } else if (ch == ' ') {
+            start_ball(ball); // Start the ball
+        }
+    }
+}
+
 int main() {
   /* initialize structs */
   Game game;
