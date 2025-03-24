@@ -17,7 +17,7 @@ void move_paddle (Paddle *paddle, int direction) {
       paddle->x -= paddle->move_dist;
   }
   else {
-    if (paddle->x + paddle->x < SCREEN_WIDTH)
+    if (paddle->x + paddle->size_x < SCREEN_WIDTH)
       paddle->x += paddle->move_dist;
   }
 }
@@ -99,7 +99,7 @@ Brick find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
             
             check_broken(&bricks[i], game);
             print_brick_state(i, &bricks[i]);
-            return;
+            return bricks[i];
         }
     }
 }
