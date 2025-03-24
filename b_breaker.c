@@ -25,6 +25,20 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   /* Initialize paddle */
   paddle->x = 250;
   paddle->y = 350;
+  paddle->size_x = 32;
+  paddle->size_y = 5;
+  paddle->20;
+
+  /* Initialize walls */
+  left_wall->x = 160;
+  right_wall->x = 480;
+
+  /* Initialize cailing */
+  ceiling->y = 0;
+  floor->y = SCREEN_HEIGHT;
+
+  /* Initialize bricks */
+}
 
 int main() {
   /* initialize structs */
@@ -39,4 +53,4 @@ int main() {
 
   /* call initialize helper function */
   initializ_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
-
+}
