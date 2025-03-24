@@ -69,7 +69,7 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
   if (ball->y >= floor->y) {
     game->lives -= 1;
     if (game->lives == 0) {
-      game->game_over = 1; // Game over is true
+      game->game_over = 1; /* Game over is true */
     }
     else {
       reset_ball(ball, paddle);
@@ -106,10 +106,10 @@ Brick find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
 
 
 void check_broken (Brick *brick, Game *game) { /* Clear brick and award points */
-  brick->health -= 1; // decrement brick
+  brick->health -= 1; /* decrement brick */
 
-  if (brick->health == 0) {  // Check if brick is broken
-    brick->isBroken = 1;  // If so, brick isBroken = true;
-    game->score += brick->base_points;  // Add to game score
+  if (brick->health == 0) {  /* Check if brick is broken */
+    brick->isBroken = 1;  /* If so, brick isBroken = true; */
+    game->score += brick->base_points;  /* Add to game score */
   }
 }
