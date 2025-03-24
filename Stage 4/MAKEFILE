@@ -6,6 +6,16 @@ LDFLAGS = -g
 RM = rm
 
 # Source files and objects
-SRCS = bitmap.c render.c
-OBJS = bitmap.o render.o 
-EXEC = 
+SRCS = bitmap.c render.c game.c 
+OBJS = bitmap.o render.o game.o 
+EXEC = game
+
+# Default target
+all: $(EXEC)
+
+# Linking
+$(EXEC): $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
+
+# Compiling C files
+game.o: 
