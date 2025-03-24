@@ -25,6 +25,33 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   /* Initialize paddle */
   paddle->x = 250;
   paddle->y = 350;
+  paddle->size_x = 32;
+  paddle->size_y = 5;
+  paddle->20;
+
+  /* Initialize walls */
+  left_wall->x = 160;
+  right_wall->x = 480;
+
+  /* Initialize cailing */
+  ceiling->y = 0;
+  floor->y = SCREEN_HEIGHT;
+
+  /* Initialize bricks */
+}
+
+void process_input(Paddle *paddle, Ball *ball) {
+    if (Cconis()) {
+        char ch = (char)Cnecin();
+
+        if (ch == 'a') {
+            move_paddle(paddle, 0); // Move left
+        } else if (ch == 'd') {
+            move_paddle(paddle, 1); // Move right
+        } else if (ch == ' ') {
+            start_ball(ball); // Start the ball
+        }
+    }
 }
 
 int main() {
