@@ -99,7 +99,7 @@ Brick find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
             
             check_broken(&bricks[i], game);
             print_brick_state(i, &bricks[i]);
-            return;
+            return bricks[i];
         }
     }
 }
