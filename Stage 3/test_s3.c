@@ -1,74 +1,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include "model.c"
 #include "model.h"
 #include "raster.h"
 #include "TYPES.h"
 
-void print_ball_state (ball *ball) {
-  printf("Ball X: %d, Y: %d, delta_x: %d, delta_y: %d,
-    ball->x, ball->y, ball->delta_x, ball->delta_y");
+void print_ball_state (Ball *ball) {
+  printf("Ball X: %d, Y: %d, delta_x: %d, delta_y: %d\n",
+    ball->x, ball->y, ball->delta_x, ball->delta_y);
 }
 
-void print_paddle_state (paddle *paddle) {
+void print_paddle_state (Paddle *paddle) {
   printf("Paddle left: %d, right: %d, Y: %d\n",
-    paddle->x, paddle->x + paddle_size_x, paddle->y);
+    paddle->x, paddle->x + paddle->size_x, paddle->y);
 }
 
-void print_brick_state (int index, brick *brick) {
+void print_brick_state (int index, Brick *brick) {
   printf("Brick collision index: %d, x: %d, y: %d, broken: %d\n",
     index, brick->x, brick->y, brick->isBroken);
 }
 
-void print_life_lost (game *game) {
+void print_life_lost (Game *game) {
   printf("Life lost, %d lives remaining. \n",
     game->lives);
 }
 
 
-void print_ball_state (ball *ball) {
+void print_ball_state (Ball *ball) {
   printf("Ball X: %d, Y: %d, delta_x: %d, delta_y: %d,
     ball->x, ball->y, ball->delta_x, ball->delta_y");
 }
 
-void print_paddle_state (paddle *paddle) {
-  printf("Paddle left: %d, right: %d, Y: %d\n",
-    paddle->x, paddle->x + paddle_size_x, paddle->y);
-}
-
-void print_brick_state (int index, brick *brick) {
-  printf("Brick collision index: %d, x: %d, y: %d, broken: %d\n",
-    index, brick->x, brick->y, brick->isBroken);
-}
-
-void print_life_lost (game *game) {
-  printf("Life lost, %d lives remaining. \n",
-    game->lives);
-}
 
 int main() {
 /* initialize game elements */
 
-  wall left_wall = {160};
-  wall right_wall = {480};
-  ceiling celing = {0};
-  floor floor = {400};
+  Wall left_wall = {160};
+  Wall right_wall = {480};
+  Ceiling celing = {0};
+  Floor floor = {400};
 
-  ball ball = {320, 307, 2, 2, 1, 8, 7};
+  Ball ball = {320, 307, 2, 2, 1, 8, 7};
 
-  paddle paddle = {280, 300, 64, 8, 0, 10};
+  Paddle paddle = {280, 300, 64, 8, 0, 10};
 
-  brick bricks[40];
+  Brick bricks[40];
 
-  game game = {0, 3, 1, 0, 0};
+  Game game = {0, 3, 1, 0, 0};
 
   int bricks_per_row = 8;
   int num_bricks = 40; // 5 rows 8 bricks
   int brick_width = 32;
   int brick_height = 7;
   int spacing = 7;
-  int start_x = 171;
-  int start_y;
+  int start_x = 170;
+  int start_y = 100;
   
   for (int i = 0; i < num_bricks; i++) {
     int row = i / bricks_per_row;
@@ -108,7 +95,10 @@ int main() {
         }
 
         // Check which brick was hit
-        find_brick(&ball, bricks, num_bricks, &game);
+        Brick* hit_brick = find_brick(&ball, bricks, num_bricks, &game);
+	if (hit_brick != NULL) {
+  		print_brick_state(hit_brick - bricks, hit_brick); // Print the index and state of the hit brick
+	}
 
         if (game.lives == 0) {
           game.game_over = 1;
