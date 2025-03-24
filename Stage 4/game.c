@@ -1,6 +1,6 @@
 #include "TYPES.H"
 #include "render.h"
-#include "game_objects.h"
+#include "objects.h"
 #include "bitmap.h"
 
 const int HEART_Y = 45;

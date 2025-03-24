@@ -1,7 +1,7 @@
 #ifndef GAME_OBJECTS_H
 #define GAME_OBJECTS_H
 
-#include "TYPES.H"
+#include "types.h"
 #include "bitmap.h"
 
 

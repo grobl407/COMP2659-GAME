@@ -1,6 +1,6 @@
 
-#include "../Stage 2/raster.h"
-#include "game_objects.h"
+#include "raster.h"
+#include "objects.h"
 #include "render.h"
 #include "TYPES.H"
 

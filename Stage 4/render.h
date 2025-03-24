@@ -1,7 +1,10 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#include "game_objects.h"
+#include "objects.h"
+#include "types.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /*const in the functions means it cannot modify the bitmaps (position, bitmap pointer) only draw it*/
 
