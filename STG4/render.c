@@ -1,13 +1,11 @@
 
-#include "../STAGE2~1/raster.h"
+#include "..\stg2\raster.h"
 #include "objects.h"
-#include "render.h"
 #include "TYPES.H"
 
 
-
-
 void render(Model *model, UINT8 *base){
+    clear_screen();
     render_ball(&model->ball, base);
     render_platform(&model->platform, base);
     render_heart(&model->heart, base);

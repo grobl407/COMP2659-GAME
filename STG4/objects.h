@@ -1,9 +1,8 @@
-#ifndef GAME_OBJECTS_H
-#define GAME_OBJECTS_H
+#ifndef OBJECTS_H
+#define OBJECTS_H
 
 #include "types.h"
 #include "bitmap.h"
-#include "../STAGE2~1/raster.h"
 
 
 typedef struct {

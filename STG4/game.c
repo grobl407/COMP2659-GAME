@@ -1,7 +1,10 @@
 #include "TYPES.H"
-#include "../STAGE2~1/raster.h"
+#include "..\stg2\raster.h"
 #include "objects.h"
 #include "bitmap.h"
+
+
+#include <osbind.h>
 
 const int HEART_Y = 45;
 const int PLATFORM_Y = 350;

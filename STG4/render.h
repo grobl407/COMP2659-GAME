@@ -3,7 +3,7 @@
 
 #include "objects.h"
 #include "types.h"
-#include "../STAGE2~1/raster.h"
+#include "..\stg2\raster.h"
 #include <stdlib.h> 
 #include <stdio.h>
 

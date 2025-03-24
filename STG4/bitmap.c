@@ -23,6 +23,7 @@ UINT32 semi_cracked_map[7] = {
     0x7FFFFFFE,
 
 }; /*32x7 brick bitmap*/
+
 UINT32 cracked_brick_map[7] = {
     0x7FFFFFFE,
     0xFC7EFDFF,
@@ -33,6 +34,7 @@ UINT32 cracked_brick_map[7] = {
     0x7FFFFFFE,
 
 }; /*32x7 brick bitmap*/
+
 UINT32 almost_broken_map[7] = {
     0x07FF7FFE,
     0x007EF1F7,
@@ -43,6 +45,7 @@ UINT32 almost_broken_map[7] = {
     0x7FFF9F76,
 
 }; /*32x7 brick bitmap*/
+
 UINT32 broken_brick_map[7] = {
     0x07FF7CFE,
     0x0076F1F7,
@@ -53,6 +56,7 @@ UINT32 broken_brick_map[7] = {
     0x00FF9436,
 
 }; /*32x7 brick bitmap*/
+
 UINT16 ball_bitmap[8] = {
     0x3C,
     0x6E,
@@ -63,7 +67,8 @@ UINT16 ball_bitmap[8] = {
     0x7E,
     0x3C,
 }; /*8x8 ball bitmap*/
-UINT32 platform_map[5] = {
+
+UINT32 platform_bitmap[5] = {
     0x7FFFFFFE,
     0xFFFFFFFF,
     0xFFFFFFFF,
