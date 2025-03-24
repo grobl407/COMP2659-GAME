@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "bitmap.h"
+#include "../STAGE2~1/raster.h"
 
 
 typedef struct {

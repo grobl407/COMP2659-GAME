@@ -5,8 +5,8 @@ LDFLAGS = -g
 RM = rm
 
 # Source files and objects
-SRCS = game.c render.c bitmap.c
-OBJS = game.o render.o bitmap.o
+SRCS = game.c render.c bitmap.c ../stg2/raster.c
+OBJS = game.o render.o bitmap.o raster.o
 EXEC = game
 
 # Default target
@@ -26,6 +26,10 @@ render.o: render.c render.h
 bitmap.o: bitmap.c bitmap.h
 	$(CC) $(CFLAGS) -o bitmap.o bitmap.c
 
+# Compile raster.c (with correct path)
+raster.o: ../stg2/raster.c ../stg2/raster.h
+	$(CC) $(CFLAGS) -o raster.o ../stg2/raster.c
+
 # Clean rule
 clean:
-	$(RM) -f *.o $(OBJS) $(EXEC)
+	$(RM) -f *.o $(EXEC)

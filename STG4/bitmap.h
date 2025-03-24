@@ -2,6 +2,7 @@
 #define BITMAPS_H
 
 #include "types.h"
+#include "../STAGE2~1/raster.h"
 
 extern UINT16 ball_bitmap[];  /* External declaration for the ball bitmap */
 extern UINT32 platform_bitmap[];

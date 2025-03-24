@@ -1,5 +1,5 @@
 #include "TYPES.H"
-#include "render.h"
+#include "../STAGE2~1/raster.h"
 #include "objects.h"
 #include "bitmap.h"
 
