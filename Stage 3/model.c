@@ -25,10 +25,13 @@ void move_paddle (Paddle *paddle, int direction) {
 void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, 
                       Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game) {
   
-  /* Ball collides with wall, flip delta_x */
-  if (ball->x <= left_wall->x || ball->x + ball->size_x >= right_wall->x) {
+  /* Ball collides with left wall, flip delta_x */
+  if (ball->x <= left_wall->x) {
     ball->delta_x = -ball->delta_x;
   }
+
+  if (ball->x + ball->size_x >= right_wall->x) {
+    ball->delta_x = -ball->delta_x;
 
   /* Ball collides with ceiling */
   if (ball->y <= ceiling->y) {
@@ -41,28 +44,30 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
     ball->delta_y = -ball->delta_y;
   }
 
-  struct Brick * brick = find_brick(ball, bricks, num_bricks, game);
+  Brick* brick = find_brick(ball, bricks, num_bricks, game);
 
-  /* Ball collides with brick */
-  if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
-      ball->x <= brick->x + brick->size_x) {
-        ball->delta_y = -ball->delta_y;
-      }
+    if (brick != NULL) {
+    /* Ball collides with brick */
+    if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
+        ball->x <= brick->x + brick->size_x) {
+      ball->delta_y = -ball->delta_y;
+    }
 
-  /*Ball collides with left of brick*/
-  if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x >= brick->x){
-    /*add velocity stuff*/
-    ball->delta_x = -ball->delta_x;
-  }
-  /*Ball collides with right of brick*/
-  if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x){
-    /*add velocity stuff*/
-    ball->delta_x = -ball->delta_x;
-  }
-  /*ball collides with top of brick*/
-  if(ball->y >= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
-     ball->x <= brick->y + brick->size_x){
-    ball->delta_y = -ball->delta_y;
+    /* Ball collides with left of brick */
+    if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x >= brick->x) {
+      ball->delta_x = -ball->delta_x;
+    }
+
+    /* Ball collides with right of brick */
+    if (ball->y < brick->y + brick->size_y && ball->y < brick->y && ball->x <= brick->x + brick->size_x) {
+      ball->delta_x = -ball->delta_x;
+    }
+
+    /* Ball collides with top of brick */
+    if (ball->y >= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
+        ball->x <= brick->x + brick->size_x) {
+      ball->delta_y = -ball->delta_y;
+    }
   }
 
   /* Ball falls to floor */
@@ -70,8 +75,7 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
     game->lives -= 1;
     if (game->lives == 0) {
       game->game_over = 1; /* Game over is true */
-    }
-    else {
+    } else {
       reset_ball(ball, paddle);
     }
   }
@@ -102,6 +106,7 @@ Brick* find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
             return &bricks[i];
         }
     }
+  return NULL;
 }
 
 
