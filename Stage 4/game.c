@@ -4,7 +4,6 @@
 #include "bitmap.h"
 
 
-int main(){
-    UINT8 *base = Physbase();
-    
+void init_game(Model *model){
+    model->ball.x;
 }
