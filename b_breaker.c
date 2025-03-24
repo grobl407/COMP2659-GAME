@@ -38,6 +38,7 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   floor->y = SCREEN_HEIGHT;
 
   /* Initialize bricks */
+  Brick *brick
 }
 
 void process_input(Paddle *paddle, Ball *ball) {
@@ -66,5 +67,5 @@ int main() {
   Floor floor;
 
   /* call initialize helper function */
-  initializ_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
+  initialize_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
 }
