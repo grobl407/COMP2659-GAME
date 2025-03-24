@@ -4,8 +4,6 @@
 #include "render.h"
 #include "TYPES.H"
 
-const int HEART_Y = 45;
-const int PLATFORM_Y = 350;
 
 
 
@@ -30,10 +28,10 @@ void render_brick(const Brick *brick, UINT8 *base){
 
 void render_heart(const Heart *heart, UINT8 *base){
     for(heart->x; heart->x < 219; heart->x += 24){
-        plot_heart(base, heart->x, HEART_Y, heart->heart_map);
+        plot_heart(base, heart->x, heart->y, heart->heart_map);
     }
 }
 
 void render_platform(const Platform *platform, UINT8 *base){
-    plot_paddle(base, platform->x, PLATFORM_Y, platform->platform_map);
+    plot_paddle(base, platform->x, platform->y, platform->platform_map);
 }
