@@ -5,7 +5,6 @@
 #include "bitmap.h"
 
 
-
 typedef struct {
     int x, y;
     UINT32 *full_brick_map;

@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = cc68x
-CFLAGS = -g -c
+CFLAGS = -g -c -I.
 LDFLAGS = -g
 RM = rm
 
