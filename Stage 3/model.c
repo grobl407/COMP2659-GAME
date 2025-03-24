@@ -41,7 +41,7 @@ void ball_collisions (Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks
     ball->delta_y = -ball->delta_y;
   }
 
-  Brick *brick = find_brick(ball, bricks, num_bricks, game);
+  struct Brick * brick = find_brick(ball, bricks, num_bricks, game);
 
   /* Ball collides with brick */
   if (ball->y <= brick->y + brick->size_y && ball->x + ball->size_x >= brick->x &&
@@ -99,7 +99,6 @@ Brick* find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
             ball->x <= bricks[i].x + bricks[i].size_x) {
             
             check_broken(&bricks[i], game);
-            print_brick_state(i, &bricks[i]);
             return &bricks[i];
         }
     }
