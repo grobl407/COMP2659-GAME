@@ -38,7 +38,7 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   floor->y = SCREEN_HEIGHT;
 }
 
-void initialize_bricks(Brick bricks[], int num_bricks) {
+void initialize_bricks(Brick *bricks[], int num_bricks) {
   int brick_width = 28;
   int brick_height = 7;
   int start_x = 170;
