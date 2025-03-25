@@ -10,7 +10,7 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 
-void initialize_game(Game *game, Model game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
+void initialize_game(Game *game, Model game_model, Paddle *paddle, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
   /* Initialize game struct */
   game->score = 0;
   game->lives = 3;
@@ -32,6 +32,7 @@ void initialize_game(Game *game, Model game_model, Wall *left_wall, Wall *right_
   paddle->y = 350;
   paddle->size_x = 32;
   paddle->size_y = 5;
+  paddle->p_input = 0;
   paddle->move_dist = 20;
 
   /* Initialize walls */
@@ -72,7 +73,6 @@ void initialize_bricks(Brick *bricks[], int num_bricks) {
     }
   }
 }
-*/
 
 void process_input(Paddle *paddle, Ball *ball) {
     if (Cconis()) {
@@ -81,7 +81,7 @@ void process_input(Paddle *paddle, Ball *ball) {
         if (ch == 'a') {
             move_paddle(paddle, 0); /* Move left */
         } else if (ch == 'd') {
-            move_paddle(paddle, 1); /*Move right*/
+            move_paddle(paddle, 1); /*Move right */
         } else if (ch == ' ') {
             start_ball(ball); /*Start the ball */
         }
@@ -102,6 +102,17 @@ void process_input(Paddle *paddle, Ball *ball) {
     }
   }
 
+UINT32 get_time() {
+    long old_ssp;
+    ULONG32 timeNow;
+
+    old_ssp = Super(0); // Enter privileged mode
+    timeNow = *(UINT32 *)0x462; // Read the timer
+    Super(old_ssp); // Exit privileged mode
+
+    return timeNow;
+}
+
 int main() {
   /* initialize structs */
   Model game_model;
@@ -112,12 +123,16 @@ int main() {
   Floor floor;
 
   UINT8 *base = Physbase();
-  /* call initialize helper function 
-  initialize_bricks(&game_model, 72);
-  render_all_bricks(&game_model, 72, base); */
-  initialize_game(&game, &game_model, 72, &left_wall, &right_wall, &ceiling, &floor);
+  /* call initialize helper function */
+  /* initialize_bricks(&game_model, 72); */
+  /* render_all_bricks(&game_model, 72, base); */
+  initialize_game(&game, &game_model, &paddle, &left_wall, &right_wall, &ceiling, &floor);
 
-
+  while (game->game_over != 1) {
+    clear_paddle(Paddle *paddle, UINT8 *base);
+    process_input(paddle, ball);
+    render_paddle(paddle, base);
+  }
   /*
   clear_ball(Ball *ball, UINT8 *base);
   move_ball (Ball *ball);
