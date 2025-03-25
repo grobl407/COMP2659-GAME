@@ -5,8 +5,8 @@ LDFLAGS = -g
 RM = rm
 
 # Source files and objects
-SRCS = bbreak.c
-OBJS = bbreak.o
+SRCS = bbreak.c ..\stg3\model.c ..\stg4\render.c ..\stg2\raster.c
+OBJS = bbreak.o model.o render.o raster.o
 EXEC = bbreak.prg
 
 # Default target
@@ -17,8 +17,18 @@ $(EXEC): $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
 
 # Compiling C files
-b_breaker.o: bbreak.c bbreak.h
+bbreak.o: bbreak.c bbreak.h
 	$(CC) $(CFLAGS) -o bbreak.o bbreak.c
+
+model.o: ..\stg3\model.c ..\stg3\model.h
+	$(CC) $(CFLAGS) -o model.o ..\stg3\model.c
+
+render.o: ..\stg4\render.c ..\stg4\render.h
+	$(CC) $(CFLAGS) -o render.o ..\stg4\render.c
+
+# Compile raster.c (with correct path)
+raster.o: ..\stg2\raster.c ..\stg2\raster.h
+	$(CC) $(CFLAGS) -o raster.o ..\stg2\raster.c
 
 # Clean rule
 clean:

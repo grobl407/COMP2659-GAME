@@ -24,7 +24,7 @@ void render_singlebrick(Brick *brick, UINT8 *base){
     plot_brick(base, x, y, brick->full_brick_map);
 
 }
-void render_brick(Brick *brick[], UINT8 *base){
+void render_brick(Brick *brick, UINT8 *base){
     int x, y; /* Local variables for iteration */
     y = brick->y;
     for (x = brick->x; x < 459; x += 32) {
@@ -51,6 +51,10 @@ void render_paddle(Paddle *paddle, UINT8 *base){
     plot_paddle(base, paddle->x, paddle->y, paddle->paddle_bitmap);
 }
 
+void render_clear_paddle(Paddle *paddle, UINT8 *base){
+    plot_paddle(base, paddle->x, paddle->y, paddle->clear_paddle);
+}
+
 void render_walls (UINT8 *base) {
 	plot_vertline(base, 160, 30, 400); /* Plot left wall */
 	plot_vertline(base, 480, 30, 400);
@@ -60,3 +64,4 @@ void render_walls (UINT8 *base) {
 	plot_horizline(base, 160, 480, 30);
 
 }
+

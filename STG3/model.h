@@ -49,6 +49,7 @@ typedef struct {
   int p_input; /* 0 for left, 1 for right */
   int move_dist; /* Adjustable move distance of platform per button press, can change in settings */
   UINT32 *paddle_bitmap;
+  UINT32 *clear_paddle;
 
 } Paddle;
 

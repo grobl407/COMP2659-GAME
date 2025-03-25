@@ -87,6 +87,14 @@ UINT32 paddle_bitmap[5] = {
     0x7FFFFFFE,
 }; /*32x5 paddle bitmap*/
 
+UINT32 clear_paddle[5] = {
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000
+};
+
 UINT16 heart_map[16] = {
     0x3E7C,
     0x77FE,

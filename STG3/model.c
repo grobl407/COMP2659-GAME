@@ -2,6 +2,8 @@
 #define SCREEN_HEIGHT 400
 #include "model.h"
 #include <stdio.h>
+#include <osbind.h>
+#include <linea.h>
 
 
 void move_ball (Ball *ball) {

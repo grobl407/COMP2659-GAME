@@ -10,7 +10,7 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 
-void initialize_game(Game *game, Model game_model, Paddle *paddle, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
+void initialize_game(Game *game, Model *game_model, Paddle *paddle, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
   /* Initialize game struct */
   game->score = 0;
   game->lives = 3;
@@ -19,13 +19,13 @@ void initialize_game(Game *game, Model game_model, Paddle *paddle, Wall *left_wa
   game->paused = 0;
 
   /* Initialize ball */
-  ball->x = SCREEN_WIDTH / 2;
-  ball->y = 342;
-  ball->delta_x = 1;
-  ball->delta_y = 1;
-  ball->isActive = 0;
-  ball->size_x = 8;
-  ball->size_y = 8;
+  game_model->ball.x = SCREEN_WIDTH / 2;
+  game_model->ball.y = 342;
+  game_model->ball.delta_x = 1;
+  game_model->ball.delta_y = 1;
+  game_model->ball.isActive = 0;
+  game_model->ball.size_x = 8;
+  game_model->ball.size_y = 8;
 
   /* Initialize paddle */
   paddle->x = 250;
@@ -73,7 +73,7 @@ void initialize_bricks(Brick *bricks[], int num_bricks) {
     }
   }
 }
-
+*/
 void process_input(Paddle *paddle, Ball *ball) {
     if (Cconis()) {
         char ch = (char)Cnecin();
@@ -88,7 +88,7 @@ void process_input(Paddle *paddle, Ball *ball) {
     }
 }
 
-
+/*
   void render_brick(Brick *brick, UINT8 *base) {
     if (!brick->isBroken) {
         plot_brick(base, brick->x, brick->y, brick->full_brick_map);
@@ -101,14 +101,15 @@ void process_input(Paddle *paddle, Ball *ball) {
         render_brick(&bricks[i], base);
     }
   }
+    */
 
 UINT32 get_time() {
     long old_ssp;
-    ULONG32 timeNow;
+    UINT32 timeNow;
 
-    old_ssp = Super(0); // Enter privileged mode
-    timeNow = *(UINT32 *)0x462; // Read the timer
-    Super(old_ssp); // Exit privileged mode
+    old_ssp = Super(0); /*Enter privileged mode*/
+    timeNow = *(UINT32 *)0x462; /*Read the timer*/
+    Super(old_ssp); /*Exit privileged mode*/
 
     return timeNow;
 }
@@ -121,6 +122,9 @@ int main() {
   Wall right_wall;
   Ceiling ceiling;
   Floor floor;
+  Paddle paddle;
+  Ball ball;
+  Brick brick;
 
   UINT8 *base = Physbase();
   /* call initialize helper function */
@@ -128,10 +132,10 @@ int main() {
   /* render_all_bricks(&game_model, 72, base); */
   initialize_game(&game, &game_model, &paddle, &left_wall, &right_wall, &ceiling, &floor);
 
-  while (game->game_over != 1) {
-    clear_paddle(Paddle *paddle, UINT8 *base);
-    process_input(paddle, ball);
-    render_paddle(paddle, base);
+  while (game.game_over != 1) {
+    render_clear_paddle(&paddle, base);
+    process_input(&paddle, &ball);
+    render_paddle(&paddle, base);
   }
   /*
   clear_ball(Ball *ball, UINT8 *base);

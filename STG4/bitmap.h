@@ -12,6 +12,7 @@ extern UINT32 almost_broken_map[];
 extern UINT32 broken_brick_map[];
 extern UINT32 clear_brickmap[];
 extern UINT16 heart_map[];
+extern UINT32 clear_paddle[];
 
 
 #endif /* BITMAPS_H */
