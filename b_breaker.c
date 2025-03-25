@@ -36,20 +36,34 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   /* Initialize cailing */
   ceiling->y = 0;
   floor->y = SCREEN_HEIGHT;
+}
 
-  /* Initialize bricks[] */
-  Brick bricks[72];
-  int i = 0; /* bricks[] counter */
-  for (i, i < 72, i++) {
-    bricks[i]-> 
+void initialize_bricks(Brick bricks[], int num_bricks) {
+  int brick_width = 28;
+  int brick_height = 7;
+  int start_x = 170;
+  int start_y = 100;
 
-  /*
-  clear_ball(Ball *ball, UINT8 *base);
-  move_ball (Ball *ball);
-  ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, 
-                     Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game);
-  render_ball(Ball *ball, UINT8 *base);
-  */
+  int i; /* Brick index */
+  int y;
+  int x;
+  for (y = start_y; y < max_y; y += 20) {
+    for (x = start_x; x < max_x; x += 32) {
+      if (i >= num_bricks) {
+        return;
+      }
+
+      bricks[i].x = x;
+      bricks[i].y = y;
+      bricks[i].size_x = brick_width;
+      bricks[i].size_y = brick_height;
+      bricks[i].isBroken = 0;
+      bricks[i].base_points = 10;
+      bricks[i].health = 5;
+
+      i++;     
+    }
+  }
 }
 
 void process_input(Paddle *paddle, Ball *ball) {
@@ -79,4 +93,12 @@ int main() {
 
   /* call initialize helper function */
   initialize_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
+
+  /*
+  clear_ball(Ball *ball, UINT8 *base);
+  move_ball (Ball *ball);
+  ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, 
+                     Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game);
+  render_ball(Ball *ball, UINT8 *base);
+  */
 }
