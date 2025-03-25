@@ -7,7 +7,7 @@ RM = rm
 # Source files and objects
 SRCS = bbreak.c ..\stg3\model.c ..\stg4\render.c ..\stg2\raster.c
 OBJS = bbreak.o model.o render.o raster.o
-EXEC = bbreak.prg
+EXEC = bbreak
 
 # Default target
 all: $(EXEC)

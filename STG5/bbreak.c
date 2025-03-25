@@ -5,6 +5,7 @@
 #include "TYPES.H"
 #include "bbreak.h"
 #include <stdio.h>
+#include <linea.h>
 
 
 #define SCREEN_WIDTH 640

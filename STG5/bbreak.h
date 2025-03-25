@@ -13,8 +13,9 @@ void process_input(Paddle *paddle, Ball *ball);
 /*
 void render_brick(Brick *brick, UINT8 *base);
 void render_all_bricks(Brick bricks[], int num_bricks, UINT8 *base);
-*/
+
 UINT32 get_time();
+*/
 void render_clear_paddle(Paddle *paddle, UINT8 *base);
 
 #endif

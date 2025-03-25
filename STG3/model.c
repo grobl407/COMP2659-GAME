@@ -105,6 +105,7 @@ void start_ball (Ball *ball) {
         char ch = (char)Cnecin();
   ball->isActive = 1;
 }
+}
 
 Brick* find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
   int i;

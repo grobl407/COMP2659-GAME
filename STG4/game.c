@@ -3,9 +3,8 @@
 #include "..\stg3\model.h"
 #include "bitmap.h"
 #include "render.h"
-
-
 #include <osbind.h>
+
 
 const int HEART_Y = 45;
 const int PLATFORM_Y = 350;
@@ -41,7 +40,7 @@ int main() {
     UINT8 *base = Physbase();
     Model game_model;
 
-    /*init_game(&game_model);*/
+    init_game(&game_model);
     
 
     render(&game_model, base);
