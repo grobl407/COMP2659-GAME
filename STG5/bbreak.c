@@ -3,14 +3,14 @@
 #include "..\stg4\render.h"
 #include "..\stg4\bitmap.h"
 #include "TYPES.H"
-#include "b_breaker.h"
+#include "bbreak.h"
 #include <stdio.h>
 
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 
-void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
+void initialize_game(Game *game, Model game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
   /* Initialize game struct */
   game->score = 0;
   game->lives = 3;
@@ -32,7 +32,7 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
   paddle->y = 350;
   paddle->size_x = 32;
   paddle->size_y = 5;
-  paddle->20;
+  paddle->move_dist = 20;
 
   /* Initialize walls */
   left_wall->x = 160;
@@ -48,6 +48,8 @@ void initialize_bricks(Brick *bricks[], int num_bricks) {
   int brick_height = 7;
   int start_x = 170;
   int start_y = 100;
+  int max_y = 260;
+  int max_x = 458;
 
   int i; /* Brick index */
   int y;
@@ -70,20 +72,21 @@ void initialize_bricks(Brick *bricks[], int num_bricks) {
     }
   }
 }
-
+/*
 void process_input(Paddle *paddle, Ball *ball) {
     if (Cconis()) {
         char ch = (char)Cnecin();
 
         if (ch == 'a') {
-            move_paddle(paddle, 0); // Move left
+            move_paddle(paddle, 0); /* Move left 
         } else if (ch == 'd') {
-            move_paddle(paddle, 1); // Move right
+            move_paddle(paddle, 1); /*Move right 
         } else if (ch == ' ') {
-            start_ball(ball); // Start the ball
+            start_ball(ball); /*Start the ball 
         }
     }
 }
+*/
 
   void render_brick(Brick *brick, UINT8 *base) {
     if (!brick->isBroken) {
@@ -92,17 +95,16 @@ void process_input(Paddle *paddle, Ball *ball) {
   }
 
   void render_all_bricks(Brick bricks[], int num_bricks, UINT8 *base) {
-    for (int i = 0; i < num_bricks; i++) {
+    int i;
+    for (i = 0; i < num_bricks; i++) {
         render_brick(&bricks[i], base);
     }
   }
 
 int main() {
   /* initialize structs */
+  Model game_model;
   Game game;
-  Ball ball;
-  Paddle paddle;
-  Brick bricks[];
   Wall left_wall;
   Wall right_wall;
   Ceiling ceiling;
@@ -110,9 +112,9 @@ int main() {
 
   UINT8 *base = Physbase();
   /* call initialize helper function */
-  initialize_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
-  initialize_bricks(bricks, 72);
-  render_all_bricks(bricks, 72, base);
+  initialize_bricks(&game_model, 72);
+  render_all_bricks(&game_model, 72, base);
+  initialize_game(&game, &game_model, 72, &left_wall, &right_wall, &ceiling, &floor);
 
 
   /*

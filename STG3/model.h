@@ -2,7 +2,7 @@
 #define MODEL_H
 
 #include "TYPES.H"
-#include "bitmap.h"
+#include "..\stg4\bitmap.h"
 
 typedef struct {
   unsigned int x, y; /* Position */
@@ -59,7 +59,7 @@ typedef struct {
 }Heart;
 
 typedef struct {
-  Brick brick;
+  Brick brick[];
   Ball ball;
   Paddle paddle;
   Heart heart;

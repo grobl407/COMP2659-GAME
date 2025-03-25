@@ -1,0 +1,25 @@
+# Compiler and flags
+CC = cc68x
+CFLAGS = -g -c -I.
+LDFLAGS = -g
+RM = rm
+
+# Source files and objects
+SRCS = bbreak.c
+OBJS = bbreak.o
+EXEC = bbreak.prg
+
+# Default target
+all: $(EXEC)
+
+# Linking
+$(EXEC): $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(EXEC)
+
+# Compiling C files
+b_breaker.o: bbreak.c bbreak.h
+	$(CC) $(CFLAGS) -o bbreak.o bbreak.c
+
+# Clean rule
+clean:
+	$(RM) -f *.o $(EXEC)
