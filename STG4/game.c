@@ -2,6 +2,7 @@
 #include "..\stg2\raster.h"
 #include "objects.h"
 #include "bitmap.h"
+#include "render.h"
 
 
 #include <osbind.h>
@@ -40,10 +41,12 @@ void init_game(Model *model){
 int main() {
     UINT8 *base = Physbase();
     Model game_model;
+    Brick brick;
 
     init_game(&game_model);
 
     render(&game_model, base);
+    render_singlebrick(&brick, base);
 
     return 0;
 }

@@ -17,13 +17,38 @@ void render_ball(Ball *ball, UINT8 *base){
     plot_ball(base, ball->x, ball->y, ball->ball_bitmap);
 }
 
+void render_singlebrick(Brick *brick, UINT8 *base){
+    int x, y;
+    brick->x = 50;
+    brick->y = 300;
+    UINT32 bootymap[7] = {
+        0x7FFFFFE0,
+        0xFFFFFFF0,
+        0xFFFFFFF0,
+        0xFFFFFFF0,
+        0xFFFFFFF0,
+        0xFFFFFFF0,
+        0x7FFFFFE0,
+    
+    };
+
+    plot_brick(base, brick->x, brick->y, bootymap);
+
+
+}
 void render_brick(Brick *brick, UINT8 *base){
     int x, y; /* Local variables for iteration */
-
-    for (x = brick->x; x < 458; x += 32) {
-        for (y = brick->y; y < 260; y += 20) {
-            plot_brick(base, x, y, brick->full_brick_map);
+    y = brick->y;
+    for (x = brick->x; x < 459; x += 32) {
+        if(x == 458){
+            x = brick->x;
+            y += 20;
+            if (y == 260){
+                break;
+            }
         }
+        plot_brick(base, x, y, brick->full_brick_map);
+        
     }
 }
 

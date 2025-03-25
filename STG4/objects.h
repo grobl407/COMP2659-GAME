@@ -12,6 +12,7 @@ typedef struct {
     UINT32 *cracked_brick_map;
     UINT32 *almost_broken_map;
     UINT32 *broken_brick_map;
+    UINT32 *clear_brickmap;
 
 }Brick;
 

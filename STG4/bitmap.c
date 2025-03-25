@@ -55,7 +55,18 @@ UINT32 broken_brick_map[7] = {
     0x6981088F,
     0x00FF9436,
 
+
 }; /*32x7 brick bitmap*/
+
+UINT32 clear_brickmap[7] ={
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+}; 
 
 UINT16 ball_bitmap[8] = {
     0x3C,
