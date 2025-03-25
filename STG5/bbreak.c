@@ -102,6 +102,17 @@ void process_input(Paddle *paddle, Ball *ball) {
     }
   }
 
+ULONG32 get_time() {
+    long old_ssp;
+    ULONG32 timeNow;
+
+    old_ssp = Super(0); // Enter privileged mode
+    timeNow = *(ULONG32 *)0x462; // Read the timer
+    Super(old_ssp); // Exit privileged mode
+
+    return timeNow;
+}
+
 int main() {
   /* initialize structs */
   Model game_model;
