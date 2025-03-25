@@ -1,6 +1,6 @@
 
 #include "..\stg2\raster.h"
-#include "objects.h"
+#include "..\stg3\model.h"
 #include "TYPES.H"
 
 
@@ -8,7 +8,7 @@ void render(Model *model, UINT8 *base){
     clear_screen();
     render_walls(base);
     render_ball(&model->ball, base);
-    render_platform(&model->platform, base);
+    render_paddle(&model->paddle, base);
     render_heart(&model->heart, base);
     render_brick(&model->brick, base);
 }
@@ -24,7 +24,7 @@ void render_singlebrick(Brick *brick, UINT8 *base){
     plot_brick(base, x, y, brick->full_brick_map);
 
 }
-void render_brick(Brick *brick, UINT8 *base){
+void render_brick(Brick *brick[], UINT8 *base){
     int x, y; /* Local variables for iteration */
     y = brick->y;
     for (x = brick->x; x < 459; x += 32) {
@@ -47,8 +47,8 @@ void render_heart(Heart *heart, UINT8 *base){
     }
 }
 
-void render_platform(Platform *platform, UINT8 *base){
-    plot_paddle(base, platform->x, platform->y, platform->platform_map);
+void render_paddle(Paddle *paddle, UINT8 *base){
+    plot_paddle(base, paddle->x, paddle->y, paddle->paddle_bitmap);
 }
 
 void render_walls (UINT8 *base) {

@@ -1,6 +1,9 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "TYPES.H"
+#include "bitmap.h"
+
 typedef struct {
   unsigned int x, y; /* Position */
   int delta_x;  /* horizontal displacement per clock tick */
@@ -8,6 +11,7 @@ typedef struct {
   int isActive; /* Boolean for if ball is in play */
   int size_x;
   int size_y;
+  UINT16 *ball_bitmap;
 } Ball;
 
 typedef struct {
@@ -17,6 +21,13 @@ typedef struct {
   int size_x;
   int size_y;
   int health;
+
+  UINT32 *full_brick_map;
+  UINT32 *semi_cracked_map;
+  UINT32 *cracked_brick_map;
+  UINT32 *almost_broken_map;
+  UINT32 *broken_brick_map;
+  UINT32 *clear_brickmap;
 } Brick;
 
 typedef struct {
@@ -37,7 +48,23 @@ typedef struct {
   int size_y;
   int p_input; /* 0 for left, 1 for right */
   int move_dist; /* Adjustable move distance of platform per button press, can change in settings */
+  UINT32 *paddle_bitmap;
+
 } Paddle;
+
+typedef struct {
+  int x, y;
+  UINT16 *heart_map;
+
+}Heart;
+
+typedef struct {
+  Brick brick;
+  Ball ball;
+  Paddle paddle;
+  Heart heart;
+} Model;
+
 
 typedef struct {
   int score;  /* Total score */

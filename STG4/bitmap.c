@@ -79,13 +79,13 @@ UINT16 ball_bitmap[8] = {
     0x3C,
 }; /*8x8 ball bitmap*/
 
-UINT32 platform_bitmap[5] = {
+UINT32 paddle_bitmap[5] = {
     0x7FFFFFFE,
     0xFFFFFFFF,
     0xFFFFFFFF,
     0xFFFFFFFF,
     0x7FFFFFFE,
-}; /*32x5 platform bitmap*/
+}; /*32x5 paddle bitmap*/
 
 UINT16 heart_map[16] = {
     0x3E7C,

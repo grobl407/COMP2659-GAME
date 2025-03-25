@@ -1,6 +1,6 @@
 #include "TYPES.H"
 #include "..\stg2\raster.h"
-#include "objects.h"
+#include "..\stg3\model.h"
 #include "bitmap.h"
 #include "render.h"
 
@@ -17,10 +17,9 @@ void init_game(Model *model){
     model->ball.ball_bitmap = ball_bitmap;
 
     /*initializing platform model*/
-    model->platform.x = 250;
-    model->platform.y = PLATFORM_Y;
-    model->platform.platform_map = platform_bitmap;
-
+    model->paddle.x = 250;
+    model->paddle.y = PLATFORM_Y;
+    model->paddle.paddle_bitmap = paddle_bitmap;
     /*initializing heart model*/
     model->heart.x = 170;
     model->heart.y = HEART_Y;
@@ -42,7 +41,8 @@ int main() {
     UINT8 *base = Physbase();
     Model game_model;
 
-    init_game(&game_model);
+    /*init_game(&game_model);*/
+    
 
     render(&game_model, base);
     render_singlebrick(&game_model, base);
