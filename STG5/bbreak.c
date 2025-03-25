@@ -113,14 +113,15 @@ int main() {
 
   UINT8 *base = Physbase();
   /* call initialize helper function */
-  initialize_bricks(&game_model, 72);
-  render_all_bricks(&game_model, 72, base);
+  /* initialize_bricks(&game_model, 72); */
+  /* render_all_bricks(&game_model, 72, base); */
   initialize_game(&game, &game_model, &paddle, &left_wall, &right_wall, &ceiling, &floor);
 
-  clear_paddle(Paddle *paddle, UINT8 *base);
-  process_input(paddle, ball);
-  render_paddle(paddle, base);
-
+  while (game->game_over != 1) {
+    clear_paddle(Paddle *paddle, UINT8 *base);
+    process_input(paddle, ball);
+    render_paddle(paddle, base);
+  }
   /*
   clear_ball(Ball *ball, UINT8 *base);
   move_ball (Ball *ball);
