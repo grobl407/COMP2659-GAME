@@ -59,7 +59,7 @@ typedef struct {
 }Heart;
 
 typedef struct {
-  Brick brick[];
+  Brick brick[72];
   Ball ball;
   Paddle paddle;
   Heart heart;

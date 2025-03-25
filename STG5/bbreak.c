@@ -42,7 +42,7 @@ void initialize_game(Game *game, Model game_model, Wall *left_wall, Wall *right_
   ceiling->y = 0;
   floor->y = SCREEN_HEIGHT;
 }
-
+/*
 void initialize_bricks(Brick *bricks[], int num_bricks) {
   int brick_width = 28;
   int brick_height = 7;
@@ -51,7 +51,7 @@ void initialize_bricks(Brick *bricks[], int num_bricks) {
   int max_y = 260;
   int max_x = 458;
 
-  int i; /* Brick index */
+  int i; /* Brick index 
   int y;
   int x;
   for (y = start_y; y < max_y; y += 20) {
@@ -72,21 +72,22 @@ void initialize_bricks(Brick *bricks[], int num_bricks) {
     }
   }
 }
-/*
+*/
+
 void process_input(Paddle *paddle, Ball *ball) {
     if (Cconis()) {
         char ch = (char)Cnecin();
 
         if (ch == 'a') {
-            move_paddle(paddle, 0); /* Move left 
+            move_paddle(paddle, 0); /* Move left */
         } else if (ch == 'd') {
-            move_paddle(paddle, 1); /*Move right 
+            move_paddle(paddle, 1); /*Move right*/
         } else if (ch == ' ') {
-            start_ball(ball); /*Start the ball 
+            start_ball(ball); /*Start the ball */
         }
     }
 }
-*/
+
 
   void render_brick(Brick *brick, UINT8 *base) {
     if (!brick->isBroken) {
@@ -111,9 +112,9 @@ int main() {
   Floor floor;
 
   UINT8 *base = Physbase();
-  /* call initialize helper function */
+  /* call initialize helper function 
   initialize_bricks(&game_model, 72);
-  render_all_bricks(&game_model, 72, base);
+  render_all_bricks(&game_model, 72, base); */
   initialize_game(&game, &game_model, 72, &left_wall, &right_wall, &ceiling, &floor);
 
 

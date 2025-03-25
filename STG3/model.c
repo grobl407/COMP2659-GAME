@@ -104,6 +104,7 @@ void start_ball (Ball *ball) {
 }
 
 Brick* find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
+  int i;
     for (i = 0; i < num_bricks; i++) {
         if (!bricks[i].isBroken && 
             ball->y <= bricks[i].y + bricks[i].size_y &&
