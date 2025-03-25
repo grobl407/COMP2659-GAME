@@ -13,7 +13,7 @@ UINT32 full_brick_map[7] = {
 
 }; /*32x7 brick bitmap*/
 
-UINT32 semi_cracked_map[7] = {
+UINT32 semi_cracked_map[7] = {     /*CHANGE ALL OF THE BRICK MAPS WITH THE GAP*/
     0x7FFFFFFE,
     0xFC7FFDFF,
     0xFF0FE1FF,

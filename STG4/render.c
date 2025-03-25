@@ -19,21 +19,9 @@ void render_ball(Ball *ball, UINT8 *base){
 
 void render_singlebrick(Brick *brick, UINT8 *base){
     int x, y;
-    brick->x = 50;
-    brick->y = 300;
-    UINT32 bootymap[7] = {
-        0x7FFFFFE0,
-        0xFFFFFFF0,
-        0xFFFFFFF0,
-        0xFFFFFFF0,
-        0xFFFFFFF0,
-        0xFFFFFFF0,
-        0x7FFFFFE0,
-    
-    };
-
-    plot_brick(base, brick->x, brick->y, bootymap);
-
+    x = brick->x;
+    y = brick->y;
+    plot_brick(base, x, y, brick->full_brick_map);
 
 }
 void render_brick(Brick *brick, UINT8 *base){

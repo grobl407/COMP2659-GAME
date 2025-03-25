@@ -41,12 +41,11 @@ void init_game(Model *model){
 int main() {
     UINT8 *base = Physbase();
     Model game_model;
-    Brick brick;
 
     init_game(&game_model);
 
     render(&game_model, base);
-    render_singlebrick(&brick, base);
+    render_singlebrick(&game_model, base);
 
     return 0;
 }

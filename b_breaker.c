@@ -4,6 +4,10 @@
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
+#define BRICK_WIDTH 32
+#define BRICK_HEIGHT 7
+#define COLUMNS 9
+#define ROWS 8
 
 void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
   /* Initialize game struct */
@@ -39,9 +43,15 @@ void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int
 
   /* Initialize bricks[] */
   Brick bricks[72];
-  int i = 0; /* bricks[] counter */
-  for (i, i < 72, i++) {
-    bricks[i]-> 
+  int x_start = 170;
+  int y_start = 100;
+  int i, row, col; /* bricks[] counter */
+  for (i = 0, i < 72, i++) {
+    row = i / COLUMNS;
+    col = i % COLUMNS;
+    brick[i].x = x_start + col * BRICK_WIDTH;
+    brick[i].y = y_start + row * BRICK_HEIGHT;
+    
 
   /*
   clear_ball(Ball *ball, UINT8 *base);
