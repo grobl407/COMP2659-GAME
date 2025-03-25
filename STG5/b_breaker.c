@@ -1,6 +1,11 @@
 #include <osbind.h>
-#include "model.h"
+#include "..\stg3\model.h"
+#include "..\stg4\render.h"
+#include "..\stg4\bitmap.h"
+#include "TYPES.H"
+#include "b_breaker.h"
 #include <stdio.h>
+
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
@@ -80,21 +85,6 @@ void process_input(Paddle *paddle, Ball *ball) {
     }
 }
 
-int main() {
-  /* initialize structs */
-  Game game;
-  Ball ball;
-  Paddle paddle;
-  Brick bricks[];
-  Wall left_wall;
-  Wall right_wall;
-  Ceiling ceiling;
-  Floor floor;
-
-  /* call initialize helper function */
-  initialize_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
-  initialize_bricks(bricks, 72);
-
   void render_brick(Brick *brick, UINT8 *base) {
     if (!brick->isBroken) {
         plot_brick(base, brick->x, brick->y, brick->full_brick_map);
@@ -106,6 +96,25 @@ int main() {
         render_brick(&bricks[i], base);
     }
   }
+
+int main() {
+  /* initialize structs */
+  Game game;
+  Ball ball;
+  Paddle paddle;
+  Brick bricks[];
+  Wall left_wall;
+  Wall right_wall;
+  Ceiling ceiling;
+  Floor floor;
+
+  UINT8 *base = Physbase();
+  /* call initialize helper function */
+  initialize_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
+  initialize_bricks(bricks, 72);
+  render_all_bricks(bricks, 72, base);
+
+
   /*
   clear_ball(Ball *ball, UINT8 *base);
   move_ball (Ball *ball);
