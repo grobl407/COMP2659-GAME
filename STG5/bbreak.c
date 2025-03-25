@@ -102,7 +102,7 @@ void process_input(Paddle *paddle, Ball *ball) {
     }
   }
 
-ULONG32 get_time() {
+UINT32 get_time() {
     long old_ssp;
     ULONG32 timeNow;
 
