@@ -107,7 +107,7 @@ UINT32 get_time() {
     ULONG32 timeNow;
 
     old_ssp = Super(0); // Enter privileged mode
-    timeNow = *(ULONG32 *)0x462; // Read the timer
+    timeNow = *(UINT32 *)0x462; // Read the timer
     Super(old_ssp); // Exit privileged mode
 
     return timeNow;
