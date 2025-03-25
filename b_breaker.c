@@ -1,14 +1,9 @@
 #include <osbind.h>
 #include "model.h"
 #include <stdio.h>
-#include "render.h"
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
-#define BRICK_WIDTH 32
-#define BRICK_HEIGHT 7
-#define COLUMNS 9
-#define ROWS 8
 
 void initialize_game(Game *game, Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
   /* Initialize game struct */
@@ -90,7 +85,7 @@ int main() {
   Game game;
   Ball ball;
   Paddle paddle;
-  Brick bricks[72];
+  Brick bricks[];
   Wall left_wall;
   Wall right_wall;
   Ceiling ceiling;
@@ -98,9 +93,19 @@ int main() {
 
   /* call initialize helper function */
   initialize_game(&game, &ball, &paddle, bricks, 72, &left_wall, &right_wall, &ceiling, &floor);
+  initialize_bricks(bricks, 72);
 
+  void render_brick(Brick *brick, UINT8 *base) {
+    if (!brick->isBroken) {
+        plot_brick(base, brick->x, brick->y, brick->full_brick_map);
+    }
+  }
 
-
+  void render_all_bricks(Brick bricks[], int num_bricks, UINT8 *base) {
+    for (int i = 0; i < num_bricks; i++) {
+        render_brick(&bricks[i], base);
+    }
+  }
   /*
   clear_ball(Ball *ball, UINT8 *base);
   move_ball (Ball *ball);
