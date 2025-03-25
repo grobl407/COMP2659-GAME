@@ -119,7 +119,7 @@ int main() {
 
   clear_paddle(Paddle *paddle, UINT8 *base);
   process_input(paddle, ball);
-  render_paddle
+  render_paddle(paddle, base);
 
   /*
   clear_ball(Ball *ball, UINT8 *base);
