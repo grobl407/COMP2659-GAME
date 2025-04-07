@@ -14,11 +14,11 @@ void move_ball (Model *game_model) {
 }
 
 void move_paddle (Paddle *paddle, int direction) {
-  if (direction == 0) { /* moving left */
+  if (direction == 0 && paddle->x > 160) { /* moving left */
     if (paddle->x > 0)
       paddle->x -= paddle->move_dist;
   }
-  else {
+  else if (paddle->x < 448) {
     if (paddle->x + paddle->size_x < SCREEN_WIDTH)
       paddle->x += paddle->move_dist;
   }
