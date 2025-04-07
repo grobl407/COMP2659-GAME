@@ -142,6 +142,7 @@ int main() {
   Brick bricks[72];
   UINT32 timeNow;
   UINT32 timeThen;
+  UINT32 timeElapsed;
  
 
   UINT8 *base = Physbase();
