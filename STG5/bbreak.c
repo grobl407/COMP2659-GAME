@@ -161,19 +161,21 @@ int main() {
     timeElapsed = timeNow - timeThen;
 
     /* Asynchronous events */
-    process_input(&game_model.paddle, &game_model.ball) {
+    process_input(&game_model.paddle, &game_model.ball);
 
     /* Synchronous events */
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
         /* Clear ball */
-
+        render_ball(&game_model.ball.clear_brickmap);
         /* Move ball */
         move_ball(&game_model.ball);
       }
-  
+      render(&game_model, base);
     }
-  }
+    
+  
+  
   /*
   clear_ball(Ball *ball, UINT8 *base);
   move_ball (Ball *ball);
@@ -181,4 +183,5 @@ int main() {
                      Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game);
   render_ball(Ball *ball, UINT8 *base);
   */
+}
 }
