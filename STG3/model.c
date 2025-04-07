@@ -24,74 +24,56 @@ void move_paddle (Paddle *paddle, int direction) {
   }
 }
 
-/*
-void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, Wall *left_wall, 
-                     Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game) {
-  
-  /* Ball collides with left wall, flip delta_x 
-  if (ball->x <= left_wall->x) {
-    ball->delta_x = -ball->delta_x;
-  }
 
-  /* Ball collides with right wall, flip delta_x 
-  if (ball->x + ball->size_x >= right_wall->x) {
-    ball->delta_x = -ball->delta_x;
-  }
+void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, 
+                     Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game) {
 
-  /* Ball collides with ceiling, flip delta_y 
-  if (ball->y <= ceiling->y) {
-    ball->delta_y = -ball->delta_y;
-  }
-
-  /* Ball collides with paddle, flip delta_y 
-  if (ball->y + ball->size_y >= paddle->y && 
-      ball->x + ball->size_x >= paddle->x && 
-      ball->x <= paddle->x + paddle->size_x) {
-    ball->delta_y = -ball->delta_y;
-  }
-
-  /* Check for collisions with bricks 
-  Brick* brick = find_brick(ball, bricks, num_bricks, game);
-  if (brick != NULL) {
-    /* Ball collides with brick, flip delta_y 
-    if (ball->y <= brick->y + brick->size_y && 
-        ball->x + ball->size_x >= brick->x && 
-        ball->x <= brick->x + brick->size_x) {
-      ball->delta_y = -ball->delta_y;
+    /* Wall collisions */
+    if (ball->x <= left_wall->x || ball->x + ball->size_x >= right_wall->x) {
+        ball->delta_x = -ball->delta_x;  /*Bounce off left/right wall*/
+    }
+    if (ball->y <= ceiling->y) {
+        ball->delta_y = -ball->delta_y;  /*Bounce off ceiling*/
     }
 
-    /* Ball collides with left side of brick, flip delta_x 
-    if (ball->y < brick->y + brick->size_y && 
-        ball->y < brick->y && 
-        ball->x >= brick->x) {
-      ball->delta_x = -ball->delta_x;
+    /* Paddle collision */
+    if (ball->y + ball->size_y >= paddle->y && 
+        ball->x + ball->size_x > paddle->x && 
+        ball->x < paddle->x + paddle->size_x) {
+        
+        ball->delta_y = -ball->delta_y;  /*Bounce off paddle*/
     }
 
-    /* Ball collides with right side of brick, flip delta_x 
-    if (ball->y < brick->y + brick->size_y && 
-        ball->y < brick->y && 
-        ball->x <= brick->x + brick->size_x) {
-      ball->delta_x = -ball->delta_x;
+    /* Brick collision */
+    Brick *brick = find_brick(ball, bricks, num_bricks);
+    if (brick) {
+        brick->health--;
+        if (brick->health <= 0) {
+            brick->isBroken = 1;
+            game->score += brick->base_points;
+        }
+
+        /* Simple bounce: Flip whichever direction had the most overlap */
+        int overlap_x = (ball->x + ball->size_x) - brick->x;
+        int overlap_y = (ball->y + ball->size_y) - brick->y;
+        
+        if (overlap_x > overlap_y) {
+            ball->delta_y = -ball->delta_y;  /*Bounce vertically*/
+        } else {
+            ball->delta_x = -ball->delta_x;  /*Bounce horizontally*/
+        }
     }
 
-    /* Ball collides with top of brick, flip delta_y 
-    if (ball->y >= brick->y + brick->size_y && 
-        ball->x + ball->size_x >= brick->x && 
-        ball->x <= brick->x + brick->size_x) {
-      ball->delta_y = -ball->delta_y;
+    /* Ball falls below paddle (lose a life) */
+    if (ball->y >= floor->y) {
+        game->lives--;
+        if (game->lives == 0) {
+            game->game_over = 1;
+        } else {
+            reset_ball(ball, paddle);
+        }
     }
-  }
-
-  /* Ball falls to floor, lose a life 
-  if (ball->y >= floor->y) {
-    game->lives -= 1;
-    if (game->lives == 0) {
-      game->game_over = 1; /* Game over is true 
-    } else {
-      reset_ball(ball, paddle);
-    }
-  }
-} */
+}
 
 void reset_ball (Ball *ball, Paddle *paddle) {
   ball->x = paddle->x + paddle->size_x/2;  /* Place ball in middle of paddle */
@@ -107,20 +89,19 @@ void start_ball (Ball *ball) {
 }
 }
 
-Brick* find_brick(Ball *ball, Brick bricks[], int num_bricks, Game *game) {
+Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks) {
   int i;
-    for (i = 0; i < num_bricks; i++) {
-        if (!bricks[i].isBroken && 
-            ball->y <= bricks[i].y + bricks[i].size_y &&
-            ball->y + ball->size_y >= bricks[i].y &&
-            ball->x + ball->size_x >= bricks[i].x &&
-            ball->x <= bricks[i].x + bricks[i].size_x) {
-            
-            check_broken(&bricks[i], game);
-            return &bricks[i];
-        }
-    }
-  return NULL;
+  for (i = 0; i < num_bricks; i++) {
+      if (!bricks[i].isBroken &&
+          ball->x < bricks[i].x + bricks[i].size_x &&
+          ball->x + ball->size_x > bricks[i].x &&
+          ball->y < bricks[i].y + bricks[i].size_y &&
+          ball->y + ball->size_y > bricks[i].y) {
+          
+          return &bricks[i];  /*Return pointer to brick*/
+      }
+  }
+  return NULL;  /*No collision*/
 }
 
 

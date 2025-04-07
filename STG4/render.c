@@ -31,7 +31,7 @@ void render_brick(Brick *brick, UINT8 *base){
         if(x == 458){
             x = brick->x;
             y += 20;
-            if (y == 260){
+            if (y == 260){ 
                 break;
             }
         }

@@ -4,6 +4,7 @@
 #include "TYPES.H"
 #include "..\stg4\bitmap.h"
 
+
 typedef struct {
   unsigned int x, y; /* Position */
   int delta_x;  /* horizontal displacement per clock tick */
@@ -75,5 +76,15 @@ typedef struct {
   int paused; /* Bool 0 for false, 1 for true */
 } Game;
 
+
+
+void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, 
+  Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game);
+
+Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
+void reset_ball (Ball *ball, Paddle *paddle);
+void move_paddle (Paddle *paddle, int direction);
+void move_ball (Ball *ball);
+void check_broken (Brick *brick, Game *game);
 
 #endif
