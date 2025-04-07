@@ -14,6 +14,6 @@ void render_brick(Brick *brick, UINT8 *base);
 void render_heart(Heart *heart, UINT8 *base);
 void render_paddle(Paddle *paddle, UINT8 *base);
 void render_walls(UINT8 *base);
-void render_singlebrick(Brick *bricks, UINT8 *base);
+void render_singlebrick(Brick *brick, UINT8 *base);
 void render_clear_paddle(Paddle *paddle, UINT8 *base);
 #endif
