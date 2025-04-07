@@ -23,6 +23,7 @@ typedef struct {
   int size_y;
   int health;
 
+
   UINT32 *full_brick_map;
   UINT32 *semi_cracked_map;
   UINT32 *cracked_brick_map;
@@ -65,6 +66,7 @@ typedef struct {
   Ball ball;
   Paddle paddle;
   Heart heart;
+  Brick bricks[NUM_BRICKS];
 } Model;
 
 
