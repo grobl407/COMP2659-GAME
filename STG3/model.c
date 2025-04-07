@@ -28,6 +28,11 @@ void move_paddle (Paddle *paddle, int direction) {
 void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, 
                      Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game) {
 
+    /* Variable declarations */
+    Brick *brick;
+    int overlap_x;
+    int overlap_y;
+
     /* Wall collisions */
     if (ball->x <= left_wall->x || ball->x + ball->size_x >= right_wall->x) {
         ball->delta_x = -ball->delta_x;  /*Bounce off left/right wall*/
@@ -45,7 +50,7 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
     }
 
     /* Brick collision */
-    Brick *brick = find_brick(ball, bricks, num_bricks);
+    brick = find_brick(ball, bricks, num_bricks);
     if (brick) {
         brick->health--;
         if (brick->health <= 0) {
