@@ -170,9 +170,10 @@ int main() {
 
         /* Move ball */
         move_ball(&game_model.ball);
+      }
+  
+    }
   }
-  
-  
   /*
   clear_ball(Ball *ball, UINT8 *base);
   move_ball (Ball *ball);
