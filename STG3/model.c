@@ -90,7 +90,6 @@ void reset_ball (Ball *ball, Paddle *paddle) {
 void start_ball (Model *game_model) {
         game_model->ball.isActive = 1;
 }
-}
 
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks) {
   int i;
