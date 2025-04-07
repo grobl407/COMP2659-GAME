@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor);
-void initialize_bricks(Brick *bricks[], int num_bricks);
+void initialize_bricks(Brick bricks[], int num_bricks);
 void process_input(Paddle *paddle, Ball *ball);
 /*
 void render_brick(Brick *brick, UINT8 *base);
