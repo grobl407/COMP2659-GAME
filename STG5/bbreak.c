@@ -54,7 +54,8 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
 void initialize_bricks(Brick *bricks[], int num_bricks, ) {
   int brick_length = 28;
   int brick_height = 7;
-  int brick_spacing = 4;
+  int brick_spacing_x = 4;
+  int brick_spacing_y = 13;
   int start_x = 170;
   int start_y = 100;
   int bricks_per_row = 9;
@@ -68,8 +69,8 @@ void initialize_bricks(Brick *bricks[], int num_bricks, ) {
       if (brick_index >= num_bricks) {
         return;
       }
-      bricks[brick_index].x = start_x + col * (brick_length + brick);
-      bricks[brick_index].y = start_y + row * (brick_height + brick_spacing);
+      bricks[brick_index].x = start_x + col * (brick_length + brick_spacing_x);
+      bricks[brick_index].y = start_y + row * (brick_height + brick_spacing_y);
       bricks[brick_index].size_x = brick_length;
       bricks[brick_index].size_y = brick_height;
       bricks[brick_index].isBroken = 0;
