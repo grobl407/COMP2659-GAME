@@ -91,7 +91,7 @@ void start_ball (Model *game_model) {
   if (Cconis()) {
         char ch = (char)Cnecin();
         game_model->ball.isActive = 1;
-}
+  }
 }
 
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks) {

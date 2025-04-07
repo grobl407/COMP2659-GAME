@@ -458,7 +458,7 @@ void render_heart(Heart *heart, UINT8 *base);
 void render_paddle(Paddle *paddle, UINT8 *base);
 void render_walls(UINT8 *base);
 void render_singlebrick(Brick *brick, UINT8 *base);
-void clear_paddle(Paddle *paddle, UINT8 *base);
+void render_clear_paddle(Paddle *paddle, UINT8 *base);
 void clear_ball(Ball *ball, UINT8 *base);
 # 3 "bbreak.c" 2
 # 1 "./../stg4/bitmap.h" 1
@@ -979,12 +979,13 @@ int main() {
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
 
-        clear_ball(&game_model.ball, base);
+        clear_ball(&ball, base);
+        render_clear_paddle(&paddle, base);
 
         move_ball(&game_model.ball);
       }
       render(&game_model, base);
     }
-# 190 "bbreak.c"
+# 191 "bbreak.c"
 }
 }

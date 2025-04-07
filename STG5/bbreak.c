@@ -171,8 +171,8 @@ int main() {
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
         /* Clear ball */
-        clear_ball(&game_model.ball, base);
-        clear_paddle()
+        clear_ball(&ball, base);
+        render_clear_paddle(&paddle, base);
         /* Move ball */
         move_ball(&game_model.ball);
       }
