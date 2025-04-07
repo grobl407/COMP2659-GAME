@@ -33,7 +33,7 @@ _initialize_game:
 	;line	30
 	move.l	#_ball_bitmap,52(a3)
 	;line	34
-	move.w	#250,56(a3)
+	move.w	#312,56(a3)
 	;line	35
 	move.w	#350,58(a3)
 	;line	36

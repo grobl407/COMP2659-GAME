@@ -31,7 +31,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
 
 
   /* Initialize paddle */
-  game_model->paddle.x = 250;
+  game_model->paddle.x = 312;
   game_model->paddle.y = 350;
   game_model->paddle.size_x = 32;
   game_model->paddle.size_y = 5;
