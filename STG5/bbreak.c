@@ -52,17 +52,30 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   floor->y = SCREEN_HEIGHT;
 }
 void initialize_bricks(Brick bricks[], int num_bricks) {
-  int brick_length = 28;
-  int brick_height = 7;
-  int brick_spacing_x = 4;
-  int brick_spacing_y = 13;
-  int start_x = 170;
-  int start_y = 100;
-  int bricks_per_row = 9;
-  int num_rows = 8;
-
-  int brick_index = 0;
+  int brick_length;
+  int brick_height;
+  int brick_spacing_x;
+  int brick_spacing_y;
+  int start_x;
+  int start_y;
+  int bricks_per_row;
+  int num_rows;
+  int brick_index;
   int row;
+  int col;
+  int x_pos;
+  int y_pos;
+  
+  brick_length = 28;
+  brick_height = 7;
+  brick_spacing_x = 4;
+  brick_spacing_y = 13;
+  start_x = 170;
+  start_y = 100;
+  bricks_per_row = 9;
+  num_rows = 8;
+  brick_index = 0;
+  
   for (row = 0; row < num_rows; row++) {
     int col;
     for (col = 0; col < bricks_per_row; col++) {
