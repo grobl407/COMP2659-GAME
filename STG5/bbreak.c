@@ -45,7 +45,7 @@ void initialize_game(Game *game, Model *game_model, Paddle *paddle, Wall *left_w
   floor->y = SCREEN_HEIGHT;
 }
 /*
-void initialize_bricks(Brick *bricks[], int num_bricks) {
+void initialize_bricks(Brick *bricks[], int num_bricks, ) {
   int brick_width = 28;
   int brick_height = 7;
   int start_x = 170;
@@ -125,19 +125,25 @@ int main() {
   Floor floor;
   Paddle paddle;
   Ball ball;
-  Brick brick;
+  Brick bricks[27];
 
   UINT8 *base = Physbase();
-  /* call initialize helper function */
-  /* initialize_bricks(&game_model, 72); */
-  /* render_all_bricks(&game_model, 72, base); */
+  /* initialize game and bricks here */
   initialize_game(&game, &game_model, &paddle, &left_wall, &right_wall, &ceiling, &floor);
+  /* initialize_brick(bricks, 72); */
 
-  while (game.game_over != 1) {
-    render_clear_paddle(&paddle, base);
-    process_input(&paddle, &ball);
-    render_paddle(&paddle, base);
+  render(&game_model, base);
+
+  /*
+  while (!game.game_over) {
+    timeNow = get_time();
+    timeElapsed = timeNow - timeThen;
+
+    process_input(&paddle, &game_model.ball) {
+    if (timeElapsed > 0) {      
   }
+  */
+  
   /*
   clear_ball(Ball *ball, UINT8 *base);
   move_ball (Ball *ball);
