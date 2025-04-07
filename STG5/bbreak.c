@@ -117,21 +117,6 @@ void process_input(Paddle *paddle, Ball *ball) {
     }
 }
 
-/*
-  void render_brick(Brick *brick, UINT8 *base) {
-    if (!brick->isBroken) {
-        plot_brick(base, brick->x, brick->y, brick->full_brick_map);
-    }
-  }
-
-  void render_all_bricks(Brick bricks[], int num_bricks, UINT8 *base) {
-    int i;
-    for (i = 0; i < num_bricks; i++) {
-        render_brick(&bricks[i], base);
-    }
-  }
-    */
-
 UINT32 get_time() {
     long old_ssp;
     UINT32 timeNow;
@@ -169,16 +154,24 @@ int main() {
   /* initialize_brick(bricks, 72); */
 
   render(&game_model, base);
+  timeThen = get_time();
 
-  /*
   while (!game.game_over) {
     timeNow = get_time();
     timeElapsed = timeNow - timeThen;
 
-    process_input(&paddle, &game_model.ball) {
-    if (timeElapsed > 0) {      
+    /* Asynchronous events */
+    process_input(&game_model.paddle, &game_model.ball) {
+
+    /* Synchronous events */
+    if (timeElapsed > 0) {
+      if (game_model.ball.isActive) {
+        /* Clear ball */
+
+        /* Move ball */
+        move_ball(&game_model.ball);
   }
-  */
+  
   
   /*
   clear_ball(Ball *ball, UINT8 *base);
