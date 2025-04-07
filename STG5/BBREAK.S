@@ -285,7 +285,7 @@ _main:
 	;line	150
 	move.w	#72,-(a7)
 	pea	-5614(a6)
-	jsr	_intialize_bricks
+	jsr	_initialize_bricks
 	addq.l	#6,a7
 	;line	152
 	moveq	#0,d3
