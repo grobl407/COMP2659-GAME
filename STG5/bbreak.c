@@ -167,7 +167,7 @@ int main() {
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
         /* Clear ball */
-        render_ball(&game_model.ball.clear_brickmap);
+        clear_ball(&game_model.ball, base);
         /* Move ball */
         move_ball(&game_model.ball);
       }

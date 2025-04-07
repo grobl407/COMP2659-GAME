@@ -33,25 +33,25 @@ _initialize_game:
 	;line	30
 	move.l	#_ball_bitmap,52(a3)
 	;line	34
-	move.w	#312,56(a3)
+	move.w	#312,60(a3)
 	;line	35
-	move.w	#350,58(a3)
+	move.w	#350,62(a3)
 	;line	36
-	move.w	#32,60(a3)
+	move.w	#32,64(a3)
 	;line	37
-	move.w	#5,62(a3)
+	move.w	#5,66(a3)
 	;line	38
-	clr.w	64(a3)
+	clr.w	68(a3)
 	;line	39
-	move.w	#20,66(a3)
+	move.w	#20,70(a3)
 	;line	40
-	move.l	#_paddle_bitmap,68(a3)
+	move.l	#_paddle_bitmap,72(a3)
 	;line	42
-	move.w	#170,76(a3)
+	move.w	#170,80(a3)
 	;line	43
-	move.w	#45,78(a3)
+	move.w	#45,82(a3)
 	;line	44
-	move.l	#_heart_map,80(a3)
+	move.l	#_heart_map,84(a3)
 	;line	47
 	move.l	16(a6),a0
 	move.w	#160,(a0)
@@ -286,80 +286,21 @@ L11:
 	rts
 _get_time:
 	link	a6,#-8
-	;line	139
+	;line	124
 	pea	0
 	move.w	#32,-(a7)
 	jsr	__trap_1_wl
 	addq.l	#6,a7
 	move.l	d0,-4(a6)
-	;line	140
+	;line	125
 	move.l	1122,-8(a6)
-	;line	141
+	;line	126
 	move.l	-4(a6),-(a7)
 	move.w	#32,-(a7)
 	jsr	__trap_1_wl
-	;line	143
+	;line	128
 	move.l	-8(a6),d0
 L17:
-	unlk	a6
-	rts
-_main:
-	link	a6,#-5618
-	move.l	d3,-(a7)
-	;line	162
-	move.w	#2,-(a7)
-	jsr	__trap_14_w
-	addq.l	#2,a7
-	move.l	d0,-5618(a6)
-	;line	162
-	pea	-2840(a6)
-	pea	-2838(a6)
-	pea	-2836(a6)
-	pea	-2834(a6)
-	pea	-2822(a6)
-	pea	-2832(a6)
-	jsr	_initialize_game
-	lea	24(a7),a7
-	;line	163
-	move.w	#72,-(a7)
-	pea	-5614(a6)
-	jsr	_initialize_bricks
-	addq.l	#6,a7
-	;line	165
-	moveq	#0,d3
-	bra	L19
-L18:
-	;line	166
-	lea	-5614(a6),a0
-	move.w	d3,d0
-	muls	#38,d0
-	add.l	d0,a0
-	lea	-2822(a6),a1
-	move.w	d3,d0
-	muls	#38,d0
-	add.l	d0,a1
-	lea	84(a1),a1
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.l	(a0)+,(a1)+
-	move.w	(a0)+,(a1)+
-L21:
-	addq.w	#1,d3
-L19:
-	cmp.w	#72,d3
-	blt	L18
-L20:
-	;line	171
-	move.l	-5618(a6),-(a7)
-	pea	-2822(a6)
-	jsr	_render
-	move.l	-5622(a6),d3
 	unlk	a6
 	rts
 	globl	_initialize_game

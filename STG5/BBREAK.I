@@ -197,6 +197,7 @@ typedef struct {
   int size_x;
   int size_y;
   UINT16 *ball_bitmap;
+  UINT16 *clear_brickmap;
 } Ball;
 
 typedef struct {
@@ -921,7 +922,7 @@ void process_input(Paddle *paddle, Ball *ball) {
         }
     }
 }
-# 135 "bbreak.c"
+
 UINT32 get_time() {
     long old_ssp;
     UINT32 timeNow;
@@ -959,5 +960,25 @@ int main() {
 
 
   render(&game_model, base);
-# 190 "bbreak.c"
+  timeThen = get_time();
+
+  while (!game.game_over) {
+    timeNow = get_time();
+    timeElapsed = timeNow - timeThen;
+
+
+    process_input(&game_model.paddle, &game_model.ball);
+
+
+    if (timeElapsed > 0) {
+      if (game_model.ball.isActive) {
+
+        render_ball(&game_model.ball.clear_brickmap);
+
+        move_ball(&game_model.ball);
+      }
+      render(&game_model, base);
+    }
+# 186 "bbreak.c"
+}
 }
