@@ -89,5 +89,6 @@ void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
 void move_ball (Model *game_model);
 void check_broken (Brick *brick, Game *game);
+void start_ball (Model *game_model);
 
 #endif
