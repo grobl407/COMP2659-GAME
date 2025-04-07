@@ -79,6 +79,17 @@ UINT16 ball_bitmap[8] = {
     0x3C,
 }; /*8x8 ball bitmap*/
 
+UINT16 clear_ball_bitmap[8] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+
 UINT32 paddle_bitmap[5] = {
     0x7FFFFFFE,
     0xFFFFFFFF,

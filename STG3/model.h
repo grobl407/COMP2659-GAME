@@ -13,6 +13,7 @@ typedef struct {
   int size_x;
   int size_y;
   UINT16 *ball_bitmap;
+  UINT16 *clear_brickmap;
 } Ball;
 
 typedef struct {
