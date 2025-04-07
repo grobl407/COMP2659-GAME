@@ -4,13 +4,16 @@
 #include "TYPES.H"
 
 
-void render(Model *model, UINT8 *base){
+void render(Model *model, UINT8 *base) {
     clear_screen();
     render_walls(base);
     render_ball(&model->ball, base);
     render_paddle(&model->paddle, base);
-    render_heart(&model->heart, base);
-    render_brick(&model->brick, base);
+    render_heart(&model->heart, base); 
+	int i;
+	for (i = 0; i < 72; i++) {
+		render_singlebrick(&model->bricks[i], base);
+	}
 }
 
 void render_ball(Ball *ball, UINT8 *base){
