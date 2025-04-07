@@ -51,37 +51,37 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   ceiling->y = 0;
   floor->y = SCREEN_HEIGHT;
 }
-/*
 void initialize_bricks(Brick *bricks[], int num_bricks, ) {
-  int brick_width = 28;
+  int brick_length = 28;
   int brick_height = 7;
+  int brick_spacing = 4;
   int start_x = 170;
   int start_y = 100;
-  int max_y = 260;
-  int max_x = 458;
+  int bricks_per_row = 9;
+  int num_rows = 8;
 
-  int i; /* Brick index 
-  int y;
-  int x;
-  for (y = start_y; y < max_y; y += 20) {
-    for (x = start_x; x < max_x; x += 32) {
-      if (i >= num_bricks) {
+  int brick_index = 0;
+  int row;
+  for (row = 0; row < num_rows; row++) {
+    int col;
+    for (col = 0; col < bricks_per_row; col++) {
+      if (brick_index >= num_bricks) {
         return;
       }
+      bricks[brick_index].x = start_x + col * (brick_width + brick);
+      bricks[brick_index].y = start_y + row * (brick_height + brick_spacing);
+      bricks[brick_index].size_x = brick_length;
+      bricks[brick_index].size_y = brick_height;
+      bricks[brick_index].isBroken = 0;
+      bricks[brick_index].base_points = 10;
+      bricks[brick_index].health = 5;
 
-      bricks[i].x = x;
-      bricks[i].y = y;
-      bricks[i].size_x = brick_width;
-      bricks[i].size_y = brick_height;
-      bricks[i].isBroken = 0;
-      bricks[i].base_points = 10;
-      bricks[i].health = 5;
 
-      i++;     
+      brick_index++;
     }
   }
 }
-*/
+
 void process_input(Paddle *paddle, Ball *ball) {
     if (Cconis()) {
         char ch = (char)Cnecin();
