@@ -172,6 +172,7 @@ int main() {
       if (game_model.ball.isActive) {
         /* Clear ball */
         clear_ball(&game_model.ball, base);
+        clear_paddle()
         /* Move ball */
         move_ball(&game_model.ball);
       }

@@ -48,15 +48,15 @@ void render_heart(Heart *heart, UINT8 *base){
     }
 }
 
-void clear_ball(Ball *ball, UINT8 *base){
-    plot_ball(base, ball->x, ball->y, ball->clear_brickmap);
+void clear_ball(Model *game_model, UINT8 *base){
+    plot_ball(base, game_model->ball.x, game_model->ball.y, game_model->ball.clear_brickmap);
 }
 void render_paddle(Paddle *paddle, UINT8 *base){
     plot_paddle(base, paddle->x, paddle->y, paddle->paddle_bitmap);
 }
 
-void clear_paddle(Paddle *paddle, UINT8 *base){
-    plot_paddle(base, paddle->x, paddle->y, paddle->clear_paddle);
+void clear_paddle(Model *game_model, UINT8 *base){
+    plot_paddle(base, game_model->paddle.x, game_model->paddle.y, game_model->paddle.clear_paddle);
 }
 
 void render_walls (UINT8 *base) {
