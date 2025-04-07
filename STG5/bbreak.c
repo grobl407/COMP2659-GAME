@@ -51,7 +51,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   ceiling->y = 0;
   floor->y = SCREEN_HEIGHT;
 }
-void initialize_bricks(Brick *bricks[], int num_bricks, ) {
+void initialize_bricks(Brick *bricks[], int num_bricks) {
   int brick_length = 28;
   int brick_height = 7;
   int brick_spacing_x = 4;
