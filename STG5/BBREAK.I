@@ -207,6 +207,7 @@ typedef struct {
   int size_y;
   int health;
 
+
   UINT32 *full_brick_map;
   UINT32 *semi_cracked_map;
   UINT32 *cracked_brick_map;
@@ -249,6 +250,7 @@ typedef struct {
   Ball ball;
   Paddle paddle;
   Heart heart;
+  Brick bricks[72 ];
 } Model;
 
 
@@ -854,7 +856,45 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   ceiling->y = 0;
   floor->y = 400 ;
 }
-# 85 "bbreak.c"
+void initialize_bricks(Brick *bricks[], int num_bricks) {
+  int brick_length = 28;
+  int brick_height = 7;
+  int brick_spacing_x = 4;
+  int brick_spacing_y = 13;
+  int start_x = 170;
+  int start_y = 100;
+  int bricks_per_row = 9;
+  int num_rows = 8;
+
+  int brick_index = 0;
+  int row;
+  for (row = 0; row < num_rows; row++) {
+    int col;
+    for (col = 0; col < bricks_per_row; col++) {
+      if (brick_index >= num_bricks) {
+        return;
+      }
+      bricks[brick_index]->x = start_x + col * (brick_length + brick_spacing_x);
+      bricks[brick_index]->y = start_y + row * (brick_height + brick_spacing_y);
+      bricks[brick_index]->size_x = brick_length;
+      bricks[brick_index]->size_y = brick_height;
+      bricks[brick_index]->isBroken = 0;
+      bricks[brick_index]->base_points = 10;
+      bricks[brick_index]->health = 5;
+      bricks[brick_index]->full_brick_map = full_brick_map;
+      bricks[brick_index]->cracked_brick_map = cracked_brick_map;
+      bricks[brick_index]->semi_cracked_map = semi_cracked_map;
+      bricks[brick_index]->almost_broken_map = almost_broken_map;
+      bricks[brick_index]->broken_brick_map = broken_brick_map;
+      bricks[brick_index]->clear_brickmap = clear_brickmap;
+
+
+
+      brick_index++;
+    }
+  }
+}
+
 void process_input(Paddle *paddle, Ball *ball) {
     if ((short)_trap_1_w((short)0x0B) ) {
         char ch = (char)_trap_1_w((short)0x08) ;
@@ -868,7 +908,7 @@ void process_input(Paddle *paddle, Ball *ball) {
         }
     }
 }
-# 114 "bbreak.c"
+# 122 "bbreak.c"
 UINT32 get_time() {
     long old_ssp;
     UINT32 timeNow;
@@ -882,6 +922,7 @@ UINT32 get_time() {
 
 int main() {
 
+  int i;
   Model game_model;
   Game game;
   Wall left_wall;
@@ -890,15 +931,20 @@ int main() {
   Floor floor;
   Paddle paddle;
   Ball ball;
-  Brick bricks[27];
+  Brick bricks[72];
 
 
   UINT8 *base = (void*)_trap_14_w((short)0x2) ;
 
   initialize_game(&game, &game_model, &left_wall, &right_wall, &ceiling, &floor);
+  intialize_bricks(bricks, 72);
+
+  for (i = 0; i < 72; i++) {
+    game_model.bricks[i] = bricks[i];
+  }
 
 
 
   render(&game_model, base);
-# 163 "bbreak.c"
+# 177 "bbreak.c"
 }

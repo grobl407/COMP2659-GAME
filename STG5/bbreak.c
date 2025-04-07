@@ -69,19 +69,19 @@ void initialize_bricks(Brick *bricks[], int num_bricks) {
       if (brick_index >= num_bricks) {
         return;
       }
-      bricks[brick_index].x = start_x + col * (brick_length + brick_spacing_x);
-      bricks[brick_index].y = start_y + row * (brick_height + brick_spacing_y);
-      bricks[brick_index].size_x = brick_length;
-      bricks[brick_index].size_y = brick_height;
-      bricks[brick_index].isBroken = 0;
-      bricks[brick_index].base_points = 10;
-      bricks[brick_index].health = 5;
-      bricks[brick_index].full_brick_map = full_brick_map;
-      bricks[brick_index].cracked_brick_map = cracked_brick_map;
-      bricks[brick_index].semi_cracked_map = semi_cracked_map;
-      bricks[brick_index].almost_broken_map = almost_broken_map;
-      bricks[brick_index].broken_brick_map = broken_brick_map;
-      bricks[brick_index].clear_brickmap = clear_brickmap;
+      bricks[brick_index]->x = start_x + col * (brick_length + brick_spacing_x);
+      bricks[brick_index]->y = start_y + row * (brick_height + brick_spacing_y);
+      bricks[brick_index]->size_x = brick_length;
+      bricks[brick_index]->size_y = brick_height;
+      bricks[brick_index]->isBroken = 0;
+      bricks[brick_index]->base_points = 10;
+      bricks[brick_index]->health = 5;
+      bricks[brick_index]->full_brick_map = full_brick_map;
+      bricks[brick_index]->cracked_brick_map = cracked_brick_map;
+      bricks[brick_index]->semi_cracked_map = semi_cracked_map;
+      bricks[brick_index]->almost_broken_map = almost_broken_map;
+      bricks[brick_index]->broken_brick_map = broken_brick_map;
+      bricks[brick_index]->clear_brickmap = clear_brickmap;
 
 
 
@@ -132,6 +132,7 @@ UINT32 get_time() {
 
 int main() {
   /* initialize structs */
+  int i;
   Model game_model;
   Game game;
   Wall left_wall;
@@ -148,7 +149,6 @@ int main() {
   initialize_game(&game, &game_model, &left_wall, &right_wall, &ceiling, &floor);
   intialize_bricks(bricks, 72);
 
-  int i;
   for (i = 0; i < 72; i++) {
     game_model.bricks[i] = bricks[i];
   }
