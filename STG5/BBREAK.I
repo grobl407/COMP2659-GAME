@@ -509,7 +509,7 @@ struct utimbuf {
 
 
 void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor);
-void initialize_bricks(Brick *bricks[], int num_bricks);
+void initialize_bricks(Brick bricks[], int num_bricks);
 void process_input(Paddle *paddle, Ball *ball);
 # 19 "./bbreak.h"
 void render_clear_paddle(Paddle *paddle, UINT8 *base);
@@ -856,37 +856,50 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   ceiling->y = 0;
   floor->y = 400 ;
 }
-void initialize_bricks(Brick *bricks[], int num_bricks) {
-  int brick_length = 28;
-  int brick_height = 7;
-  int brick_spacing_x = 4;
-  int brick_spacing_y = 13;
-  int start_x = 170;
-  int start_y = 100;
-  int bricks_per_row = 9;
-  int num_rows = 8;
-
-  int brick_index = 0;
+void initialize_bricks(Brick bricks[], int num_bricks) {
+  int brick_length;
+  int brick_height;
+  int brick_spacing_x;
+  int brick_spacing_y;
+  int start_x;
+  int start_y;
+  int bricks_per_row;
+  int num_rows;
+  int brick_index;
   int row;
+  int col;
+  int x_pos;
+  int y_pos;
+
+  brick_length = 28;
+  brick_height = 7;
+  brick_spacing_x = 4;
+  brick_spacing_y = 13;
+  start_x = 170;
+  start_y = 100;
+  bricks_per_row = 9;
+  num_rows = 8;
+  brick_index = 0;
+
   for (row = 0; row < num_rows; row++) {
     int col;
     for (col = 0; col < bricks_per_row; col++) {
       if (brick_index >= num_bricks) {
         return;
       }
-      bricks[brick_index]->x = start_x + col * (brick_length + brick_spacing_x);
-      bricks[brick_index]->y = start_y + row * (brick_height + brick_spacing_y);
-      bricks[brick_index]->size_x = brick_length;
-      bricks[brick_index]->size_y = brick_height;
-      bricks[brick_index]->isBroken = 0;
-      bricks[brick_index]->base_points = 10;
-      bricks[brick_index]->health = 5;
-      bricks[brick_index]->full_brick_map = full_brick_map;
-      bricks[brick_index]->cracked_brick_map = cracked_brick_map;
-      bricks[brick_index]->semi_cracked_map = semi_cracked_map;
-      bricks[brick_index]->almost_broken_map = almost_broken_map;
-      bricks[brick_index]->broken_brick_map = broken_brick_map;
-      bricks[brick_index]->clear_brickmap = clear_brickmap;
+      bricks[brick_index].x = start_x + col * (brick_length + brick_spacing_x);
+      bricks[brick_index].y = start_y + row * (brick_height + brick_spacing_y);
+      bricks[brick_index].size_x = brick_length;
+      bricks[brick_index].size_y = brick_height;
+      bricks[brick_index].isBroken = 0;
+      bricks[brick_index].base_points = 10;
+      bricks[brick_index].health = 5;
+      bricks[brick_index].full_brick_map = full_brick_map;
+      bricks[brick_index].cracked_brick_map = cracked_brick_map;
+      bricks[brick_index].semi_cracked_map = semi_cracked_map;
+      bricks[brick_index].almost_broken_map = almost_broken_map;
+      bricks[brick_index].broken_brick_map = broken_brick_map;
+      bricks[brick_index].clear_brickmap = clear_brickmap;
 
 
 
@@ -908,7 +921,7 @@ void process_input(Paddle *paddle, Ball *ball) {
         }
     }
 }
-# 122 "bbreak.c"
+# 135 "bbreak.c"
 UINT32 get_time() {
     long old_ssp;
     UINT32 timeNow;
@@ -946,5 +959,5 @@ int main() {
 
 
   render(&game_model, base);
-# 177 "bbreak.c"
+# 190 "bbreak.c"
 }
