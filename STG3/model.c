@@ -87,10 +87,10 @@ void reset_ball (Ball *ball, Paddle *paddle) {
 }
 
 /* wait for ball input to enable ball start again */
-void start_ball (Ball *ball) {
+void start_ball (Model *game_model) {
   if (Cconis()) {
         char ch = (char)Cnecin();
-  ball->isActive = 1;
+        game_model->ball.isActive = 1;
 }
 }
 
