@@ -59,8 +59,8 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
         }
 
         /* Simple bounce: Flip whichever direction had the most overlap */
-        int overlap_x = (ball->x + ball->size_x) - brick->x;
-        int overlap_y = (ball->y + ball->size_y) - brick->y;
+        overlap_x = (ball->x + ball->size_x) - brick->x;
+        overlap_y = (ball->y + ball->size_y) - brick->y;
         
         if (overlap_x > overlap_y) {
             ball->delta_y = -ball->delta_y;  /*Bounce vertically*/

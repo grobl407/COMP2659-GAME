@@ -3,7 +3,7 @@
 
 #include "TYPES.H"
 #include "..\stg4\bitmap.h"
-
+#define NUM_BRICKS 72
 
 typedef struct {
   unsigned int x, y; /* Position */

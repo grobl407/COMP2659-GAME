@@ -11,7 +11,7 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 400
 
-void initialize_game(Game *game, Model *game_model, Paddle *paddle, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
+void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor) {
   /* Initialize game struct */
   game->score = 0;
   game->lives = 3;
@@ -27,14 +27,21 @@ void initialize_game(Game *game, Model *game_model, Paddle *paddle, Wall *left_w
   game_model->ball.isActive = 0;
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
+  game_model->ball.ball_bitmap = ball_bitmap;
+
 
   /* Initialize paddle */
-  paddle->x = 250;
-  paddle->y = 350;
-  paddle->size_x = 32;
-  paddle->size_y = 5;
-  paddle->p_input = 0;
-  paddle->move_dist = 20;
+  game_model->paddle.x = 250;
+  game_model->paddle.y = 350;
+  game_model->paddle.size_x = 32;
+  game_model->paddle.size_y = 5;
+  game_model->paddle.p_input = 0;
+  game_model->paddle.move_dist = 20;
+  game_model->paddle.paddle_bitmap = paddle_bitmap;
+
+  game_model->heart.x = 170;
+  game_model->heart.y = 45;
+  game_model->heart.heart_map = heart_map;
 
   /* Initialize walls */
   left_wall->x = 160;
@@ -126,10 +133,12 @@ int main() {
   Paddle paddle;
   Ball ball;
   Brick bricks[27];
+ 
 
   UINT8 *base = Physbase();
   /* initialize game and bricks here */
-  initialize_game(&game, &game_model, &paddle, &left_wall, &right_wall, &ceiling, &floor);
+  initialize_game(&game, &game_model, &left_wall, &right_wall, &ceiling, &floor);
+  
   /* initialize_brick(bricks, 72); */
 
   render(&game_model, base);

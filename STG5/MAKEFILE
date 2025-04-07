@@ -20,11 +20,17 @@ $(EXEC): $(OBJS)
 bbreak.o: bbreak.c bbreak.h
 	$(CC) $(CFLAGS) -o bbreak.o bbreak.c
 
+input.o: input.c input.h
+	$(CC) $(CFLAGS) -o input.o input.c
+
 model.o: ..\stg3\model.c ..\stg3\model.h
 	$(CC) $(CFLAGS) -o model.o ..\stg3\model.c
 
 render.o: ..\stg4\render.c ..\stg4\render.h
 	$(CC) $(CFLAGS) -o render.o ..\stg4\render.c
+
+bitmap.o: ..\stg4\bitmap.c ..\stg4\bitmap.h
+	$(CC) $(CFLAGS) -o bitmap.o ..\stg4\bitmap.c
 
 # Compile raster.c (with correct path)
 raster.o: ..\stg2\raster.c ..\stg2\raster.h
