@@ -303,6 +303,114 @@ _get_time:
 L17:
 	unlk	a6
 	rts
+_main:
+	link	a6,#-5638
+	movem.l	d3/d4/d5,-(a7)
+	lea	-2826(a6),a0
+	move.l	a0,d5
+	;line	150
+	move.w	#2,-(a7)
+	jsr	__trap_14_w
+	addq.l	#2,a7
+	move.l	d0,d4
+	;line	150
+	pea	-2844(a6)
+	pea	-2842(a6)
+	pea	-2840(a6)
+	pea	-2838(a6)
+	move.l	d5,-(a7)
+	pea	-2836(a6)
+	jsr	_initialize_game
+	lea	24(a7),a7
+	;line	151
+	move.w	#72,-(a7)
+	pea	-5622(a6)
+	jsr	_initialize_bricks
+	addq.l	#6,a7
+	;line	153
+	moveq	#0,d3
+	bra	L19
+L18:
+	;line	154
+	lea	-5622(a6),a0
+	move.w	d3,d0
+	muls	#38,d0
+	add.l	d0,a0
+	move.w	d3,d0
+	muls	#38,d0
+	add.l	d5,d0
+	add.l	#88,d0
+	move.l	d0,a1
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.l	(a0)+,(a1)+
+	move.w	(a0)+,(a1)+
+L21:
+	addq.w	#1,d3
+L19:
+	cmp.w	#72,d3
+	blt	L18
+L20:
+	;line	159
+	jsr	_clear_screen
+	;line	160
+	move.l	d4,-(a7)
+	move.l	d5,-(a7)
+	jsr	_render
+	addq.l	#8,a7
+	;line	161
+	jsr	_get_time
+	move.l	d0,-5630(a6)
+	;line	163
+	bra	L23
+L22:
+	;line	164
+	jsr	_get_time
+	move.l	d0,-5626(a6)
+	;line	165
+	move.l	-5626(a6),d0
+	sub.l	-5630(a6),d0
+	move.l	d0,-5634(a6)
+	;line	168
+	pea	-2788(a6)
+	pea	-2766(a6)
+	jsr	_process_input
+	addq.l	#8,a7
+	;line	171
+	tst.l	-5634(a6)
+	bls	L25
+	;line	172
+	tst.w	-2780(a6)
+	beq	L26
+	;line	174
+	move.l	d4,-(a7)
+	pea	-2788(a6)
+	jsr	_clear_ball
+	addq.l	#8,a7
+	;line	176
+	pea	-2788(a6)
+	jsr	_move_ball
+	addq.l	#4,a7
+L26:
+	;line	178
+	move.l	d4,-(a7)
+	move.l	d5,-(a7)
+	jsr	_render
+	addq.l	#8,a7
+L25:
+L23:
+	tst.w	-2830(a6)
+	beq	L22
+L24:
+	movem.l	-5650(a6),d3/d4/d5
+	unlk	a6
+	rts
 	globl	_initialize_game
 	globl	_initialize_bricks
 	globl	_process_input

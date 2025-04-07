@@ -156,6 +156,7 @@ int main() {
   
   /* initialize_brick(bricks, 72); */
 
+  clear_screen();
   render(&game_model, base);
   timeThen = get_time();
 

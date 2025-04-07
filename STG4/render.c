@@ -6,7 +6,7 @@
 
 void render(Model *model, UINT8 *base) {
     int i;
-    clear_screen();
+    
     render_walls(base);
     render_ball(&model->ball, base);
     render_paddle(&model->paddle, base);

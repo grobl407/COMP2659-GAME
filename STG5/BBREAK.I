@@ -271,7 +271,7 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
 void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
-void move_ball (Ball *ball);
+void move_ball (Model *game_model);
 void check_broken (Brick *brick, Game *game);
 # 2 "bbreak.c" 2
 # 1 "./../stg4/render.h" 1
@@ -458,6 +458,7 @@ void render_paddle(Paddle *paddle, UINT8 *base);
 void render_walls(UINT8 *base);
 void render_singlebrick(Brick *brick, UINT8 *base);
 void render_clear_paddle(Paddle *paddle, UINT8 *base);
+void clear_ball(Ball *ball, UINT8 *base);
 # 3 "bbreak.c" 2
 # 1 "./../stg4/bitmap.h" 1
 # 4 "bbreak.c" 2
@@ -946,6 +947,9 @@ int main() {
   Paddle paddle;
   Ball ball;
   Brick bricks[72];
+  UINT32 timeNow;
+  UINT32 timeThen;
+  UINT32 timeElapsed;
 
 
   UINT8 *base = (void*)_trap_14_w((short)0x2) ;
@@ -959,6 +963,7 @@ int main() {
 
 
 
+  clear_screen();
   render(&game_model, base);
   timeThen = get_time();
 
@@ -973,12 +978,12 @@ int main() {
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
 
-        render_ball(&game_model.ball.clear_brickmap);
+        clear_ball(&game_model.ball, base);
 
         move_ball(&game_model.ball);
       }
       render(&game_model, base);
     }
-# 186 "bbreak.c"
+# 190 "bbreak.c"
 }
 }

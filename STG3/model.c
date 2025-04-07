@@ -6,10 +6,10 @@
 #include <linea.h>
 
 
-void move_ball (Ball *ball) {
-  if (ball->isActive == 1) {
-    ball->x += ball->delta_x;
-    ball->y += ball->delta_y;
+void move_ball (Model *game_model) {
+  if (game_model->ball.isActive == 1) {
+    game_model->ball.x += game_model->ball.delta_x;
+    game_model->ball.y += game_model->ball.delta_y;
   }
 }
 
