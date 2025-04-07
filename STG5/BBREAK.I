@@ -273,6 +273,7 @@ void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
 void move_ball (Model *game_model);
 void check_broken (Brick *brick, Game *game);
+void start_ball (Model *game_model);
 # 2 "bbreak.c" 2
 # 1 "./../stg4/render.h" 1
 # 1 "./../stg4/../stg3/model.h" 1

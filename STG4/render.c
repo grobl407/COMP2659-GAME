@@ -55,15 +55,13 @@ void render_paddle(Paddle *paddle, UINT8 *base){
     plot_paddle(base, paddle->x, paddle->y, paddle->paddle_bitmap);
 }
 
-void render_clear_paddle(Paddle *paddle, UINT8 *base){
+void clear_paddle(Paddle *paddle, UINT8 *base){
     plot_paddle(base, paddle->x, paddle->y, paddle->clear_paddle);
 }
 
 void render_walls (UINT8 *base) {
 	plot_vertline(base, 160, 30, 400); /* Plot left wall */
-	plot_vertline(base, 480, 30, 400);
-	plot_horizline(base, 160, 480, 85);
-	plot_horizline(base, 160, 480, 30);
+	plot_vertline(base, 480, 30, 400); /*Plot right wall*/
 	plot_horizline(base, 160, 480, 85);
 	plot_horizline(base, 160, 480, 30);
 
