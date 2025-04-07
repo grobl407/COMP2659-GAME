@@ -140,6 +140,8 @@ int main() {
   Paddle paddle;
   Ball ball;
   Brick bricks[72];
+  UINT32 timeNow;
+  UINT32 timeThen;
  
 
   UINT8 *base = Physbase();
