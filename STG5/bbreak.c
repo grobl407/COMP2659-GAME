@@ -140,12 +140,18 @@ int main() {
   Floor floor;
   Paddle paddle;
   Ball ball;
-  Brick bricks[27];
+  Brick bricks[72];
  
 
   UINT8 *base = Physbase();
   /* initialize game and bricks here */
   initialize_game(&game, &game_model, &left_wall, &right_wall, &ceiling, &floor);
+  intialize_bricks(bricks, 72);
+
+  int i;
+  for (i = 0; i < 72; i++) {
+    game_model.bricks[i] = bricks[i];
+  }
   
   /* initialize_brick(bricks, 72); */
 
