@@ -11,7 +11,7 @@ void render(Model *model, UINT8 *base) {
     render_ball(&model->ball, base);
     render_paddle(&model->paddle, base);
     render_heart(&model->heart, base);
-	render_singlebrick(model->bricks[3], base);
+	/* render_singlebrick(model->bricks[3], base); */
 	/*
 	for (i = 0; i < 72; i++) {
 		render_singlebrick(model->bricks[i], base);
