@@ -11,20 +11,23 @@ void render(Model *model, UINT8 *base) {
     render_ball(&model->ball, base);
     render_paddle(&model->paddle, base);
     render_heart(&model->heart, base); 
+    render_singlebrick(model->bricks[i], base);
+	/*
 	for (i = 0; i < 72; i++) {
 		render_singlebrick(model->bricks[i], base);
 	}
+        */
 }
 
 void render_ball(Ball *ball, UINT8 *base){
     plot_ball(base, ball->x, ball->y, ball->ball_bitmap);
 }
 
-void render_singlebrick(Brick *brick, UINT8 *base){
+void render_singlebrick(Brick *bricks, UINT8 *base){
     int x, y;
-    x = brick->x;
-    y = brick->y;
-    plot_brick(base, x, y, brick->full_brick_map);
+    x = 160;
+    y = 200;
+    plot_brick(base, x, y, bricks->full_brick_map);
 
 }
 void render_brick(Brick *brick, UINT8 *base){
