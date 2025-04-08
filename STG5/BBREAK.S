@@ -21,11 +21,11 @@ _initialize_game:
 	;line	24
 	move.w	#342,40(a3)
 	;line	25
-	move.w	#1,42(a3)
+	clr.w	42(a3)
 	;line	26
-	move.w	#1,44(a3)
+	move.w	#5,44(a3)
 	;line	27
-	clr.w	46(a3)
+	move.w	#1,46(a3)
 	;line	28
 	move.w	#8,48(a3)
 	;line	29
@@ -262,7 +262,7 @@ _process_input:
 	bne	L12
 	;line	114
 	clr.w	-(a7)
-	pea	8(a6)
+	move.l	8(a6),-(a7)
 	jsr	_move_paddle
 	bra	L13
 L12:
@@ -271,7 +271,7 @@ L12:
 	bne	L14
 	;line	116
 	move.w	#1,-(a7)
-	pea	8(a6)
+	move.l	8(a6),-(a7)
 	jsr	_move_paddle
 	bra	L15
 L14:
@@ -279,7 +279,7 @@ L14:
 	cmp.b	#32,d3
 	bne	L16
 	;line	118
-	pea	12(a6)
+	move.l	12(a6),-(a7)
 	jsr	_start_ball
 	bra	L17
 L16:
@@ -391,33 +391,33 @@ L24:
 	sub.l	-5630(a6),d0
 	move.l	d0,-5634(a6)
 	;line	173
+	move.l	d4,-(a7)
+	pea	-2766(a6)
+	jsr	_render_clear_paddle
+	addq.l	#8,a7
+	;line	174
 	pea	-2836(a6)
 	pea	-2788(a6)
 	pea	-2766(a6)
 	jsr	_process_input
 	lea	12(a7),a7
-	;line	174
-	move.l	d4,-(a7)
-	pea	-2864(a6)
-	jsr	_render_clear_paddle
-	addq.l	#8,a7
-	;line	177
+	;line	178
 	tst.l	-5634(a6)
 	bls	L27
-	;line	178
+	;line	179
 	tst.w	-2780(a6)
 	beq	L28
-	;line	180
+	;line	181
 	move.l	d4,-(a7)
-	pea	-2886(a6)
+	pea	-2788(a6)
 	jsr	_clear_ball
 	addq.l	#8,a7
-	;line	182
-	pea	-2886(a6)
+	;line	183
+	pea	-2788(a6)
 	jsr	_move_ball
 	addq.l	#4,a7
 L28:
-	;line	184
+	;line	185
 	move.l	d4,-(a7)
 	move.l	d5,-(a7)
 	jsr	_render

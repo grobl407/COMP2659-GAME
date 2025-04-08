@@ -831,9 +831,9 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
 
   game_model->ball.x = 640  / 2;
   game_model->ball.y = 342;
-  game_model->ball.delta_x = 1;
-  game_model->ball.delta_y = 1;
-  game_model->ball.isActive = 0;
+  game_model->ball.delta_x = 0;
+  game_model->ball.delta_y = 5;
+  game_model->ball.isActive = 1;
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
   game_model->ball.ball_bitmap = ball_bitmap;
@@ -920,11 +920,11 @@ void process_input(Paddle *paddle, Ball *ball, Game *game) {
         char ch = (char)_trap_1_w((short)0x08) ;
 
         if (ch == 'a') {
-            move_paddle(&paddle, 0);
+            move_paddle(paddle, 0);
         } else if (ch == 'd') {
-            move_paddle(&paddle, 1);
+            move_paddle(paddle, 1);
         } else if (ch == ' ') {
-            start_ball(&ball);
+            start_ball(ball);
         } else if (ch == 'q') {
           game->game_over = 1;
       }
@@ -979,19 +979,20 @@ int main() {
     timeElapsed = timeNow - timeThen;
 
 
+    render_clear_paddle(&game_model.paddle, base);
     process_input(&game_model.paddle, &game_model.ball, &game);
-    render_clear_paddle(&paddle, base);
+
 
 
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
 
-        clear_ball(&ball, base);
+        clear_ball(&game_model.ball, base);
 
-        move_ball(&ball);
+        move_ball(&game_model.ball);
       }
       render(&game_model, base);
     }
-# 196 "bbreak.c"
+# 197 "bbreak.c"
 }
 }

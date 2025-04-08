@@ -9,12 +9,12 @@
 void move_ball (Ball *ball) {
   if (ball->isActive == 1) {
     ball->x += ball->delta_x;
-    ball->y += ball->delta_y;
+    ball->y -= ball->delta_y;
   }
 }
 
 void move_paddle (Paddle *paddle, int direction) {
-  if (direction == 0 && paddle->x > 160) { /* moving left */
+  if (direction == 0 && paddle->x > 169) { /* moving left */
     if (paddle->x > 0)
       paddle->x -= paddle->move_dist;
   }
