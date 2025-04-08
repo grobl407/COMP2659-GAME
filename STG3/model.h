@@ -83,13 +83,13 @@ typedef struct {
 
 
 void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, 
-  Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game);
+  Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game, UINT8 *base);
 
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
 void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
 void move_ball (Ball *ball);
-void check_broken (Brick *brick, Game *game);
+/*void check_broken (Brick *brick, Game *game, UINT8 *base);*/
 void start_ball (Ball *ball);
 
 #endif

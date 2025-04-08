@@ -186,6 +186,7 @@ extern UINT32 clear_brickmap[];
 extern UINT16 heart_map[];
 extern UINT32 clear_paddle[];
 extern UINT16 clear_ball_bitmap[];
+extern UINT16 clear_heart[];
 # 5 "./../stg3/model.h" 2
 
 
@@ -244,6 +245,7 @@ typedef struct {
 typedef struct {
   int x, y;
   UINT16 *heart_map;
+  UINT16 *clear_heart;
 
 }Heart;
 
@@ -459,7 +461,10 @@ void render_heart(Heart *heart, UINT8 *base);
 void render_paddle(Paddle *paddle, UINT8 *base);
 void render_walls(UINT8 *base);
 void render_singlebrick(Brick *brick, UINT8 *base);
+
+void render_clear_brick(Brick *brick, UINT8 *base);
 void render_clear_paddle(Paddle *paddle, UINT8 *base);
+void render_clear_heart(Heart *heart, UINT8 *base);
 void clear_ball(Ball *ball, UINT8 *base);
 # 3 "bbreak.c" 2
 # 1 "./../stg4/bitmap.h" 1
@@ -854,6 +859,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->heart.x = 170;
   game_model->heart.y = 45;
   game_model->heart.heart_map = heart_map;
+  game_model->heart.clear_heart = clear_heart;
 
 
   left_wall->x = 160;
@@ -945,6 +951,7 @@ UINT32 get_time() {
 int main() {
 
   int i;
+  int j;
   Model game_model;
   Game game;
   Wall left_wall;
@@ -972,6 +979,11 @@ int main() {
 
   clear_screen();
   render(&game_model, base);
+  render_heart(&game_model.heart, base);
+  for (j = 0; j < 72; j++) {
+		render_singlebrick(&game_model.bricks[j], base);
+	}
+
   timeThen = get_time();
 
   while (!game.game_over) {
@@ -996,6 +1008,6 @@ int main() {
       }
       render(&game_model, base);
     }
-# 200 "bbreak.c"
+# 207 "bbreak.c"
 }
 }

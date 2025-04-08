@@ -20,7 +20,11 @@ void render_ball(Ball *ball, UINT8 *base){
 }
 
 void render_singlebrick(Brick *brick, UINT8 *base) {  /*Change parameter to Brick*/
-    plot_brick(base, brick->x, brick->y, brick->full_brick_map);
+    if(brick->health == 5){
+        plot_brick(base, brick->x, brick->y, brick->full_brick_map);
+    }
+    
+    
 }
 void render_brick(Brick *brick, UINT8 *base){
     int x, y; /* Local variables for iteration */

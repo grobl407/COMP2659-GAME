@@ -5,7 +5,9 @@
 #include <osbind.h>
 #include <linea.h>
 #include "..\STG4\render.h"
+#include "TYPES.H"
 
+UINT8 *base = Physbase();
 
 void move_ball (Ball *ball) {
   if (ball->isActive == 1) {
@@ -33,7 +35,7 @@ void move_paddle (Paddle *paddle, int direction) {
 
 
 void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks, 
-                     Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game) {
+                     Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game, UINT8 *base) {
 
     /* Variable declarations */
     Brick *brick;
@@ -102,6 +104,7 @@ if (brick) {
         ball->delta_y = -ball->delta_y;
     }
 }
+render_clear_brick(brick, base);
 
     /* Ball falls below paddle (lose a life) */
     if (ball->y >= floor->y) {
@@ -143,12 +146,13 @@ Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks) {
   return NULL;
 }
 
-
-void check_broken (Brick *brick, Game *game) { /* Clear brick and award points */
-  brick->health -= 1; /* decrement brick */
-
-  if (brick->health == 0) {  /* Check if brick is broken */
-    brick->isBroken = 1;  /* If so, brick isBroken = true; */
-    game->score += brick->base_points;  /* Add to game score */
+/*
+void check_broken (Brick *brick, Game *game, UINT8 *base) { /* Clear brick and award points 
+  brick->health -= 1; /* decrement brick 
+  render_clear_brick(brick, base);
+  if (brick->health == 0) {  /* Check if brick is broken 
+    brick->isBroken = 1;  /* If so, brick isBroken = true; 
+    game->score += brick->base_points;  /* Add to game score 
   }
 }
+*/

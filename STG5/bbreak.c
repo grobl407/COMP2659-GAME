@@ -165,9 +165,9 @@ int main() {
 
   clear_screen();
   render(&game_model, base);
-  render_heart(&model->heart, base);
+  render_heart(&game_model.heart, base);
   for (j = 0; j < 72; j++) {
-		render_singlebrick(&model->bricks[j], base);
+		render_singlebrick(&game_model.bricks[j], base);
 	} 
 
   timeThen = get_time();
@@ -190,7 +190,7 @@ int main() {
         move_ball(&game_model.ball);
         /*check collisions*/
         ball_collisions(&game_model.ball, &game_model.paddle, &game_model.bricks, 72, 
-          &left_wall, &right_wall, &ceiling, &floor, &game);
+          &left_wall, &right_wall, &ceiling, &floor, &game, base);
       }
       render(&game_model, base);
     }
