@@ -29,6 +29,14 @@ void render_singlebrick(Brick *brick, UINT8 *base) {  /*Change parameter to Bric
     if(brick->health == 3 ){
         plot_brick(base, brick->x, brick->y, brick->cracked_map);
     }
+	if (brick->health == 2) {
+		plot_brick(base, brick->x, brick->y, brick->almost_broken_map);
+	}
+	if (brick->health == 1) {
+		plot_brick(base, brick->x, brick->y, brick->broken_brick_map);
+	}
+	if (brick->health == 0) {
+		plot_brick(base, brick->x, brick->y, brick->clear_brickmap);
     
 }
 void render_brick(Brick *brick, UINT8 *base){
