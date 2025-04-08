@@ -7,8 +7,8 @@
 
 typedef struct {
   unsigned int x, y; /* Position */
-  int delta_x;  /* horizontal displacement per clock tick */
-  int delta_y;  /* vertical displacement per clock tick */
+  unsigned int delta_x;  /* horizontal displacement per clock tick */
+  unsigned int delta_y;  /* vertical displacement per clock tick */
   int isActive; /* Boolean for if ball is in play */
   int size_x;
   int size_y;
@@ -87,8 +87,8 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
 void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
-void move_ball (Ball *ball);
+void move_ball (Model *game_model);
 void check_broken (Brick *brick, Game *game);
-void start_ball (Ball *ball);
+void start_ball (Model *game_model);
 
 #endif

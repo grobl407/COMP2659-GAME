@@ -25,7 +25,7 @@ _initialize_game:
 	;line	26
 	move.w	#1,44(a3)
 	;line	27
-	clr.w	46(a3)
+	move.w	#1,46(a3)
 	;line	28
 	move.w	#8,48(a3)
 	;line	29
@@ -245,7 +245,8 @@ L10:
 	rts
 _process_input:
 	link	a6,#-2
-	move.l	d3,-(a7)
+	movem.l	d3/d4,-(a7)
+	move.l	8(a6),d4
 	;line	110
 	move.w	#11,-(a7)
 	jsr	__trap_1_w
@@ -262,7 +263,9 @@ _process_input:
 	bne	L12
 	;line	114
 	clr.w	-(a7)
-	pea	8(a6)
+	moveq	#60,d0
+	add.l	d4,d0
+	move.l	d0,-(a7)
 	jsr	_move_paddle
 	bra	L13
 L12:
@@ -271,7 +274,9 @@ L12:
 	bne	L14
 	;line	116
 	move.w	#1,-(a7)
-	pea	8(a6)
+	moveq	#60,d0
+	add.l	d4,d0
+	move.l	d0,-(a7)
 	jsr	_move_paddle
 	bra	L15
 L14:
@@ -279,7 +284,9 @@ L14:
 	cmp.b	#32,d3
 	bne	L16
 	;line	118
-	pea	12(a6)
+	moveq	#38,d0
+	add.l	d4,d0
+	move.l	d0,-(a7)
 	jsr	_start_ball
 	bra	L17
 L16:
@@ -287,14 +294,14 @@ L16:
 	cmp.b	#113,d3
 	bne	L18
 	;line	120
-	move.l	16(a6),a0
+	move.l	12(a6),a0
 	move.w	#1,6(a0)
 L18:
 L17:
 L15:
 L13:
 L11:
-	move.l	-6(a6),d3
+	movem.l	-10(a6),d3/d4
 	unlk	a6
 	rts
 _get_time:
@@ -392,25 +399,24 @@ L24:
 	move.l	d0,-5634(a6)
 	;line	173
 	pea	-2836(a6)
-	pea	-2788(a6)
-	pea	-2766(a6)
+	move.l	d5,-(a7)
 	jsr	_process_input
-	lea	12(a7),a7
-	;line	176
-	tst.l	-5634(a6)
-	bls	L27
-	;line	177
-	tst.w	-2780(a6)
-	beq	L28
-	;line	179
-	move.l	d4,-(a7)
-	pea	-2886(a6)
-	jsr	_clear_ball
 	addq.l	#8,a7
-	;line	180
+	;line	174
 	move.l	d4,-(a7)
 	pea	-2864(a6)
 	jsr	_render_clear_paddle
+	addq.l	#8,a7
+	;line	177
+	tst.l	-5634(a6)
+	bls	L27
+	;line	178
+	tst.w	-2780(a6)
+	beq	L28
+	;line	180
+	move.l	d4,-(a7)
+	pea	-2788(a6)
+	jsr	_clear_ball
 	addq.l	#8,a7
 	;line	182
 	pea	-2788(a6)
