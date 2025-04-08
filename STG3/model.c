@@ -48,8 +48,8 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
         
         ball->delta_y = -ball->delta_y;  /*Bounce off paddle*/
     }
-
-    /* Brick collision */
+    /*
+    /* Brick collision 
     brick = find_brick(ball, bricks, num_bricks);
     if (brick) {
         brick->health--;
@@ -58,18 +58,18 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
             game->score += brick->base_points;
         }
 
-        /* Simple bounce: Flip whichever direction had the most overlap */
+        /* Simple bounce: Flip whichever direction had the most overlap 
         overlap_x = (ball->x + ball->size_x) - brick->x;
         overlap_y = (ball->y + ball->size_y) - brick->y;
         
         if (overlap_x > overlap_y) {
-            ball->delta_y = -ball->delta_y;  /*Bounce vertically*/
+            ball->delta_y = -ball->delta_y;  /*Bounce vertically
         } else {
-            ball->delta_x = -ball->delta_x;  /*Bounce horizontally*/
+            ball->delta_x = -ball->delta_x;  /*Bounce horizontally
         }
     }
 
-    /* Ball falls below paddle (lose a life) */
+    /* Ball falls below paddle (lose a life) 
     if (ball->y >= floor->y) {
         game->lives--;
         if (game->lives == 0) {
@@ -78,6 +78,7 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
             reset_ball(ball, paddle);
         }
     }
+    */
 }
 
 void reset_ball (Ball *ball, Paddle *paddle) {

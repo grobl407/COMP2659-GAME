@@ -51,7 +51,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   right_wall->x = 480;
 
   /* Initialize cailing */
-  ceiling->y = 0;
+  ceiling->y = 85;
   floor->y = SCREEN_HEIGHT;
 }
 void initialize_bricks(Brick bricks[], int num_bricks) {
@@ -181,6 +181,9 @@ int main() {
         clear_ball(&game_model.ball, base);
         /* Move ball */
         move_ball(&game_model.ball);
+        /*check collisions*/
+        ball_collisions(&game_model.ball, &game_model.paddle, &game_model.bricks, 72, 
+          &left_wall, &right_wall, &ceiling, &floor, &game);
       }
       render(&game_model, base);
     }

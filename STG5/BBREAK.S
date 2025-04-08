@@ -21,9 +21,9 @@ _initialize_game:
 	;line	24
 	move.w	#342,40(a3)
 	;line	25
-	move.w	#10,42(a3)
+	move.w	#50,42(a3)
 	;line	26
-	move.w	#5,44(a3)
+	move.w	#50,44(a3)
 	;line	27
 	clr.w	46(a3)
 	;line	28
@@ -64,7 +64,7 @@ _initialize_game:
 	move.w	#480,(a0)
 	;line	54
 	move.l	24(a6),a0
-	clr.w	(a0)
+	move.w	#85,(a0)
 	;line	55
 	move.l	28(a6),a0
 	move.w	#400,(a0)
@@ -318,9 +318,11 @@ L19:
 	rts
 _main:
 	link	a6,#-5638
-	movem.l	d3/d4/d5,-(a7)
-	lea	-2826(a6),a0
+	movem.l	d3/d4/d5/d6,-(a7)
+	lea	-2788(a6),a0
 	move.l	a0,d5
+	lea	-2826(a6),a0
+	move.l	a0,d6
 	;line	155
 	move.w	#2,-(a7)
 	jsr	__trap_14_w
@@ -331,7 +333,7 @@ _main:
 	pea	-2842(a6)
 	pea	-2840(a6)
 	pea	-2838(a6)
-	move.l	d5,-(a7)
+	move.l	d6,-(a7)
 	pea	-2836(a6)
 	jsr	_initialize_game
 	lea	24(a7),a7
@@ -351,7 +353,7 @@ L20:
 	add.l	d0,a0
 	move.w	d3,d0
 	muls	#38,d0
-	add.l	d5,d0
+	add.l	d6,d0
 	add.l	#88,d0
 	move.l	d0,a1
 	move.l	(a0)+,(a1)+
@@ -374,7 +376,7 @@ L22:
 	jsr	_clear_screen
 	;line	165
 	move.l	d4,-(a7)
-	move.l	d5,-(a7)
+	move.l	d6,-(a7)
 	jsr	_render
 	addq.l	#8,a7
 	;line	166
@@ -397,7 +399,7 @@ L24:
 	addq.l	#8,a7
 	;line	174
 	pea	-2836(a6)
-	pea	-2788(a6)
+	move.l	d5,-(a7)
 	pea	-2766(a6)
 	jsr	_process_input
 	lea	12(a7),a7
@@ -409,17 +411,29 @@ L24:
 	beq	L28
 	;line	181
 	move.l	d4,-(a7)
-	pea	-2788(a6)
+	move.l	d5,-(a7)
 	jsr	_clear_ball
 	addq.l	#8,a7
 	;line	183
-	pea	-2788(a6)
+	move.l	d5,-(a7)
 	jsr	_move_ball
 	addq.l	#4,a7
-L28:
 	;line	185
-	move.l	d4,-(a7)
+	pea	-2836(a6)
+	pea	-2844(a6)
+	pea	-2842(a6)
+	pea	-2840(a6)
+	pea	-2838(a6)
+	move.w	#72,-(a7)
+	pea	-2738(a6)
+	pea	-2766(a6)
 	move.l	d5,-(a7)
+	jsr	_ball_collisions
+	lea	34(a7),a7
+L28:
+	;line	188
+	move.l	d4,-(a7)
+	move.l	d6,-(a7)
 	jsr	_render
 	addq.l	#8,a7
 L27:
@@ -427,7 +441,7 @@ L25:
 	tst.w	-2830(a6)
 	beq	L24
 L26:
-	movem.l	-5650(a6),d3/d4/d5
+	movem.l	-5654(a6),d3/d4/d5/d6
 	unlk	a6
 	rts
 	globl	_initialize_game

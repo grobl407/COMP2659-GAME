@@ -831,8 +831,8 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
 
   game_model->ball.x = 640  / 2;
   game_model->ball.y = 342;
-  game_model->ball.delta_x = 10;
-  game_model->ball.delta_y = 5;
+  game_model->ball.delta_x = 50;
+  game_model->ball.delta_y = 50;
   game_model->ball.isActive = 0;
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
@@ -860,7 +860,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   right_wall->x = 480;
 
 
-  ceiling->y = 0;
+  ceiling->y = 85;
   floor->y = 400 ;
 }
 void initialize_bricks(Brick bricks[], int num_bricks) {
@@ -990,9 +990,12 @@ int main() {
         clear_ball(&game_model.ball, base);
 
         move_ball(&game_model.ball);
+
+        ball_collisions(&game_model.ball, &game_model.paddle, &game_model.bricks, 72,
+          &left_wall, &right_wall, &ceiling, &floor, &game);
       }
       render(&game_model, base);
     }
-# 197 "bbreak.c"
+# 200 "bbreak.c"
 }
 }
