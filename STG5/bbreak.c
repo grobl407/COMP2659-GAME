@@ -24,7 +24,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->ball.y = 342;
   game_model->ball.delta_x = 1;
   game_model->ball.delta_y = 1;
-  game_model->ball.isActive = 1;
+  game_model->ball.isActive = 0;
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
   game_model->ball.ball_bitmap = ball_bitmap;
@@ -106,7 +106,7 @@ void initialize_bricks(Brick bricks[], int num_bricks) {
   }
 }
 
-void process_input(Ball *ball, Paddle *paddle, Game *game) {
+void process_input(Paddle *paddle, Ball *ball, Game *game) {
     if (Cconis()) {
         char ch = (char)Cnecin();
 
@@ -170,16 +170,17 @@ int main() {
     timeElapsed = timeNow - timeThen;
 
     /* Asynchronous events */
-    process_input(&game_model, &game);
-    render_clear_paddle(&paddle, base);
+    process_input(&game_model.paddle, &game_model.ball, &game);
+
+    /*render_clear_paddle(&paddle, base);*/
 
     /* Synchronous events */
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
         /* Clear ball */
-        clear_ball(&game_model.ball, base);
+        clear_ball(&ball, base);
         /* Move ball */
-        move_ball(&game_model.ball);
+        move_ball(&ball);
       }
       render(&game_model, base);
     }

@@ -272,9 +272,9 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
 void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
-void move_ball (Model *game_model);
+void move_ball (Ball *ball);
 void check_broken (Brick *brick, Game *game);
-void start_ball (Model *game_model);
+void start_ball (Ball *ball);
 # 2 "bbreak.c" 2
 # 1 "./../stg4/render.h" 1
 # 1 "./../stg4/../stg3/model.h" 1
@@ -514,7 +514,7 @@ struct utimbuf {
 
 void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor);
 void initialize_bricks(Brick bricks[], int num_bricks);
-void process_input(Model *game_model, Game *game);
+void process_input(Paddle *paddle, Ball *ball, Game *game);
 # 19 "./bbreak.h"
 void render_clear_paddle(Paddle *paddle, UINT8 *base);
 # 6 "bbreak.c" 2
@@ -833,7 +833,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->ball.y = 342;
   game_model->ball.delta_x = 1;
   game_model->ball.delta_y = 1;
-  game_model->ball.isActive = 1;
+  game_model->ball.isActive = 0;
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
   game_model->ball.ball_bitmap = ball_bitmap;
@@ -915,16 +915,16 @@ void initialize_bricks(Brick bricks[], int num_bricks) {
   }
 }
 
-void process_input(Model *game_model, Game *game) {
+void process_input(Paddle *paddle, Ball *ball, Game *game) {
     if ((short)_trap_1_w((short)0x0B) ) {
         char ch = (char)_trap_1_w((short)0x08) ;
 
         if (ch == 'a') {
-            move_paddle(&game_model->paddle, 0);
+            move_paddle(&paddle, 0);
         } else if (ch == 'd') {
-            move_paddle(&game_model->paddle, 1);
+            move_paddle(&paddle, 1);
         } else if (ch == ' ') {
-            start_ball(&game_model->ball);
+            start_ball(&ball);
         } else if (ch == 'q') {
           game->game_over = 1;
       }
@@ -979,16 +979,16 @@ int main() {
     timeElapsed = timeNow - timeThen;
 
 
-    process_input(&game_model, &game);
+    process_input(&game_model.paddle, &game_model.ball, &game);
     render_clear_paddle(&paddle, base);
 
 
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
 
-        clear_ball(&game_model.ball, base);
+        clear_ball(&ball, base);
 
-        move_ball(&game_model.ball);
+        move_ball(&ball);
       }
       render(&game_model, base);
     }
