@@ -16,6 +16,7 @@ void move_ball (Ball *ball) {
     ball->x += ball->delta_x;
     ball->y -= ball->delta_y;
     }
+  }
 }
 
 void move_paddle (Paddle *paddle, int direction) {
