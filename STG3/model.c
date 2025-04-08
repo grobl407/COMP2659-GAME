@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <osbind.h>
 #include <linea.h>
-
+#include "..\STG4\render.h"
 
 
 void move_ball (Ball *ball) {

@@ -45,6 +45,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->heart.x = 170;
   game_model->heart.y = 45;
   game_model->heart.heart_map = heart_map;
+  game_model->heart.clear_heart = clear_heart;
 
   /* Initialize walls */
   left_wall->x = 160;

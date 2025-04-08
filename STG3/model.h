@@ -59,6 +59,7 @@ typedef struct {
 typedef struct {
   int x, y;
   UINT16 *heart_map;
+  UINT16 *clear_heart;
 
 }Heart;
 

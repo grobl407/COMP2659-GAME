@@ -45,17 +45,27 @@ void render_heart(Heart *heart, UINT8 *base){
     }
 }
 
-void clear_ball(Ball *ball, UINT8 *base){
-    plot_ball(base, ball->x, ball->y, ball->clear_ball_bitmap);
-}
 void render_paddle(Paddle *paddle, UINT8 *base){
     plot_paddle(base, paddle->x, paddle->y, paddle->paddle_bitmap);
+}
+/*Render clear stuff*/
+void render_clear_heart(Heart *heart, UINT8 *base){
+    plot_heart(base, heart->x, heart->y, heart->clear_heart);
+}
+
+void clear_ball(Ball *ball, UINT8 *base){
+    plot_ball(base, ball->x, ball->y, ball->clear_ball_bitmap);
 }
 
 void render_clear_paddle(Paddle *paddle, UINT8 *base){
     plot_paddle(base, paddle->x, paddle->y, paddle->clear_paddle);
 }
 
+void render_clear_brick(Brick *brick, UINT8 *base){
+    plot_brick(base, brick->x, brick->y, brick->clear_brickmap);
+}
+
+/*render walls*/
 void render_walls (UINT8 *base) {
 	plot_vertline(base, 160, 30, 400); /* Plot left wall */
 	plot_vertline(base, 480, 30, 400); /*Plot right wall*/
