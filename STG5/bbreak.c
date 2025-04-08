@@ -28,6 +28,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
   game_model->ball.ball_bitmap = ball_bitmap;
+  game_model->ball.clear_ball_bitmap = clear_ball_bitmap;
 
 
   /* Initialize paddle */
@@ -38,7 +39,9 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->paddle.p_input = 0;
   game_model->paddle.move_dist = 20;
   game_model->paddle.paddle_bitmap = paddle_bitmap;
+  game_model->paddle.clear_paddle = clear_paddle;
 
+  /*Initialize heart*/
   game_model->heart.x = 170;
   game_model->heart.y = 45;
   game_model->heart.heart_map = heart_map;
@@ -103,17 +106,19 @@ void initialize_bricks(Brick bricks[], int num_bricks) {
   }
 }
 
-void process_input(Paddle *paddle, Ball *ball) {
+void process_input(Paddle *paddle, Ball *ball, Game *game) {
     if (Cconis()) {
         char ch = (char)Cnecin();
 
         if (ch == 'a') {
-            move_paddle(paddle, 0); /* Move left */
+            move_paddle(&paddle, 0); /* Move left */
         } else if (ch == 'd') {
-            move_paddle(paddle, 1); /*Move right */
+            move_paddle(&paddle, 1); /*Move right */
         } else if (ch == ' ') {
-            start_ball(ball); /*Start the ball */
-        }
+            start_ball(&ball); /*Start the ball */
+        } else if (ch == 'q') {
+          game->game_over = 1;
+      }
     }
 }
 
@@ -165,7 +170,7 @@ int main() {
     timeElapsed = timeNow - timeThen;
 
     /* Asynchronous events */
-    process_input(&game_model.paddle, &game_model.ball);
+    process_input(&game_model.paddle, &game_model.ball, &game);
 
     /* Synchronous events */
     if (timeElapsed > 0) {

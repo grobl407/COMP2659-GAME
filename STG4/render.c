@@ -10,7 +10,6 @@ void render(Model *model, UINT8 *base) {
     render_ball(&model->ball, base);
     render_paddle(&model->paddle, base);
     render_heart(&model->heart, base);
-    clear_ball(&model->ball, base);
 
 	for (i = 0; i < 72; i++) {
 		render_singlebrick(&model->bricks[i], base);
@@ -48,7 +47,7 @@ void render_heart(Heart *heart, UINT8 *base){
 }
 
 void clear_ball(Ball *ball, UINT8 *base){
-    plot_ball(base, ball->x, ball->y, ball->clear_brickmap);
+    plot_ball(base, ball->x, ball->y, ball->clear_ball_bitmap);
 }
 void render_paddle(Paddle *paddle, UINT8 *base){
     plot_paddle(base, paddle->x, paddle->y, paddle->paddle_bitmap);

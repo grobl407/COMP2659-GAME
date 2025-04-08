@@ -13,7 +13,7 @@ typedef struct {
   int size_x;
   int size_y;
   UINT16 *ball_bitmap;
-  UINT16 *clear_brickmap;
+  UINT16 *clear_ball_bitmap;
 } Ball;
 
 typedef struct {
@@ -87,8 +87,8 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
 void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
-void move_ball (Model *game_model);
+void move_ball (Ball *ball);
 void check_broken (Brick *brick, Game *game);
-void start_ball (Model *game_model);
+void start_ball (Ball *ball);
 
 #endif

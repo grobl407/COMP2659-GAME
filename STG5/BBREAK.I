@@ -185,6 +185,7 @@ extern UINT32 broken_brick_map[];
 extern UINT32 clear_brickmap[];
 extern UINT16 heart_map[];
 extern UINT32 clear_paddle[];
+extern UINT16 clear_ball_bitmap[];
 # 5 "./../stg3/model.h" 2
 
 
@@ -197,7 +198,7 @@ typedef struct {
   int size_x;
   int size_y;
   UINT16 *ball_bitmap;
-  UINT16 *clear_brickmap;
+  UINT16 *clear_ball_bitmap;
 } Ball;
 
 typedef struct {
@@ -271,9 +272,9 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
 void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
-void move_ball (Model *game_model);
+void move_ball (Ball *ball);
 void check_broken (Brick *brick, Game *game);
-void start_ball (Model *game_model);
+void start_ball (Ball *ball);
 # 2 "bbreak.c" 2
 # 1 "./../stg4/render.h" 1
 # 1 "./../stg4/../stg3/model.h" 1
@@ -513,7 +514,7 @@ struct utimbuf {
 
 void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor);
 void initialize_bricks(Brick bricks[], int num_bricks);
-void process_input(Paddle *paddle, Ball *ball);
+void process_input(Paddle *paddle, Ball *ball, Game *game);
 # 19 "./bbreak.h"
 void render_clear_paddle(Paddle *paddle, UINT8 *base);
 # 6 "bbreak.c" 2
@@ -836,6 +837,7 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
   game_model->ball.ball_bitmap = ball_bitmap;
+  game_model->ball.clear_ball_bitmap = clear_ball_bitmap;
 
 
 
@@ -846,6 +848,8 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   game_model->paddle.p_input = 0;
   game_model->paddle.move_dist = 20;
   game_model->paddle.paddle_bitmap = paddle_bitmap;
+  game_model->paddle.clear_paddle = clear_paddle;
+
 
   game_model->heart.x = 170;
   game_model->heart.y = 45;
@@ -911,17 +915,19 @@ void initialize_bricks(Brick bricks[], int num_bricks) {
   }
 }
 
-void process_input(Paddle *paddle, Ball *ball) {
+void process_input(Paddle *paddle, Ball *ball, Game *game) {
     if ((short)_trap_1_w((short)0x0B) ) {
         char ch = (char)_trap_1_w((short)0x08) ;
 
         if (ch == 'a') {
-            move_paddle(paddle, 0);
+            move_paddle(&paddle, 0);
         } else if (ch == 'd') {
-            move_paddle(paddle, 1);
+            move_paddle(&paddle, 1);
         } else if (ch == ' ') {
-            start_ball(ball);
-        }
+            start_ball(&ball);
+        } else if (ch == 'q') {
+          game->game_over = 1;
+      }
     }
 }
 
@@ -973,7 +979,7 @@ int main() {
     timeElapsed = timeNow - timeThen;
 
 
-    process_input(&game_model.paddle, &game_model.ball);
+    process_input(&game_model.paddle, &game_model.ball, &game);
 
 
     if (timeElapsed > 0) {
@@ -986,6 +992,6 @@ int main() {
       }
       render(&game_model, base);
     }
-# 191 "bbreak.c"
+# 196 "bbreak.c"
 }
 }

@@ -6,10 +6,10 @@
 #include <linea.h>
 
 
-void move_ball (Model *game_model) {
-  if (game_model->ball.isActive == 1) {
-    game_model->ball.x += game_model->ball.delta_x;
-    game_model->ball.y += game_model->ball.delta_y;
+void move_ball (Ball *ball) {
+  if (ball->isActive == 1) {
+    ball->x += ball->delta_x;
+    ball->y += ball->delta_y;
   }
 }
 
@@ -87,8 +87,8 @@ void reset_ball (Ball *ball, Paddle *paddle) {
 }
 
 /* wait for ball input to enable ball start again */
-void start_ball (Model *game_model) {
-        game_model->ball.isActive = 1;
+void start_ball (Ball *ball) {
+        ball->isActive = 1;
 }
 
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks) {

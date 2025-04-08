@@ -32,36 +32,40 @@ _initialize_game:
 	move.w	#8,50(a3)
 	;line	30
 	move.l	#_ball_bitmap,52(a3)
-	;line	34
-	move.w	#312,60(a3)
+	;line	31
+	move.l	#_clear_ball_bitmap,56(a3)
 	;line	35
-	move.w	#350,62(a3)
+	move.w	#312,60(a3)
 	;line	36
-	move.w	#32,64(a3)
+	move.w	#350,62(a3)
 	;line	37
-	move.w	#5,66(a3)
+	move.w	#32,64(a3)
 	;line	38
-	clr.w	68(a3)
+	move.w	#5,66(a3)
 	;line	39
-	move.w	#20,70(a3)
+	clr.w	68(a3)
 	;line	40
+	move.w	#20,70(a3)
+	;line	41
 	move.l	#_paddle_bitmap,72(a3)
 	;line	42
+	move.l	#_clear_paddle,76(a3)
+	;line	45
 	move.w	#170,80(a3)
-	;line	43
+	;line	46
 	move.w	#45,82(a3)
-	;line	44
-	move.l	#_heart_map,84(a3)
 	;line	47
+	move.l	#_heart_map,84(a3)
+	;line	50
 	move.l	16(a6),a0
 	move.w	#160,(a0)
-	;line	48
+	;line	51
 	move.l	20(a6),a0
 	move.w	#480,(a0)
-	;line	51
+	;line	54
 	move.l	24(a6),a0
 	clr.w	(a0)
-	;line	52
+	;line	55
 	move.l	28(a6),a0
 	move.w	#400,(a0)
 	movem.l	(a7)+,a3/a4
@@ -72,39 +76,39 @@ _initialize_bricks:
 	movem.l	d3/d4/d5/d6/d7/a3/a4,-(a7)
 	move.l	8(a6),a3
 	moveq	#38,d4
-	;line	69
-	move.w	#28,a4
-	;line	70
-	moveq	#7,d7
-	;line	71
-	move.w	#4,-6(a6)
 	;line	72
-	move.w	#13,-8(a6)
+	move.w	#28,a4
 	;line	73
-	move.w	#170,-10(a6)
+	moveq	#7,d7
 	;line	74
-	move.w	#100,-12(a6)
+	move.w	#4,-6(a6)
 	;line	75
-	move.w	#9,-14(a6)
+	move.w	#13,-8(a6)
 	;line	76
-	move.w	#8,-16(a6)
+	move.w	#170,-10(a6)
 	;line	77
-	moveq	#0,d3
+	move.w	#100,-12(a6)
+	;line	78
+	move.w	#9,-14(a6)
 	;line	79
+	move.w	#8,-16(a6)
+	;line	80
+	moveq	#0,d3
+	;line	82
 	moveq	#0,d6
 	bra	L2
 L1:
-	;line	81
+	;line	84
 	moveq	#0,d5
 	bra	L6
 L5:
-	;line	82
+	;line	85
 	cmp.w	12(a6),d3
 	blt	L9
-	;line	83
+	;line	86
 	bra	L10
 L9:
-	;line	85
+	;line	88
 	move.w	-10(a6),d0
 	move.w	-6(a6),d1
 	add.w	a4,d1
@@ -118,7 +122,7 @@ L9:
 	move.l	d0,d1
 	move.l	(a7)+,d0
 	move.w	d0,0(a3,d1.l)
-	;line	86
+	;line	89
 	move.w	-12(a6),d0
 	move.w	-8(a6),d1
 	add.w	d7,d1
@@ -133,30 +137,6 @@ L9:
 	add.l	a3,a0
 	move.l	(a7)+,d0
 	move.w	d0,2(a0)
-	;line	87
-	ext.l	d3
-	move.l	d3,-(a7)
-	move.l	d4,-(a7)
-	jsr	.Xlmul
-	move.l	d0,a0
-	add.l	a3,a0
-	move.w	a4,8(a0)
-	;line	88
-	ext.l	d3
-	move.l	d3,-(a7)
-	move.l	d4,-(a7)
-	jsr	.Xlmul
-	move.l	d0,a0
-	add.l	a3,a0
-	move.w	d7,10(a0)
-	;line	89
-	ext.l	d3
-	move.l	d3,-(a7)
-	move.l	d4,-(a7)
-	jsr	.Xlmul
-	move.l	d0,a0
-	add.l	a3,a0
-	clr.w	4(a0)
 	;line	90
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -164,7 +144,7 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
-	move.w	#10,6(a0)
+	move.w	a4,8(a0)
 	;line	91
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -172,7 +152,7 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
-	move.w	#5,12(a0)
+	move.w	d7,10(a0)
 	;line	92
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -180,7 +160,7 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
-	move.l	#_full_brick_map,14(a0)
+	clr.w	4(a0)
 	;line	93
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -188,7 +168,7 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
-	move.l	#_cracked_brick_map,22(a0)
+	move.w	#10,6(a0)
 	;line	94
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -196,7 +176,7 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
-	move.l	#_semi_cracked_map,18(a0)
+	move.w	#5,12(a0)
 	;line	95
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -204,7 +184,7 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
-	move.l	#_almost_broken_map,26(a0)
+	move.l	#_full_brick_map,14(a0)
 	;line	96
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -212,7 +192,7 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
-	move.l	#_broken_brick_map,30(a0)
+	move.l	#_cracked_brick_map,22(a0)
 	;line	97
 	ext.l	d3
 	move.l	d3,-(a7)
@@ -220,8 +200,32 @@ L9:
 	jsr	.Xlmul
 	move.l	d0,a0
 	add.l	a3,a0
+	move.l	#_semi_cracked_map,18(a0)
+	;line	98
+	ext.l	d3
+	move.l	d3,-(a7)
+	move.l	d4,-(a7)
+	jsr	.Xlmul
+	move.l	d0,a0
+	add.l	a3,a0
+	move.l	#_almost_broken_map,26(a0)
+	;line	99
+	ext.l	d3
+	move.l	d3,-(a7)
+	move.l	d4,-(a7)
+	jsr	.Xlmul
+	move.l	d0,a0
+	add.l	a3,a0
+	move.l	#_broken_brick_map,30(a0)
+	;line	100
+	ext.l	d3
+	move.l	d3,-(a7)
+	move.l	d4,-(a7)
+	jsr	.Xlmul
+	move.l	d0,a0
+	add.l	a3,a0
 	move.l	#_clear_brickmap,34(a0)
-	;line	101
+	;line	104
 	addq.w	#1,d3
 L8:
 	addq.w	#1,d5
@@ -242,42 +246,51 @@ L10:
 _process_input:
 	link	a6,#-2
 	move.l	d3,-(a7)
-	;line	107
+	;line	110
 	move.w	#11,-(a7)
 	jsr	__trap_1_w
 	addq.l	#2,a7
 	tst.w	d0
 	beq	L11
-	;line	110
+	;line	113
 	move.w	#8,-(a7)
 	jsr	__trap_1_w
 	addq.l	#2,a7
 	move.b	d0,d3
-	;line	110
+	;line	113
 	cmp.b	#97,d3
 	bne	L12
-	;line	111
+	;line	114
 	clr.w	-(a7)
-	move.l	8(a6),-(a7)
+	pea	8(a6)
 	jsr	_move_paddle
 	bra	L13
 L12:
-	;line	112
+	;line	115
 	cmp.b	#100,d3
 	bne	L14
-	;line	113
+	;line	116
 	move.w	#1,-(a7)
-	move.l	8(a6),-(a7)
+	pea	8(a6)
 	jsr	_move_paddle
 	bra	L15
 L14:
-	;line	114
+	;line	117
 	cmp.b	#32,d3
 	bne	L16
-	;line	115
-	move.l	12(a6),-(a7)
+	;line	118
+	pea	12(a6)
 	jsr	_start_ball
+	bra	L17
 L16:
+	;line	119
+	cmp.b	#113,d3
+	bne	L18
+	;line	120
+	move.l	16(a6),a0
+	move.w	#1,6(a0)
+L18:
+L17:
 L15:
 L13:
 L11:
@@ -286,21 +299,21 @@ L11:
 	rts
 _get_time:
 	link	a6,#-8
-	;line	124
+	;line	129
 	pea	0
 	move.w	#32,-(a7)
 	jsr	__trap_1_wl
 	addq.l	#6,a7
 	move.l	d0,-4(a6)
-	;line	125
+	;line	130
 	move.l	1122,-8(a6)
-	;line	126
+	;line	131
 	move.l	-4(a6),-(a7)
 	move.w	#32,-(a7)
 	jsr	__trap_1_wl
-	;line	128
+	;line	133
 	move.l	-8(a6),d0
-L17:
+L19:
 	unlk	a6
 	rts
 _main:
@@ -308,12 +321,12 @@ _main:
 	movem.l	d3/d4/d5,-(a7)
 	lea	-2826(a6),a0
 	move.l	a0,d5
-	;line	150
+	;line	155
 	move.w	#2,-(a7)
 	jsr	__trap_14_w
 	addq.l	#2,a7
 	move.l	d0,d4
-	;line	150
+	;line	155
 	pea	-2844(a6)
 	pea	-2842(a6)
 	pea	-2840(a6)
@@ -322,16 +335,16 @@ _main:
 	pea	-2836(a6)
 	jsr	_initialize_game
 	lea	24(a7),a7
-	;line	151
+	;line	156
 	move.w	#72,-(a7)
 	pea	-5622(a6)
 	jsr	_initialize_bricks
 	addq.l	#6,a7
-	;line	153
+	;line	158
 	moveq	#0,d3
-	bra	L19
-L18:
-	;line	154
+	bra	L21
+L20:
+	;line	159
 	lea	-5622(a6),a0
 	move.w	d3,d0
 	muls	#38,d0
@@ -351,68 +364,69 @@ L18:
 	move.l	(a0)+,(a1)+
 	move.l	(a0)+,(a1)+
 	move.w	(a0)+,(a1)+
-L21:
+L23:
 	addq.w	#1,d3
-L19:
+L21:
 	cmp.w	#72,d3
-	blt	L18
-L20:
-	;line	159
+	blt	L20
+L22:
+	;line	164
 	jsr	_clear_screen
-	;line	160
+	;line	165
 	move.l	d4,-(a7)
 	move.l	d5,-(a7)
 	jsr	_render
 	addq.l	#8,a7
-	;line	161
+	;line	166
 	jsr	_get_time
 	move.l	d0,-5630(a6)
-	;line	163
-	bra	L23
-L22:
-	;line	164
+	;line	168
+	bra	L25
+L24:
+	;line	169
 	jsr	_get_time
 	move.l	d0,-5626(a6)
-	;line	165
+	;line	170
 	move.l	-5626(a6),d0
 	sub.l	-5630(a6),d0
 	move.l	d0,-5634(a6)
-	;line	168
+	;line	173
+	pea	-2836(a6)
 	pea	-2788(a6)
 	pea	-2766(a6)
 	jsr	_process_input
-	addq.l	#8,a7
-	;line	171
+	lea	12(a7),a7
+	;line	176
 	tst.l	-5634(a6)
-	bls	L25
-	;line	172
+	bls	L27
+	;line	177
 	tst.w	-2780(a6)
-	beq	L26
-	;line	174
+	beq	L28
+	;line	179
 	move.l	d4,-(a7)
 	pea	-2886(a6)
 	jsr	_clear_ball
 	addq.l	#8,a7
-	;line	175
+	;line	180
 	move.l	d4,-(a7)
 	pea	-2864(a6)
 	jsr	_render_clear_paddle
 	addq.l	#8,a7
-	;line	177
+	;line	182
 	pea	-2788(a6)
 	jsr	_move_ball
 	addq.l	#4,a7
-L26:
-	;line	179
+L28:
+	;line	184
 	move.l	d4,-(a7)
 	move.l	d5,-(a7)
 	jsr	_render
 	addq.l	#8,a7
+L27:
 L25:
-L23:
 	tst.w	-2830(a6)
-	beq	L22
-L24:
+	beq	L24
+L26:
 	movem.l	-5650(a6),d3/d4/d5
 	unlk	a6
 	rts
