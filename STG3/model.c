@@ -8,9 +8,14 @@
 
 void move_ball (Ball *ball) {
   if (ball->isActive == 1) {
+    if (ball->x > 480) {
+      ball->x = 472;
+    } else if (ball->x < 160) {
+      ball->x = 160;
+    } else {
     ball->x += ball->delta_x;
     ball->y -= ball->delta_y;
-  }
+    }
 }
 
 void move_paddle (Paddle *paddle, int direction) {
