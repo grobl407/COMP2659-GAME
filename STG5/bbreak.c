@@ -170,14 +170,14 @@ int main() {
     timeElapsed = timeNow - timeThen;
 
     /* Asynchronous events */
-    process_input(&game_model.paddle, &game_model.ball, &game);
+    process_input(&game_model.paddle, &game_model.ball);
+    render_clear_paddle(&paddle, base);
 
     /* Synchronous events */
     if (timeElapsed > 0) {
       if (game_model.ball.isActive) {
         /* Clear ball */
         clear_ball(&ball, base);
-        render_clear_paddle(&paddle, base);
         /* Move ball */
         move_ball(&game_model.ball);
       }
