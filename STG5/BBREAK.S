@@ -445,6 +445,7 @@ L28:
 	jsr	_move_ball
 	addq.l	#4,a7
 	;line	192
+	move.l	d3,-(a7)
 	pea	-2842(a6)
 	pea	-2850(a6)
 	pea	-2848(a6)
@@ -455,7 +456,7 @@ L28:
 	pea	-2772(a6)
 	move.l	d6,-(a7)
 	jsr	_ball_collisions
-	lea	34(a7),a7
+	lea	38(a7),a7
 L32:
 	;line	195
 	move.l	d3,-(a7)

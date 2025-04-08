@@ -269,13 +269,13 @@ typedef struct {
 
 
 void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
-  Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game);
+  Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor, Game *game, UINT8 *base);
 
 Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks);
 void reset_ball (Ball *ball, Paddle *paddle);
 void move_paddle (Paddle *paddle, int direction);
 void move_ball (Ball *ball);
-void check_broken (Brick *brick, Game *game);
+
 void start_ball (Ball *ball);
 # 2 "bbreak.c" 2
 # 1 "./../stg4/render.h" 1
@@ -1004,7 +1004,7 @@ int main() {
         move_ball(&game_model.ball);
 
         ball_collisions(&game_model.ball, &game_model.paddle, &game_model.bricks, 72,
-          &left_wall, &right_wall, &ceiling, &floor, &game);
+          &left_wall, &right_wall, &ceiling, &floor, &game, base);
       }
       render(&game_model, base);
     }

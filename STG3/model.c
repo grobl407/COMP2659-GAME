@@ -5,9 +5,8 @@
 #include <osbind.h>
 #include <linea.h>
 #include "..\STG4\render.h"
-#include "TYPES.H"
+#include "..\STG4\TYPES.H"
 
-UINT8 *base = Physbase();
 
 void move_ball (Ball *ball) {
   if (ball->isActive == 1) {
