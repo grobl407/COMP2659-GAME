@@ -21,9 +21,9 @@ _initialize_game:
 	;line	24
 	move.w	#342,40(a3)
 	;line	25
-	move.w	#50,42(a3)
+	move.w	#10,42(a3)
 	;line	26
-	move.w	#50,44(a3)
+	move.w	#5,44(a3)
 	;line	27
 	clr.w	46(a3)
 	;line	28

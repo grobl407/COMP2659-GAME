@@ -14,6 +14,7 @@ extern UINT32 clear_brickmap[];
 extern UINT16 heart_map[];
 extern UINT32 clear_paddle[];
 extern UINT16 clear_ball_bitmap[];
+extern UINT16 clear_heart[];
 
 
 #endif /* BITMAPS_H */

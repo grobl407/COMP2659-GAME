@@ -6,6 +6,7 @@
 #include <linea.h>
 
 
+
 void move_ball (Ball *ball) {
   if (ball->isActive == 1) {
     if (ball->x > 480) {
@@ -38,6 +39,13 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
     Brick *brick;
     int overlap_x;
     int overlap_y;
+    int overlap_left;
+    int overlap_right;
+    int overlap_top;
+    int overlap_bottom;
+
+    int min_overlap;
+    int collision_side;
 
     /* Wall collisions */
     if (ball->x <= left_wall->x || ball->x + ball->size_x >= right_wall->x) {
@@ -54,37 +62,59 @@ void ball_collisions(Ball *ball, Paddle *paddle, Brick bricks[], int num_bricks,
         
         ball->delta_y = -ball->delta_y;  /*Bounce off paddle*/
     }
-    /*
-    /* Brick collision 
-    brick = find_brick(ball, bricks, num_bricks);
-    if (brick) {
-        brick->health--;
-        if (brick->health <= 0) {
-            brick->isBroken = 1;
-            game->score += brick->base_points;
-        }
-
-        /* Simple bounce: Flip whichever direction had the most overlap 
-        overlap_x = (ball->x + ball->size_x) - brick->x;
-        overlap_y = (ball->y + ball->size_y) - brick->y;
-        
-        if (overlap_x > overlap_y) {
-            ball->delta_y = -ball->delta_y;  /*Bounce vertically
-        } else {
-            ball->delta_x = -ball->delta_x;  /*Bounce horizontally
-        }
+    
+ /* Brick collision */
+brick = find_brick(ball, bricks, num_bricks);
+if (brick) {
+    brick->health--;
+    if (brick->health <= 0) {
+        brick->isBroken = 1;
+        game->score += brick->base_points;
     }
 
-    /* Ball falls below paddle (lose a life) 
+    /* Calculate overlap from all sides */
+    overlap_left = (ball->x + ball->size_x) - brick->x;
+    overlap_right = (brick->x + brick->size_x) - ball->x;
+    overlap_top = (ball->y + ball->size_y) - brick->y;
+    overlap_bottom = (brick->y + brick->size_y + 5) - ball->y;  /* Added +5 here */
+
+    /* Find the smallest overlap */
+    min_overlap = overlap_left;
+    collision_side = 0; /* 0=left, 1=right, 2=top, 3=bottom */
+
+    if (overlap_right < min_overlap) {
+        min_overlap = overlap_right;
+        collision_side = 1;
+    }
+    if (overlap_top < min_overlap) {
+        min_overlap = overlap_top;
+        collision_side = 2;
+    }
+    if (overlap_bottom < min_overlap) {
+        min_overlap = overlap_bottom;
+        collision_side = 3;
+    }
+
+    /* Bounce based on collision side */
+    if (collision_side < 2) {
+        ball->delta_x = -ball->delta_x;
+    } else {
+        ball->delta_y = -ball->delta_y;
+    }
+}
+
+    /* Ball falls below paddle (lose a life) */
     if (ball->y >= floor->y) {
         game->lives--;
+        ball->y = -ball->y;
         if (game->lives == 0) {
             game->game_over = 1;
         } else {
             reset_ball(ball, paddle);
+
         }
     }
-    */
+    
 }
 
 void reset_ball (Ball *ball, Paddle *paddle) {
@@ -104,13 +134,13 @@ Brick *find_brick(Ball *ball, Brick bricks[], int num_bricks) {
       if (!bricks[i].isBroken &&
           ball->x < bricks[i].x + bricks[i].size_x &&
           ball->x + ball->size_x > bricks[i].x &&
-          ball->y < bricks[i].y + bricks[i].size_y &&
-          ball->y + ball->size_y > bricks[i].y) {
+          ball->y < bricks[i].y + bricks[i].size_y + 5 &&  /* Added +5 to bottom collision */
+          ball->y + ball->size_y > bricks[i].y) {          /* Top collision remains normal */
           
-          return &bricks[i];  /*Return pointer to brick*/
+          return &bricks[i];
       }
   }
-  return NULL;  /*No collision*/
+  return NULL;
 }
 
 

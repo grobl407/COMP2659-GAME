@@ -136,6 +136,7 @@ UINT32 get_time() {
 int main() {
   /* initialize structs */
   int i;
+  int j;
   Model game_model;
   Game game;
   Wall left_wall;
@@ -163,6 +164,11 @@ int main() {
 
   clear_screen();
   render(&game_model, base);
+  render_heart(&model->heart, base);
+  for (j = 0; j < 72; j++) {
+		render_singlebrick(&model->bricks[j], base);
+	} 
+
   timeThen = get_time();
 
   while (!game.game_over) {
