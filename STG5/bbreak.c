@@ -106,16 +106,16 @@ void initialize_bricks(Brick bricks[], int num_bricks) {
   }
 }
 
-void process_input(Model *game_model, Game *game) {
+void process_input(Ball *ball, Paddle *paddle, Game *game) {
     if (Cconis()) {
         char ch = (char)Cnecin();
 
         if (ch == 'a') {
-            move_paddle(&game_model->paddle, 0); /* Move left */
+            move_paddle(&paddle, 0); /* Move left */
         } else if (ch == 'd') {
-            move_paddle(&game_model->paddle, 1); /*Move right */
+            move_paddle(&paddle, 1); /*Move right */
         } else if (ch == ' ') {
-            start_ball(&game_model->ball); /*Start the ball */
+            start_ball(&ball); /*Start the ball */
         } else if (ch == 'q') {
           game->game_over = 1;
       }
