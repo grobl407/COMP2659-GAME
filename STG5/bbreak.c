@@ -22,9 +22,9 @@ void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right
   /* Initialize ball */
   game_model->ball.x = SCREEN_WIDTH / 2;
   game_model->ball.y = 342;
-  game_model->ball.delta_x = 0;
+  game_model->ball.delta_x = 10;
   game_model->ball.delta_y = 5;
-  game_model->ball.isActive = 1;
+  game_model->ball.isActive = 0;
   game_model->ball.size_x = 8;
   game_model->ball.size_y = 8;
   game_model->ball.ball_bitmap = ball_bitmap;
