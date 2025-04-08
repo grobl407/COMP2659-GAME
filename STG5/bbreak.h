@@ -9,7 +9,7 @@
 
 void initialize_game(Game *game, Model *game_model, Wall *left_wall, Wall *right_wall, Ceiling *ceiling, Floor *floor);
 void initialize_bricks(Brick bricks[], int num_bricks);
-void process_input(Model *game_model, Game *game);
+void process_input(Ball *ball, Paddle *paddle, Game *game);
 /*
 void render_brick(Brick *brick, UINT8 *base);
 void render_all_bricks(Brick bricks[], int num_bricks, UINT8 *base);
